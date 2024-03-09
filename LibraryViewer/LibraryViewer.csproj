@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseOutputPath>..\Build\Server Tools\LibraryViewer\</BaseOutputPath>
+    <AssemblyName>CMirLibraryViewer</AssemblyName>
+    <RootNamespace>CMirLibraryViewer</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Controls\FixedListViewControl\CustomFormControl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ManagedSquish">
+      <HintPath>..\Components\Squish 2.0\ManagedSquish.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
