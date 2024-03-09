@@ -9,3 +9,7 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 [Database](https://github.com/Suprcode/mir1-database) //
 [Help](https://www.lomcn.net/forum/forums/carbon-help.842/) //
 [Tutorials](https://www.lomcn.net/forum/forums/carbon-tutorials.839/)
+
+# Downloads:
+
+[Client](https://mirfiles.com/resources/mir2/users/Jev/Mir1/Client.rar)
