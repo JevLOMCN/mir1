@@ -203,7 +203,7 @@ namespace Server
                         guild = AccountEnvir.GetGuild(character.GuildIndex);
                         if (guild != null)
                         {
-                           listItem.SubItems.Add(guild.Name.ToString());
+                            listItem.SubItems.Add(guild.Name.ToString());
                         }
                     }
                     else
@@ -232,9 +232,9 @@ namespace Server
                     listItem.SubItems.Add(status.ToString());
 
                     CharactersListView.Items.Add(listItem);
-                    }
                 }
             }
+        }
 
         #endregion
 
@@ -532,6 +532,35 @@ namespace Server
             catch (Exception ex)
             {
                 MessageBox.Show($"Error opening URL: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Delete account btn
+        private void Delaccbtn_Click(object sender, EventArgs e)
+        {
+            if (AccountInfoListView.SelectedItems.Count > 0)
+            {
+                // Ask for confirmation
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // Get the selected account from the ListViewItem's Tag property
+                    AccountInfo accInfo = (AccountInfo)AccountInfoListView.SelectedItems[0].Tag;
+
+                    // Remove the selected account from AccountList
+                    if (SMain.Envir.AccountList.Contains(accInfo))
+                    {
+                        SMain.Envir.AccountList.Remove(accInfo);
+                    }
+
+                    // Remove the selected item from AccountInfoListView
+                    AccountInfoListView.SelectedItems[0].Remove();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an account to remove.");
             }
         }
         #endregion

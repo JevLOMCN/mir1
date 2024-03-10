@@ -84,6 +84,7 @@ namespace Server
             ServerGoldTextBox = new TextBox();
             ServerCreditTextBox = new TextBox();
             TotalServerCredit = new Label();
+            Delaccbtn = new Button();
             AccountInfoPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -130,6 +131,7 @@ namespace Server
             // AccountInfoPanel
             // 
             AccountInfoPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            AccountInfoPanel.Controls.Add(Delaccbtn);
             AccountInfoPanel.Controls.Add(CharactersListView);
             AccountInfoPanel.Controls.Add(LastIPSearch);
             AccountInfoPanel.Controls.Add(CreationIPSearch);
@@ -580,6 +582,17 @@ namespace Server
             TotalServerCredit.TabIndex = 21;
             TotalServerCredit.Text = "Total Server Credit:";
             // 
+            // Delaccbtn
+            // 
+            Delaccbtn.Location = new Point(334, 45);
+            Delaccbtn.Margin = new Padding(4, 3, 4, 3);
+            Delaccbtn.Name = "Delaccbtn";
+            Delaccbtn.Size = new Size(88, 27);
+            Delaccbtn.TabIndex = 41;
+            Delaccbtn.Text = "Delete Acc";
+            Delaccbtn.UseVisualStyleBackColor = true;
+            Delaccbtn.Click += Delaccbtn_Click;
+            // 
             // AccountInfoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -666,5 +679,6 @@ namespace Server
         private TextBox ServerGoldTextBox;
         private TextBox ServerCreditTextBox;
         private Label TotalServerCredit;
+        private Button Delaccbtn;
     }
 }
