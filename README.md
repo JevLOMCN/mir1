@@ -8,7 +8,8 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 [Wiki](https://www.lomcn.net/wiki/index.php/Carbon) //
 [Database](https://github.com/Suprcode/mir1-database) //
 [Help](https://www.lomcn.net/forum/forums/carbon-help.842/) //
-[Tutorials](https://www.lomcn.net/forum/forums/carbon-tutorials.839/)
+[Tutorials](https://www.lomcn.net/forum/forums/carbon-tutorials.839/) //
+[To do](https://docs.google.com/spreadsheets/d/1Umsfg1AFYP_TZytO3lsEl12N-2LHtOGDMWxYe7I-e08/edit)
 
 # Downloads:
 
