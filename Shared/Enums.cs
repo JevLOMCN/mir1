@@ -220,7 +220,18 @@ public enum Monster : ushort
     GiantFrog,
     DragonBat,
     Centipede2,
-    Reptile
+    Reptile,
+
+    //Item Monsters
+    BlackTree,
+    RedTree,
+    Furnace,
+    ChestBox,
+    Sign,
+    Eggs,
+    WoodenBox,
+    StoneBox,
+    Stump
 }
 
 public enum MirAction : byte
