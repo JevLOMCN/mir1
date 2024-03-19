@@ -106,7 +106,7 @@ namespace Server
             conquestToolStripMenuItem = new ToolStripMenuItem();
             respawnsToolStripMenuItem = new ToolStripMenuItem();
             InterfaceTimer = new Timer(components);
-            UpTimeLabel = new Label();
+            UpTimeLabel = new ToolStripTextBox();
             MainTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -403,7 +403,8 @@ namespace Server
             // 
             // MainMenu
             // 
-            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1 });
+            MainMenu.BackColor = Color.Transparent;
+            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1, UpTimeLabel });
             MainMenu.Location = new Point(0, 0);
             MainMenu.Name = "MainMenu";
             MainMenu.Padding = new Padding(7, 2, 0, 2);
@@ -669,12 +670,12 @@ namespace Server
             // 
             // UpTimeLabel
             // 
-            UpTimeLabel.AutoSize = true;
-            UpTimeLabel.Location = new Point(362, 0);
+            UpTimeLabel.BorderStyle = BorderStyle.None;
             UpTimeLabel.Name = "UpTimeLabel";
-            UpTimeLabel.Size = new Size(49, 15);
-            UpTimeLabel.TabIndex = 6;
+            UpTimeLabel.ReadOnly = true;
+            UpTimeLabel.Size = new Size(200, 20);
             UpTimeLabel.Text = "Uptime:";
+            UpTimeLabel.TextBoxTextAlign = HorizontalAlignment.Right;
             // 
             // SMain
             // 
@@ -683,7 +684,6 @@ namespace Server
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.Control;
             ClientSize = new Size(621, 455);
-            Controls.Add(UpTimeLabel);
             Controls.Add(MainTabs);
             Controls.Add(StatusBar);
             Controls.Add(MainMenu);
@@ -785,8 +785,8 @@ namespace Server
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
-        private Label UpTimeLabel;
         private ColumnHeader columnHeader6;
+        private ToolStripTextBox UpTimeLabel;
     }
 }
 
