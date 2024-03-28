@@ -2,6 +2,10 @@
 
 Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
 
+# Team
+
+[Lilcooldoode](https://www.lomcn.net/forum/members/lilcooldoode.940/) + [Jev](https://www.lomcn.net/forum/members/jev.29880/)
+
 # Useful Links:
 
 [Build Guide](https://www.lomcn.net/forum/threads/carbon-source-files-downloads-build-guide.111603/) //
