@@ -14,3 +14,13 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 # Downloads:
 
 [Client](https://mirfiles.com/resources/mir2/users/Jev/Mir1/Client.rar)
+
+# Other Projects:
+
+[Mir 2](https://github.com/Suprcode/Crystal) // [Database](https://github.com/Suprcode/Crystal.Database) // [Map Editor](https://github.com/Suprcode/Crystal.MapEditor)
+
+[Mir 3](https://github.com/Suprcode/Zircon)
+
+[Mir 3D](https://github.com/mir-ethernity/mir-eternal)
+
+[Mir 4](https://github.com/JevLOMCN/mir4-launchers)
