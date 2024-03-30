@@ -35,6 +35,7 @@ namespace Server
             FilterTextBox = new TextBox();
             RefreshButton = new Button();
             AccountInfoPanel = new Panel();
+            Delaccbtn = new Button();
             CharactersListView = new ListView();
             characterName = new ColumnHeader();
             characterClass = new ColumnHeader();
@@ -84,7 +85,8 @@ namespace Server
             ServerGoldTextBox = new TextBox();
             ServerCreditTextBox = new TextBox();
             TotalServerCredit = new Label();
-            Delaccbtn = new Button();
+            FilterIPTextBox = new TextBox();
+            label4 = new Label();
             AccountInfoPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -119,7 +121,7 @@ namespace Server
             // 
             // RefreshButton
             // 
-            RefreshButton.Location = new Point(455, 43);
+            RefreshButton.Location = new Point(673, 45);
             RefreshButton.Margin = new Padding(4, 3, 4, 3);
             RefreshButton.Name = "RefreshButton";
             RefreshButton.Size = new Size(88, 27);
@@ -162,6 +164,17 @@ namespace Server
             AccountInfoPanel.Name = "AccountInfoPanel";
             AccountInfoPanel.Size = new Size(941, 241);
             AccountInfoPanel.TabIndex = 14;
+            // 
+            // Delaccbtn
+            // 
+            Delaccbtn.Location = new Point(334, 45);
+            Delaccbtn.Margin = new Padding(4, 3, 4, 3);
+            Delaccbtn.Name = "Delaccbtn";
+            Delaccbtn.Size = new Size(88, 27);
+            Delaccbtn.TabIndex = 41;
+            Delaccbtn.Text = "Delete Acc";
+            Delaccbtn.UseVisualStyleBackColor = true;
+            Delaccbtn.Click += Delaccbtn_Click;
             // 
             // CharactersListView
             // 
@@ -529,7 +542,7 @@ namespace Server
             // MatchFilterCheckBox
             // 
             MatchFilterCheckBox.AutoSize = true;
-            MatchFilterCheckBox.Location = new Point(551, 48);
+            MatchFilterCheckBox.Location = new Point(769, 50);
             MatchFilterCheckBox.Margin = new Padding(4, 3, 4, 3);
             MatchFilterCheckBox.Name = "MatchFilterCheckBox";
             MatchFilterCheckBox.Size = new Size(89, 19);
@@ -582,22 +595,31 @@ namespace Server
             TotalServerCredit.TabIndex = 21;
             TotalServerCredit.Text = "Total Server Credit:";
             // 
-            // Delaccbtn
+            // FilterIPTextBox
             // 
-            Delaccbtn.Location = new Point(334, 45);
-            Delaccbtn.Margin = new Padding(4, 3, 4, 3);
-            Delaccbtn.Name = "Delaccbtn";
-            Delaccbtn.Size = new Size(88, 27);
-            Delaccbtn.TabIndex = 41;
-            Delaccbtn.Text = "Delete Acc";
-            Delaccbtn.UseVisualStyleBackColor = true;
-            Delaccbtn.Click += Delaccbtn_Click;
+            FilterIPTextBox.Location = new Point(538, 45);
+            FilterIPTextBox.Margin = new Padding(4, 3, 4, 3);
+            FilterIPTextBox.Name = "FilterIPTextBox";
+            FilterIPTextBox.Size = new Size(116, 23);
+            FilterIPTextBox.TabIndex = 24;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(457, 48);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(49, 15);
+            label4.TabIndex = 23;
+            label4.Text = "Filter IP:";
             // 
             // AccountInfoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(969, 532);
+            Controls.Add(FilterIPTextBox);
+            Controls.Add(label4);
             Controls.Add(ServerCreditTextBox);
             Controls.Add(TotalServerCredit);
             Controls.Add(ServerGoldTextBox);
@@ -680,5 +702,7 @@ namespace Server
         private TextBox ServerCreditTextBox;
         private Label TotalServerCredit;
         private Button Delaccbtn;
+        private TextBox FilterIPTextBox;
+        private Label label4;
     }
 }
