@@ -82,7 +82,12 @@ namespace Client.MirObjects
 
             Stage = info.ExtraByte;
 
-            BodyLibrary = (int)BaseImage < 1000 ? Libraries.Monster : Libraries.DungeonMonster;
+            if ((int)BaseImage >= 10000)
+                BodyLibrary = Libraries.ItemMon;
+            else if ((int)BaseImage >= 1000)
+                BodyLibrary = Libraries.DungeonMonster;
+            else
+                BodyLibrary = Libraries.Monster;
 
             if (Dead)
                 ActionFeed.Add(new QueuedAction { Action = MirAction.Dead, Direction = Direction, Location = CurrentLocation });
@@ -113,6 +118,18 @@ namespace Client.MirObjects
                 case Monster.Zombie:
                 case Monster.GiantFrog:
                     Frames = FrameSet.DungeonMonster1;
+                    break;
+                case Monster.ItemMonTree1:
+                case Monster.ItemMonTree2:
+                    Frames = FrameSet.ItemMonTree;
+                    break;
+                case Monster.ItemMonChest:
+                case Monster.ItemMonStump:
+                    Frames = FrameSet.ItemMonChest;
+                    break;
+                case Monster.ItemMonBrownCupboard:
+                case Monster.ItemMonGreyCupboard:
+                    Frames = FrameSet.ItemMonCupboard;
                     break;
                 default:
                     Frames = FrameSet.DefaultMonster;
@@ -193,8 +210,10 @@ namespace Client.MirObjects
                 int BaseIndex = 0;
                 if ((int)BaseImage < 1000)
                     BaseIndex = (int)BaseImage * 50;
-                else //Dungeon Monsters
+                else if ((int)BaseImage < 10000)//Dungeon Monsters
                     BaseIndex = ((int)BaseImage - 1000) * 180;
+                else //Item Monsters
+                    BaseIndex = ((int)BaseImage - 10000) * 12;
 
                 DrawFrame = BaseIndex + (Frame.Start + (Frame.OffSet * (byte)Direction) + FrameIndex);
                 DrawWingFrame = BaseIndex + (Frame.EffectStart + (Frame.EffectOffSet * (byte)Direction) + EffectFrameIndex);

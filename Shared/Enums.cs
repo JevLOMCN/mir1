@@ -223,15 +223,12 @@ public enum Monster : ushort
     Reptile,
 
     //Item Monsters
-    BlackTree,
-    RedTree,
-    Furnace,
-    ChestBox,
-    Sign,
-    Eggs,
-    WoodenBox,
-    StoneBox,
-    Stump
+    ItemMonTree1 = 10000,
+    ItemMonTree2 = 10003,
+    ItemMonChest = 10009,
+    ItemMonBrownCupboard = 10024,
+    ItemMonGreyCupboard = 10027,
+    ItemMonStump = 10030
 }
 
 public enum MirAction : byte

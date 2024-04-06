@@ -18,6 +18,7 @@ namespace Client.MirGraphics
             Weapon = new MLibrary(Settings.DataPath + "Weapon"),
             Monster = new MLibrary(Settings.DataPath + "Monster"),
             DungeonMonster = new MLibrary(Settings.DataPath + "DungeonMonster"),
+            ItemMon = new MLibrary(Settings.DataPath + "ItemMon"),
             Prguse = new MLibrary(Settings.DataPath + "Prguse"),
             Prguse2 = new MLibrary(Settings.DataPath + "Prguse2"),
             BuffIcon = new MLibrary(Settings.DataPath + "BuffIcon"),
@@ -60,7 +61,7 @@ namespace Client.MirGraphics
 
         private static void LoadGameLibraries()
         {
-            Count = MapLibs.Length + 17;
+            Count = MapLibs.Length + 18;
 
             Body.Initialize();
             Progress++;
@@ -75,6 +76,9 @@ namespace Client.MirGraphics
             Progress++;
 
             DungeonMonster.Initialize();
+            Progress++;
+
+            ItemMon.Initialize();
             Progress++;
 
             BuffIcon.Initialize();

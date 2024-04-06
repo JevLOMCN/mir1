@@ -18,6 +18,8 @@ namespace Server.MirObjects
                     return new PassiveMonster(info);
                 case 3:
                     return new Trainer(info);
+                case 4:
+                    return new ItemMonster(info);
                 default:
                     return new MonsterObject(info);
             }

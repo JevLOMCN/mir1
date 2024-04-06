@@ -3,7 +3,7 @@
     public class FrameSet : Dictionary<MirAction, Frame>
     {
         public static FrameSet Player;
-        public static FrameSet DefaultNPC, DefaultMonster, DungeonMonster1, DungeonMonster2, DungeonMonster3, DungeonMonster4, DungeonMonster5;
+        public static FrameSet DefaultNPC, DefaultMonster, DungeonMonster1, DungeonMonster2, DungeonMonster3, DungeonMonster4, DungeonMonster5, ItemMonTree, ItemMonChest, ItemMonCupboard;
 
         static FrameSet()
         {
@@ -56,6 +56,27 @@
                 { MirAction.Standing, new Frame(10, 8, 2, 500) },
                 { MirAction.Walking, new Frame(10, 8, 2, 100) },
                 { MirAction.Attack1, new Frame(90, 6, 4, 100) }
+            };
+
+            ItemMonTree = new FrameSet
+            {
+                { MirAction.Standing, new Frame(0, 6, -6, 500) },
+                { MirAction.Die, new Frame(0, 1, -1, 1) },
+                { MirAction.Dead, new Frame(7, 1, -1, 1000) },
+            };
+
+            ItemMonChest = new FrameSet
+            {
+                { MirAction.Standing, new Frame(0, 6, 0, 500) },
+                { MirAction.Die, new Frame(0, 1, 6, 1) },
+                { MirAction.Dead, new Frame(12, 6, -6, 1000) },
+            };
+
+            ItemMonCupboard = new FrameSet
+            {
+                { MirAction.Standing, new Frame(0, 6, -6, 500) },
+                { MirAction.Die, new Frame(0, 1, -1, 1) },
+                { MirAction.Dead, new Frame(6, 6, -6, 1000) },
             };
 
 
