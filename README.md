@@ -16,7 +16,7 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 # Downloads:
 
-[Client](https://mirfiles.com/resources/mir2/users/Jev/Mir1/Client.rar) // [Database](https://github.com/Suprcode/Crystal.Database)
+[Client](https://mirfiles.com/resources/mir2/users/Jev/Mir1/Client.rar) // [Database](https://github.com/Suprcode/Carbon.Database)
 
 # Other Projects:
 
