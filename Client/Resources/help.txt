@@ -1,0 +1,233 @@
+    ########## HELP ##########
+
+When you start the game for the first time, you will start from 
+Nam So-sun.
+When you start the game for the first time, you will start playing
+ in Nam Sang Sung up to level 30.
+After connecting, "start from the beginning" to connect to the 
+game will start in the South.
+If you are above level 30, you can join the castle of your choice.
+
+The castle has 6 large castles and 10 small castles.
+First of all, you buy a coat or a skirt and buy a piece from a 
+blacksmith with a given price of 150.
+Decide what type of job you want to raise your character, 
+and then set a positive value in the property window (F3) 
+to the attribute value and the required ability for your character.
+Press [ALT + Q] to display the store coordinates of the temple 
+in detail.
+The most suitable animal to catch at level 1 is a rabbit. 
+Rabbits are easy to find near the village.
+Since mobs other than rabbits are aggressive, let them 
+catch rabbits at the beginning stage.
+As the level increases,
+        Rabbit -> Sparrow, Chicken -> Mouse -> Deer -> Deer -> 
+Snake -> Fox -> Wolf -> Tiger -> Spider -> Wang -> Skeleton -> 
+Neru Slander -> Skull Warrior -> Wicked ... ....
+In order to hunt.
+
+<Use keys: F4, F5, F7>
+F4: Item Details Window
+F5: Item Bag
+F7: Current Mounting Status
+At the bottom left of the screen, there is a belt labeled 1 to 6.
+Item Select item from bag and open item detail explanation 
+window, you can find information about item.
+With the item bag and the currently mounted window open, 
+you can drag and drop the item you want from the item bag 
+and place it in the appropriate window. Or double-click on the
+ item window.
+
+<Use key: shift> Attack uses mouse.
+While holding Shift on the keyboard, aim and click on the mob 
+with your mouse.
+If you want to keep attacking, press and hold the mouse to 
+continue attacking.
+Until Level 10, even if you are PICK (murder), things will not 
+fall in your bag.
+Until you reach a certain level, your name will appear in yellow 
+on the Krikic and you will not be attacked (ALT + H).
+Interpersonal attacks are possible from level 11, and if you kill 
+a lot of people, you become notorious and disadvantageous 
+to the game.
+When the notorious name becomes 20%, the name color 
+becomes red. The more notorious the name color becomes.
+Press F9 to confirm your notoriety.
+
+If a character has a good magic, a small [shield] will appear on 
+his head.
+When a character is poisoned, a small [skeleton] appears on 
+his head.
+If you die during a Pike (murder) or hunting, your inner / outer 
+space and agility will decrease. It slowly recovers over time. 
+In order to recover quickly, you need to take a recovery medicine.
+
+<Use key: Space bar, shift- !, '/'>
+Speaking: Press and hold the Space Bar
+Shout:! A word to cry (eg! It is a legend of Mir.)
+           Shouting is not heard by the entire user. But it sounds far 
+more than I can say.
+           The shout appears in yellow in the dialog.
+Whisper 1: / What do you want to say to your character name) 
+/Dev Kiss Hello.
+           Whispers can be used to communicate with a specific person.
+Whisper 2: // what you want to say character example) 
+// is a legend to the Devil Kiss Mir.)
+           It is a function to whisper to another server.
+@ Search: This function is to check if the person searching 
+is connecting.
+           This function is mainly used to check if there is a person 
+searching for another server.
+           Ex) @ Searchable Kiss
+
+You can catch animals to get meat and then sell them to the 
+butcher to earn money.
+Generally, meat is heavier and more expensive than the 
+restorative effect.
+In the hunting area, if you are in an emergency, you can 
+recover your stamina by eating meat, collect the meat, 
+sell the money, buy the reagent on the reagent, and 
+regain your strength.
+The herb is dropped when the herb is planted in the 
+herb field. There are medicines that can be made into 
+herbs, and you can sell this herb on the reagent.
+If you take ore from a mine, you will see diamonds, 
+gold chunks, and other ores. There are some items that 
+can be made, but now they are regenerated. 
+You can sell it in the castle in the castle.
+
+Chandler: A place to buy and sell rings, necklaces, helmets, 
+bracelets, and return books.
+Reagent: It is a place to buy and sell various herbs 
+and reagents.
+Main: You can sell ore. You can get reagents that are not 
+sold in stores.
+Pointer: It is a place to buy and sell various clothes 
+and armor.
+Blacksmith: A place to buy and sell weapons, 
+such as swords and canes.
+Butcher: You can buy and sell meat.
+Hair shop: It is a place to change hair shape. It is in the 
+main chamber.
+Meeting Room: It can be used as unarmed meeting 
+place for various meetings such as the congress meeting.
+Office: It is a place to join the castle. Big castles are in tolerance.
+Bookstore: It is a place to sell books to learn magic and art.
+Lottery Prize: Sell lottery tickets.
+Training Center: It is a place to practice magic and art.
+Prison: If you die by attacking the castle, you will be 
+imprisoned in the castle's prison for an hour.
+
+Poison 
+           If 100% of the time is spent, 30-70,000 will be hit.
+           * You must be 100% free.
+Mahón: If you eat poison because of poison, your physical 
+strength is reduced by about 100 ~ 200,000.
+           One-half of your reduced health is a hit.
+           * You must be 100% free.
+The effective time of the drug is 30 seconds. 
+(A bottle on top of the head)
+
+Added features to prevent item scams
+Ex) @ exchange meat 1
+
+Mir's legends include professors (attacking wizards), 
+masters (non-attacking wizards), warriors.
+Depending on whether you emphasize attack power 
+or defense strength, you will be divided into six types 
+of occupations as follows.
+Illusionist (Attack Center Attacker): mainly uses the 
+power of fire
+Soulmaster (Defensive Center Attacker): mainly uses 
+the power of electricity
+Leader (attack center recovery guru): mainly uses the 
+power of the ground
+Monk (defense center recovery guru): mainly uses the 
+power of water
+Warrior (Attack Center Attack Warrior): Attack more 
+important than defense
+Both Warriors (Defensive Center Attacker): Focus on 
+defense rather than attack
+Also, there are good men and bad men, and if we kill 
+many good men, we become wicked.
+The name of the good character is white, and the name 
+of the bad character is black.
+There is no special restriction on the wicked, but when 
+you look at the property window (F3), Aleppo keeps climbing.
+The decision of the occupation is made by setting the 
+attribute value and accumulating the experience value.
+First, when you first start, you are randomly assigned to 
+one of the above occupations, and the attribute value is set.
+If you want to change this, you can lower the already 
+set value and raise the desired property.
+Decision of attribute experience value is increased by 
+500 whenever experience value is accumulated.
+Each attribute has a tendency to conflict with other 
+attributes, so you only need to raise one attribute at a time.
+The line / evil has nothing to do with other occupational 
+properties, so one of the line / evil may be raised.
+If you kill a lot of people in the castle, your name will change 
+to red because of notoriety. If the name is changed to 20% if 
+the infamy is 20%, then there is a restriction on the game 
+(the infant can not buy anything) if it exceeds 50%.
+
+In Mir, good and evil are not necessarily good or evil.
+There are magic and wearable items that can be learned 
+only if the level of the line is high, and magic and wearable 
+items can be learned if the level of evil is high.
+
+When the level reaches 30, you must set one of the five 
+largest castles other than Nam Socheon as your residence. 
+(When you connect, a selection window appears.)
+If you want to join, you should register as a resident in 
+the government office. (Right click on the administrator)
+If you want to join another castle, you can sign up for your 
+castle without having to leave it separately.
+
+In general, if you want to attack the castle, 
+you can organize the door and attack it.
+Attack the gatekeeper in the castle 
+(resistance in case of big castle), break all the gates and 
+enter the castle, you will be able to occupy the castle.
+When killed by a gatekeeper / guards at the time of an attack, 
+he is imprisoned for an hour in prison.
+The castle attacking the castle is attacked by the guards.
+Features of gatekeeper
+It is guarding the door entrance and does not move.
+It is impossible to attack with magic.
+It is impossible to regain physical strength by healing spells.
+Characteristics of the guards (guards)
+I patrol the castle while patrolling.
+Attacks the castle / person who is attacking the castle.
+Those who are attacking the gatekeeper are subjected to 
+concentrated attacks.
+After a certain time, it returns to its original position. 
+(Prevention of molting)
+
+5,000,000 won for the gatekeeper, 250,000 won for the guardian, 
+so the gatekeeper and the guards do not regenerate 
+after finishing the castle.
+
+The prison guards are not regenerated in the 
+absence of the castle.
+
+When you are in the hunting area, you can use the 
+return book to move to the castle to which you belong. 
+If you use the return book in the castle, you will go to 
+the hunting ground you were in before you used it.
+
+Each zone has a level limit. Level limits are as follows.
+Spider Zone: 25
+Skeleton Zone: 45
+Evil Underground Underground: 60
+Ssangyou Zone, Hwangryong Zone: 72
+Ghost Zone, Zombie Zone: 82
+Neru Zone: 90
+Chongryong Zone: 105
+Jurassic John: 120
+Gene Zone: 140
+Dragon King Zone: 200
+Send feedback
+History
+Saved
+Community
