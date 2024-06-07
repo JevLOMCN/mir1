@@ -324,7 +324,7 @@ namespace Launcher
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("Bad Host Format - Check Auto-Patcher Host Setting"));
+                    MessageBox.Show(string.Format("Please Check Launcher HOST Setting is formatted correctly\nCan be caused by missing or extra slashes and spelling mistakes.\nThis error can be ignored if patching is not required."), "Bad HOST Format");
                     return null;
                 }
             }
