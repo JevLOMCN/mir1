@@ -310,16 +310,23 @@ namespace Launcher
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authInfo);
                 }
 
-                var task = Task.Run(() => client
-                    .GetAsync(new Uri(Settings.P_Host + Path.ChangeExtension(fileName, ".gz")), HttpCompletionOption.ResponseHeadersRead));
+                string uriString = Settings.P_Host + Path.ChangeExtension(fileName, ".gz");
 
-                var response = task.Result;
-
-                using Stream sm = response.Content.ReadAsStream();
-                using MemoryStream ms = new();
-                sm.CopyTo(ms);
-                byte[] data = ms.ToArray();
-                return data;
+                if (Uri.IsWellFormedUriString(uriString, UriKind.Absolute))
+                {
+                    var task = Task.Run(() => client.GetAsync(new Uri(uriString), HttpCompletionOption.ResponseHeadersRead));
+                    var response = task.Result;
+                    using Stream sm = response.Content.ReadAsStream();
+                    using MemoryStream ms = new();
+                    sm.CopyTo(ms);
+                    byte[] data = ms.ToArray();
+                    return data;
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("Bad Host Format - Check Auto-Patcher Host Setting"));
+                    return null;
+                }
             }
         }
 
