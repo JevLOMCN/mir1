@@ -382,8 +382,15 @@ namespace Launcher
 
             if (Settings.P_BrowserAddress != "")
             {
-                Main_browser.NavigationCompleted += Main_browser_NavigationCompleted;
-                Main_browser.Source = new Uri(Settings.P_BrowserAddress);
+                if (Uri.IsWellFormedUriString(Settings.P_BrowserAddress, UriKind.Absolute))
+                {
+                    Main_browser.NavigationCompleted += Main_browser_NavigationCompleted;
+                    Main_browser.Source = new Uri(Settings.P_BrowserAddress);
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("Please Check Launcher BROWSER Setting is formatted correctly.\nCan be caused by missing or extra slashes and spelling mistakes.\nThis error can be ignored."), "Bad BROWSER Format");
+                }
             }
 
             RepairOldFiles();
