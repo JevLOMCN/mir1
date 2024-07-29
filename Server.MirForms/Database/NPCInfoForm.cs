@@ -7,6 +7,7 @@ namespace Server
 {
     public partial class NPCInfoForm : Form
     {
+
         public string NPCListPath = Path.Combine(Settings.ExportPath, "NPCList.txt");
 
         public Envir Envir => SMain.EditEnvir;

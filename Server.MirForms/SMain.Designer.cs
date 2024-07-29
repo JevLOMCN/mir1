@@ -105,8 +105,9 @@ namespace Server
             gemToolStripMenuItem = new ToolStripMenuItem();
             conquestToolStripMenuItem = new ToolStripMenuItem();
             respawnsToolStripMenuItem = new ToolStripMenuItem();
-            InterfaceTimer = new Timer(components);
             UpTimeLabel = new ToolStripTextBox();
+            InterfaceTimer = new Timer(components);
+            CharacterToolStripMenuItem = new ToolStripMenuItem();
             MainTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -404,7 +405,7 @@ namespace Server
             // MainMenu
             // 
             MainMenu.BackColor = Color.Transparent;
-            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1, UpTimeLabel });
+            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1, CharacterToolStripMenuItem, UpTimeLabel });
             MainMenu.Location = new Point(0, 0);
             MainMenu.Name = "MainMenu";
             MainMenu.Padding = new Padding(7, 2, 0, 2);
@@ -422,24 +423,24 @@ namespace Server
             // clearBlockedIPsToolStripMenuItem
             // 
             clearBlockedIPsToolStripMenuItem.Name = "clearBlockedIPsToolStripMenuItem";
-            clearBlockedIPsToolStripMenuItem.Size = new Size(164, 22);
+            clearBlockedIPsToolStripMenuItem.Size = new Size(180, 22);
             clearBlockedIPsToolStripMenuItem.Text = "Clear Blocked IPs";
             clearBlockedIPsToolStripMenuItem.Click += clearBlockedIPsToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(161, 6);
+            toolStripMenuItem1.Size = new Size(177, 6);
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(161, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // closeServerToolStripMenuItem
             // 
             closeServerToolStripMenuItem.Name = "closeServerToolStripMenuItem";
-            closeServerToolStripMenuItem.Size = new Size(164, 22);
+            closeServerToolStripMenuItem.Size = new Size(180, 22);
             closeServerToolStripMenuItem.Text = "Close Server";
             closeServerToolStripMenuItem.Click += closeServerToolStripMenuItem_Click;
             // 
@@ -447,7 +448,7 @@ namespace Server
             // 
             reloadToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { reloadNPCsToolStripMenuItem1, reloadDropsToolStripMenuItem1, lineMessageToolStripMenuItem });
             reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            reloadToolStripMenuItem.Size = new Size(164, 22);
+            reloadToolStripMenuItem.Size = new Size(180, 22);
             reloadToolStripMenuItem.Text = "Reload";
             // 
             // reloadNPCsToolStripMenuItem1
@@ -561,14 +562,14 @@ namespace Server
             // serverToolStripMenuItem
             // 
             serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            serverToolStripMenuItem.Size = new Size(115, 22);
+            serverToolStripMenuItem.Size = new Size(180, 22);
             serverToolStripMenuItem.Text = "Server";
             serverToolStripMenuItem.Click += serverToolStripMenuItem_Click;
             // 
             // balanceToolStripMenuItem
             // 
             balanceToolStripMenuItem.Name = "balanceToolStripMenuItem";
-            balanceToolStripMenuItem.Size = new Size(115, 22);
+            balanceToolStripMenuItem.Size = new Size(180, 22);
             balanceToolStripMenuItem.Text = "Balance";
             balanceToolStripMenuItem.Click += balanceToolStripMenuItem_Click;
             // 
@@ -576,7 +577,7 @@ namespace Server
             // 
             systemToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dragonSystemToolStripMenuItem, miningToolStripMenuItem, guildsToolStripMenuItem, fishingToolStripMenuItem, mailToolStripMenuItem, goodsToolStripMenuItem, refiningToolStripMenuItem, relationshipToolStripMenuItem, mentorToolStripMenuItem, gemToolStripMenuItem, conquestToolStripMenuItem, respawnsToolStripMenuItem });
             systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            systemToolStripMenuItem.Size = new Size(115, 22);
+            systemToolStripMenuItem.Size = new Size(180, 22);
             systemToolStripMenuItem.Text = "System";
             // 
             // dragonSystemToolStripMenuItem
@@ -663,19 +664,26 @@ namespace Server
             respawnsToolStripMenuItem.Text = "SpawnTick";
             respawnsToolStripMenuItem.Click += respawnsToolStripMenuItem_Click;
             // 
-            // InterfaceTimer
-            // 
-            InterfaceTimer.Enabled = true;
-            InterfaceTimer.Tick += InterfaceTimer_Tick;
-            // 
             // UpTimeLabel
             // 
+            UpTimeLabel.Alignment = ToolStripItemAlignment.Right;
             UpTimeLabel.BorderStyle = BorderStyle.None;
             UpTimeLabel.Name = "UpTimeLabel";
             UpTimeLabel.ReadOnly = true;
             UpTimeLabel.Size = new Size(200, 20);
             UpTimeLabel.Text = "Uptime:";
-            UpTimeLabel.TextBoxTextAlign = HorizontalAlignment.Right;
+            // 
+            // InterfaceTimer
+            // 
+            InterfaceTimer.Enabled = true;
+            InterfaceTimer.Tick += InterfaceTimer_Tick;
+            // 
+            // CharacterToolStripMenuItem
+            // 
+            CharacterToolStripMenuItem.Name = "CharacterToolStripMenuItem";
+            CharacterToolStripMenuItem.Size = new Size(75, 20);
+            CharacterToolStripMenuItem.Text = "Characters";
+            CharacterToolStripMenuItem.Click += CharacterToolStripMenuItem_Click;
             // 
             // SMain
             // 
@@ -787,6 +795,7 @@ namespace Server
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
         private ToolStripTextBox UpTimeLabel;
+        private ToolStripMenuItem CharacterToolStripMenuItem;
     }
 }
 

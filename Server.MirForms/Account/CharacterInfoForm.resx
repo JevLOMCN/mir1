@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="listViewItem75.ToolTipText" xml:space="preserve">
-    <value>[PermissionNumber] Checks if the player has a specific guild permission. CanChangeRank = 1, CanRecruit = 2, CanKick = 4, CanStoreItem = 8, CanRetrieveItem = 16, CanAlterAlliance = 32, CanChangeNotice = 64, CanActivateBuff = 128</value>
-  </data>
-  <data name="listViewItem163.ToolTipText" xml:space="preserve">
-    <value>[Name] [Seconds] [Type(0,1,2)] [*Global(true/false)]	Shows a visible countdown timer to the player. Multiple timers can be used. Timer can be reset by setting the same name. Global timer will apply it server wide but are not player visible.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
