@@ -2,6 +2,8 @@
 
 Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
 
+### [Website](https://thelegendofmir.uk/mir1/main.html)
+
 # Team
 
 [Lilcooldoode](https://www.lomcn.net/forum/members/lilcooldoode.940/) + [Jev](https://www.lomcn.net/forum/members/jev.29880/)
