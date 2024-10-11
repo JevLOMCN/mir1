@@ -8,9 +8,10 @@ namespace Client.Resolution
 {
     public enum eSupportedResolution
     {
-        w800h600 = 800,
-        w1280h720 = 1280,
-        w1366h768 = 1366,
+        w800h800 = 800,
+        w1024h800 = 1024,
+        w1280h800 = 1280,
+        w1366h800 = 1366,
         w1920h1080 = 1920
     }
 }

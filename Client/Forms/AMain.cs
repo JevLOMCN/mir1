@@ -35,7 +35,6 @@ namespace Launcher
         public AMain()
         {
             InitializeComponent();
-
             BackColor = Color.FromArgb(1, 0, 0);
             TransparencyKey = Color.FromArgb(1, 0, 0);
         }

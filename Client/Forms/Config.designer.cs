@@ -55,6 +55,8 @@
             Res4_pb = new PictureBox();
             label1 = new Label();
             Res5_pb = new PictureBox();
+            Res6_pb = new PictureBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)Res3_pb).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Res2_pb).BeginInit();
             ((System.ComponentModel.ISupportInitialize)AutoStart_pb).BeginInit();
@@ -65,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Res4_pb).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Res5_pb).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Res6_pb).BeginInit();
             SuspendLayout();
             // 
             // AccountLogin_txt
@@ -72,7 +75,7 @@
             AccountLogin_txt.BackColor = Color.FromArgb(64, 64, 64);
             AccountLogin_txt.BorderStyle = BorderStyle.None;
             AccountLogin_txt.Cursor = Cursors.IBeam;
-            AccountLogin_txt.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AccountLogin_txt.Font = new Font("Calibri", 9F);
             AccountLogin_txt.ForeColor = Color.White;
             AccountLogin_txt.Location = new Point(29, 205);
             AccountLogin_txt.Margin = new Padding(4, 3, 4, 3);
@@ -88,7 +91,7 @@
             // 
             AccountPass_txt.BackColor = Color.FromArgb(64, 64, 64);
             AccountPass_txt.BorderStyle = BorderStyle.None;
-            AccountPass_txt.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AccountPass_txt.Font = new Font("Calibri", 9F);
             AccountPass_txt.ForeColor = Color.White;
             AccountPass_txt.Location = new Point(29, 232);
             AccountPass_txt.Margin = new Padding(4, 3, 4, 3);
@@ -104,28 +107,28 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Calibri", 8.25F);
             label2.ForeColor = Color.Gray;
             label2.Location = new Point(178, 59);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(48, 13);
             label2.TabIndex = 5;
-            label2.Text = "800x600";
+            label2.Text = "800x800";
             label2.Click += Res2_pb_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Calibri", 8.25F);
             label3.ForeColor = Color.Gray;
             label3.Location = new Point(178, 100);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(54, 13);
             label3.TabIndex = 7;
-            label3.Text = "1366x768";
+            label3.Text = "1280x800";
             label3.Click += Res3_pb_Click;
             // 
             // Res3_pb
@@ -153,7 +156,7 @@
             ID_l.BackColor = Color.Transparent;
             ID_l.Cursor = Cursors.IBeam;
             ID_l.Enabled = false;
-            ID_l.Font = new Font("Calibri", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            ID_l.Font = new Font("Calibri", 9.75F, FontStyle.Italic);
             ID_l.ForeColor = Color.Transparent;
             ID_l.Location = new Point(29, 204);
             ID_l.Margin = new Padding(4, 0, 4, 0);
@@ -168,7 +171,7 @@
             Password_l.BackColor = Color.Transparent;
             Password_l.Cursor = Cursors.IBeam;
             Password_l.Enabled = false;
-            Password_l.Font = new Font("Calibri Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            Password_l.Font = new Font("Calibri Light", 9.75F, FontStyle.Italic);
             Password_l.ForeColor = Color.Transparent;
             Password_l.Location = new Point(29, 232);
             Password_l.Margin = new Padding(4, 0, 4, 0);
@@ -203,7 +206,7 @@
             // 
             AutoStart_label.AutoSize = true;
             AutoStart_label.BackColor = Color.Transparent;
-            AutoStart_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            AutoStart_label.Font = new Font("Calibri", 8.25F);
             AutoStart_label.ForeColor = Color.Gray;
             AutoStart_label.Location = new Point(40, 159);
             AutoStart_label.Margin = new Padding(4, 0, 4, 0);
@@ -217,7 +220,7 @@
             // 
             Fullscreen_label.AutoSize = true;
             Fullscreen_label.BackColor = Color.Transparent;
-            Fullscreen_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Fullscreen_label.Font = new Font("Calibri", 8.25F);
             Fullscreen_label.ForeColor = Color.Gray;
             Fullscreen_label.Location = new Point(40, 59);
             Fullscreen_label.Margin = new Padding(4, 0, 4, 0);
@@ -242,7 +245,7 @@
             // 
             OnTop_label.AutoSize = true;
             OnTop_label.BackColor = Color.Transparent;
-            OnTop_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            OnTop_label.Font = new Font("Calibri", 8.25F);
             OnTop_label.ForeColor = Color.Gray;
             OnTop_label.Location = new Point(40, 113);
             OnTop_label.Margin = new Padding(4, 0, 4, 0);
@@ -268,7 +271,7 @@
             // 
             FPScap_label.AutoSize = true;
             FPScap_label.BackColor = Color.Transparent;
-            FPScap_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            FPScap_label.Font = new Font("Calibri", 8.25F);
             FPScap_label.ForeColor = Color.Gray;
             FPScap_label.Location = new Point(40, 84);
             FPScap_label.Margin = new Padding(4, 0, 4, 0);
@@ -321,7 +324,7 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Font = new Font("Calibri", 9F);
             label9.ForeColor = Color.White;
             label9.Location = new Point(23, 42);
             label9.Margin = new Padding(4, 0, 4, 0);
@@ -334,7 +337,7 @@
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.Transparent;
-            label10.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Font = new Font("Calibri", 9F);
             label10.ForeColor = Color.White;
             label10.Location = new Point(157, 42);
             label10.Margin = new Padding(4, 0, 4, 0);
@@ -347,7 +350,7 @@
             // 
             label11.AutoSize = true;
             label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Calibri", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Font = new Font("Calibri", 9F);
             label11.ForeColor = Color.White;
             label11.Location = new Point(20, 145);
             label11.Margin = new Padding(4, 0, 4, 0);
@@ -360,7 +363,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
-            label12.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Font = new Font("Calibri", 8.25F);
             label12.ForeColor = Color.Gray;
             label12.Location = new Point(20, 182);
             label12.Margin = new Padding(4, 0, 4, 0);
@@ -373,14 +376,14 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Calibri", 8.25F);
             label5.ForeColor = Color.Gray;
             label5.Location = new Point(178, 80);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(54, 13);
             label5.TabIndex = 26;
-            label5.Text = "1280x800";
+            label5.Text = "1024x800";
             // 
             // Res4_pb
             // 
@@ -397,14 +400,14 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Calibri", 8.25F);
             label1.ForeColor = Color.Gray;
             label1.Location = new Point(178, 121);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(60, 13);
+            label1.Size = new Size(54, 13);
             label1.TabIndex = 27;
-            label1.Text = "1920x1080";
+            label1.Text = "1366x800";
             // 
             // Res5_pb
             // 
@@ -417,6 +420,30 @@
             Res5_pb.TabStop = false;
             Res5_pb.Click += Res5_pb_Click;
             // 
+            // Res6_pb
+            // 
+            Res6_pb.Image = Client.Resources.Images.Radio_Unactive;
+            Res6_pb.Location = new Point(157, 145);
+            Res6_pb.Margin = new Padding(4, 3, 4, 3);
+            Res6_pb.Name = "Res6_pb";
+            Res6_pb.Size = new Size(12, 12);
+            Res6_pb.TabIndex = 30;
+            Res6_pb.TabStop = false;
+            Res6_pb.Click += Res6_pb_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Calibri", 8.25F);
+            label6.ForeColor = Color.Gray;
+            label6.Location = new Point(178, 145);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(60, 13);
+            label6.TabIndex = 29;
+            label6.Text = "1920x1080";
+            // 
             // Config
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -425,6 +452,8 @@
             BackgroundImage = Client.Resources.Images.Config_Base1;
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(257, 315);
+            Controls.Add(Res6_pb);
+            Controls.Add(label6);
             Controls.Add(Res5_pb);
             Controls.Add(label1);
             Controls.Add(label5);
@@ -476,6 +505,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)Res4_pb).EndInit();
             ((System.ComponentModel.ISupportInitialize)Res5_pb).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Res6_pb).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -509,5 +539,7 @@
         private PictureBox Res4_pb;
         private Label label1;
         private PictureBox Res5_pb;
+        private PictureBox Res6_pb;
+        private Label label6;
     }
 }

@@ -25,7 +25,7 @@ namespace Launcher
 
         private void Res1_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(eSupportedResolution.w800h600);
+            resolutionChoice(eSupportedResolution.w800h800);
 
         }
 
@@ -38,13 +38,13 @@ namespace Launcher
 
             switch (res)
             {
-                case eSupportedResolution.w800h600:
+                case eSupportedResolution.w800h800:
                     Res2_pb.Image = Client.Resources.Images.Config_Radio_On;
                     break;
-                case eSupportedResolution.w1366h768:
+                case eSupportedResolution.w1366h800:
                     Res3_pb.Image = Client.Resources.Images.Config_Radio_On;
                     break;
-                case eSupportedResolution.w1280h720:
+                case eSupportedResolution.w1280h800:
                     Res4_pb.Image = Client.Resources.Images.Config_Radio_On;
                     break;
                 case eSupportedResolution.w1920h1080:
@@ -58,12 +58,12 @@ namespace Launcher
 
         private void Res2_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(eSupportedResolution.w800h600);
+            resolutionChoice(eSupportedResolution.w800h800);
         }
 
         private void Res3_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(eSupportedResolution.w1366h768);
+            resolutionChoice(eSupportedResolution.w1280h800);
         }
 
         private void Config_VisibleChanged(object sender, EventArgs e)
@@ -198,12 +198,12 @@ namespace Launcher
 
         private void Res4_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(eSupportedResolution.w1280h720);
+            resolutionChoice(eSupportedResolution.w1024h800);
         }
 
         private void Res5_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(eSupportedResolution.w1920h1080);
+            resolutionChoice(eSupportedResolution.w1366h800);
         }
 
         private void DrawSupportedResolutions()
@@ -216,20 +216,22 @@ namespace Launcher
             label3.ForeColor = Color.Red;
             Res5_pb.Enabled = false;
             label1.ForeColor = Color.Red;
+            Res6_pb.Enabled = false;
+            label6.ForeColor = Color.Red;
 
             foreach (eSupportedResolution supportedResolution in DisplayResolutions.DisplaySupportedResolutions)
             {
                 switch (supportedResolution)
                 {
-                    case (eSupportedResolution.w800h600):
+                    case (eSupportedResolution.w800h800):
                         Res2_pb.Enabled = true;
                         label2.ForeColor = Color.Gray;
                         break;
-                    case (eSupportedResolution.w1280h720):
+                    case (eSupportedResolution.w1280h800):
                         Res4_pb.Enabled = true;
                         label5.ForeColor = Color.Gray;
                         break;
-                    case (eSupportedResolution.w1366h768):
+                    case (eSupportedResolution.w1366h800):
                         Res3_pb.Enabled = true;
                         label3.ForeColor = Color.Gray;
                         break;
@@ -239,6 +241,11 @@ namespace Launcher
                         break;
                 }
             }
+        }
+
+        private void Res6_pb_Click(object sender, EventArgs e)
+        {
+            resolutionChoice(eSupportedResolution.w1920h1080);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace Launcher
             // 
             ActionLabel.Anchor = AnchorStyles.Bottom;
             ActionLabel.BackColor = Color.Transparent;
-            ActionLabel.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            ActionLabel.Font = new Font("Calibri", 8.25F);
             ActionLabel.ForeColor = Color.Gray;
             ActionLabel.Location = new Point(463, 450);
             ActionLabel.Margin = new Padding(4, 0, 4, 0);
@@ -91,7 +91,7 @@ namespace Launcher
             // 
             SpeedLabel.Anchor = AnchorStyles.Bottom;
             SpeedLabel.BackColor = Color.Transparent;
-            SpeedLabel.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            SpeedLabel.Font = new Font("Calibri", 8.25F);
             SpeedLabel.ForeColor = Color.Gray;
             SpeedLabel.Location = new Point(326, 454);
             SpeedLabel.Margin = new Padding(4, 0, 4, 0);
@@ -173,7 +173,7 @@ namespace Launcher
             // Name_label
             // 
             Name_label.BackColor = Color.Transparent;
-            Name_label.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Name_label.Font = new Font("Microsoft Sans Serif", 8.25F);
             Name_label.ForeColor = Color.SaddleBrown;
             Name_label.Image = Client.Resources.Images.server_base;
             Name_label.Location = new Point(258, 26);
@@ -189,7 +189,7 @@ namespace Launcher
             // 
             Version_label.Anchor = AnchorStyles.Bottom;
             Version_label.BackColor = Color.Transparent;
-            Version_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Version_label.Font = new Font("Calibri", 8.25F);
             Version_label.ForeColor = Color.Gray;
             Version_label.Location = new Point(633, 514);
             Version_label.Margin = new Padding(4, 0, 4, 0);
@@ -203,7 +203,7 @@ namespace Launcher
             // 
             CurrentFile_label.Anchor = AnchorStyles.Bottom;
             CurrentFile_label.BackColor = Color.Transparent;
-            CurrentFile_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CurrentFile_label.Font = new Font("Calibri", 8.25F);
             CurrentFile_label.ForeColor = Color.Gray;
             CurrentFile_label.Location = new Point(47, 450);
             CurrentFile_label.Margin = new Padding(4, 0, 4, 0);
@@ -218,7 +218,7 @@ namespace Launcher
             // 
             CurrentPercent_label.Anchor = AnchorStyles.Bottom;
             CurrentPercent_label.BackColor = Color.Transparent;
-            CurrentPercent_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CurrentPercent_label.Font = new Font("Calibri", 8.25F);
             CurrentPercent_label.ForeColor = Color.Gray;
             CurrentPercent_label.Location = new Point(604, 468);
             CurrentPercent_label.Margin = new Padding(4, 0, 4, 0);
@@ -233,7 +233,7 @@ namespace Launcher
             // 
             TotalPercent_label.Anchor = AnchorStyles.Bottom;
             TotalPercent_label.BackColor = Color.Transparent;
-            TotalPercent_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            TotalPercent_label.Font = new Font("Calibri", 8.25F);
             TotalPercent_label.ForeColor = Color.Gray;
             TotalPercent_label.Location = new Point(604, 489);
             TotalPercent_label.Margin = new Padding(4, 0, 4, 0);
@@ -249,7 +249,7 @@ namespace Launcher
             Credit_label.Anchor = AnchorStyles.Bottom;
             Credit_label.AutoSize = true;
             Credit_label.BackColor = Color.Transparent;
-            Credit_label.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Credit_label.Font = new Font("Calibri", 8.25F);
             Credit_label.ForeColor = Color.Gray;
             Credit_label.Location = new Point(45, 514);
             Credit_label.Margin = new Padding(4, 0, 4, 0);
@@ -339,11 +339,11 @@ namespace Launcher
             Main_browser.CreationProperties = null;
             Main_browser.DefaultBackgroundColor = Color.Transparent;
             Main_browser.Enabled = false;
-            Main_browser.Location = new Point(410, 162);
+            Main_browser.Location = new Point(47, 67);
             Main_browser.Margin = new Padding(4, 3, 4, 3);
             Main_browser.MaximumSize = new Size(782, 403);
             Main_browser.Name = "Main_browser";
-            Main_browser.Size = new Size(338, 285);
+            Main_browser.Size = new Size(709, 403);
             Main_browser.TabIndex = 32;
             Main_browser.Visible = false;
             Main_browser.ZoomFactor = 1D;
