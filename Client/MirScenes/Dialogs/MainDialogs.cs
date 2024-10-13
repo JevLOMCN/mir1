@@ -245,7 +245,7 @@ namespace Client.MirScenes.Dialogs
                 Index = 76,
                 DrawImage = false,
                 Parent = TopBar,
-                Location = new Point(437, 9),
+                Location = new Point(Settings.ScreenWidth - 362, 9),
                 NotControl = true,
             };
             HealthOrb.BeforeDraw += HealthOrb_BeforeDraw;
@@ -256,7 +256,7 @@ namespace Client.MirScenes.Dialogs
                 Index = 77,
                 DrawImage = false,
                 Parent = TopBar,
-                Location = new Point(576, 9),
+                Location = new Point(Settings.ScreenWidth - 224, 9),
                 NotControl = true,
             };
             ManaOrb.BeforeDraw += ManaOrb_BeforeDraw;
