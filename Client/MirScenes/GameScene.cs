@@ -33,6 +33,7 @@ namespace Client.MirScenes
 
         public MapControl MapControl;
         public MainCharacterDialog MainCharacterDialog;
+        public MirImageControl MainDialogBackground;
         public MainDialog MainDialog;
         public ChatDialog ChatDialog;
         public InventoryDialog InventoryDialog;
@@ -140,8 +141,16 @@ namespace Client.MirScenes
 
             KeyDown += GameScene_KeyDown;
 
-            MainCharacterDialog = new MainCharacterDialog { Parent = this };
+            MainDialogBackground = new MirImageControl
+            {
+                Parent = this,
+                Library = Libraries.Prguse2,
+                Index = 15,
+                Location = new Point(0, Settings.ScreenHeight - 32),
+                NotControl = true
+            };
             MainDialog = new MainDialog { Parent = this };
+            MainCharacterDialog = new MainCharacterDialog { Parent = this };
             ChatDialog = new ChatDialog { Parent = MainCharacterDialog };
             InventoryDialog = new InventoryDialog { Parent = this };            
             BeltDialog = new BeltDialog { Parent = this };
@@ -7062,6 +7071,7 @@ namespace Client.MirScenes
                 CanMove = false;
 
                 MapControl = null;
+                MainDialogBackground = null;
                 MainDialog = null;
                 ChatDialog = null;
                 InventoryDialog = null;
