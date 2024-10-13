@@ -23,35 +23,60 @@ namespace Client.MirScenes.Dialogs
 
         public MainDialog()
         {
-            Index = 69;
-            Library = Libraries.Prguse;
-            Location = new Point(0, Settings.ScreenHeight - Size.Height);
-            PixelDetect = true;            
+            Index = Settings.Resolution == 800 ? 69 : 14;
+            Library = Settings.Resolution == 800 ? Libraries.Prguse : Libraries.Prguse2;
 
             LeftCap = new MirImageControl
             {
-                Index = 74,
-                Library = Libraries.Prguse,
+                Library = Library,
                 Parent = this
             };
             RightCap = new MirImageControl
             {
-                Index = 75,
-                Library = Libraries.Prguse,                
+                Library = Library,                
                 Parent = this
             };
-            
-
             TopBar = new MirImageControl
             {
-                Index = 73,
-                Library = Libraries.Prguse,
-                Location = new Point(0, 0 - Location.Y),
+                Library = Library,
                 Parent = this
             };
 
-            LeftCap.Location = new Point(0, TopBar.Size.Height - Location.Y);
-            RightCap.Location = new Point(Settings.ScreenWidth - RightCap.Size.Width, TopBar.Size.Height - Location.Y);
+            switch (Settings.Resolution)
+            {
+                default:
+                    LeftCap.Index = 74;
+                    RightCap.Index = 75;
+                    TopBar.Index = 73;
+                    break;
+                case 1024:
+                    LeftCap.Index = 17;
+                    RightCap.Index = 18;
+                    TopBar.Index = 16;
+                    break;
+                case 1280:
+                    LeftCap.Index = 20;
+                    RightCap.Index = 21;
+                    TopBar.Index = 19;
+                    break;
+                case 1366:
+                    LeftCap.Index = 23;
+                    RightCap.Index = 24;
+                    TopBar.Index = 22;
+                    break;
+                case 1920:
+                    LeftCap.Index = 26;
+                    RightCap.Index = 27;
+                    TopBar.Index = 25;
+                    break;
+            }
+
+            Location = new Point(Settings.ScreenWidth / 2 - Library.GetSize(Index).Width / 2, Settings.ScreenHeight - Size.Height);
+            PixelDetect = true;
+
+            TopBar.Location = new Point(-Location.X, -Location.Y);
+            LeftCap.Location = new Point(-Location.X, TopBar.Size.Height - Location.Y);
+            RightCap.Location = new Point(-Location.X + Settings.ScreenWidth - RightCap.Size.Width, TopBar.Size.Height - Location.Y);
 
             Decoration1 = new MirImageControl
             {
@@ -308,7 +333,7 @@ namespace Client.MirScenes.Dialogs
         {
             Index = 99;
             Library = Libraries.Prguse;
-            Location = new Point(16, Settings.ScreenHeight - Size.Height - 32);
+            Location = new Point(GameScene.Scene.MainDialog.Location.X + 16, Settings.ScreenHeight - Size.Height - 32);
 
             LevelLabel = new MirLabel
             {
