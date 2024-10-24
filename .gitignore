@@ -1,2 +1,13 @@
 
 /Build
+/.vs
+/AutoPatcherAdmin/obj
+/Client/obj
+/Components/Debug
+/Controls/FixedListViewControl/obj
+/LibraryEditor/obj
+/Server.MirForms/obj
+/Server/bin
+/Server/obj
+/Shared/bin
+/Shared/obj
