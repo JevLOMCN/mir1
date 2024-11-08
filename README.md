@@ -28,4 +28,4 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 [Mir 3D](https://github.com/mir-ethernity/mir-eternal)
 
-[Mir 4](https://github.com/JevLOMCN/mir4-launchers)
+[Mir 4](https://github.com/JevLOMCN/mir4)
