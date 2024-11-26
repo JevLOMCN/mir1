@@ -5,8 +5,13 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 ### [Website](https://thelegendofmir.uk/mir1/main.html)
 
 # Team
+<img src="https://c.tenor.com/7_KRHOBcSnEAAAAC/tenor.gif" alt="Jev" width="96" height="96">
 
-[Lilcooldoode](https://www.lomcn.net/forum/members/lilcooldoode.940/) + [Jev](https://www.lomcn.net/forum/members/jev.29880/)
+[Jev](https://www.lomcn.net/forum/members/jev.29880/)
+
+<img src="https://www.lomcn.net/forum/data/avatars/l/0/940.jpg" alt="Meacher" width="96" height="96">
+
+[Lilcooldoode](https://www.lomcn.net/forum/members/lilcooldoode.940/)
 
 # Useful Links:
 
