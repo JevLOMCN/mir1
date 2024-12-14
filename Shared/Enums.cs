@@ -680,6 +680,8 @@ public enum ServerPacketIds : short
     DuraChanged,
     HealthChanged,
     DeleteItem,
+    Pickup,
+    ObjectPickup,
     Death,
     ObjectDied,
     ColourChanged,

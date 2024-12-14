@@ -1059,6 +1059,12 @@ namespace Client.MirScenes
                 case (short)ServerPacketIds.DeleteItem:
                     DeleteItem((S.DeleteItem)p);
                     break;
+                case (short)ServerPacketIds.Pickup:
+                    Pickup((S.Pickup)p);
+                    break;
+                case (short)ServerPacketIds.ObjectPickup:
+                    ObjectPickup((S.ObjectPickup)p);
+                    break;
                 case (short)ServerPacketIds.Death:
                     Death((S.Death)p);
                     break;
@@ -2463,6 +2469,23 @@ namespace Client.MirScenes
                 }
             }
             actor?.RefreshStats();
+        }
+        private void Pickup(S.Pickup p)
+        {
+            User.ActionFeed.Add(new QueuedAction { Action = MirAction.Harvest, Direction = p.Direction, Location = p.Location });
+        }
+        private void ObjectPickup(S.ObjectPickup p)
+        {
+            if (p.ObjectID == User.ObjectID) return;
+
+            for (int i = MapControl.Objects.Count - 1; i >= 0; i--)
+            {
+                MapObject ob = MapControl.Objects[i];
+                if (ob.ObjectID != p.ObjectID) continue;
+
+                ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Harvest, Direction = p.Direction, Location = p.Location });
+                return;
+            }
         }
         private void Death(S.Death p)
         {
