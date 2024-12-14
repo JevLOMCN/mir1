@@ -59,6 +59,28 @@ public enum DamageType : byte
     Critical = 2
 }
 
+public enum PrimaryAttribute : byte
+{
+    Fire,
+    Water,
+    Electric,
+    Ground,
+    Good,
+    Evil,
+    Yin,
+    Yang
+}
+
+public enum SecondaryAttribute : byte
+{
+    Health,
+    Mana,
+    Attack,
+    Magic,
+    Agility,
+    Defence
+}
+
 [Flags]
 public enum GMOptions : byte
 {
