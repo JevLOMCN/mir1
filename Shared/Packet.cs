@@ -423,6 +423,10 @@ public abstract class Packet
                 return new S.HealthChanged();
             case (short)ServerPacketIds.DeleteItem:
                 return new S.DeleteItem();
+            case (short)ServerPacketIds.Pickup:
+                return new S.Pickup();
+            case (short)ServerPacketIds.ObjectPickup:
+                return new S.ObjectPickup();
             case (short)ServerPacketIds.Death:
                 return new S.Death();
             case (short)ServerPacketIds.ObjectDied:

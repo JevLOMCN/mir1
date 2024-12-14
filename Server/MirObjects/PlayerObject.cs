@@ -5285,6 +5285,8 @@ namespace Server.MirObjects
 
                     CurrentMap.RemoveObject(ob);
                     ob.Despawn();
+                    Enqueue(new S.Pickup { Direction = Direction, Location = CurrentLocation });
+                    Broadcast(new S.ObjectPickup { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
 
                     return;
                 }
@@ -5294,6 +5296,8 @@ namespace Server.MirObjects
                 GainGold(item.Gold);
                 CurrentMap.RemoveObject(ob);
                 ob.Despawn();
+                Enqueue(new S.Pickup { Direction = Direction, Location = CurrentLocation });
+                Broadcast(new S.ObjectPickup { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
                 return;
             }
 

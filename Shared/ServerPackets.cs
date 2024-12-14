@@ -2101,6 +2101,55 @@ namespace ServerPackets
             writer.Write(Count);
         }
     }
+    public sealed class Pickup : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.Pickup; }
+        }
+
+        public Point Location;
+        public MirDirection Direction;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Location = new Point(reader.ReadInt32(), reader.ReadInt32());
+            Direction = (MirDirection)reader.ReadByte();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Location.X);
+            writer.Write(Location.Y);
+            writer.Write((byte)Direction);
+        }
+    }
+    public sealed class ObjectPickup : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.ObjectPickup; }
+        }
+
+        public uint ObjectID;
+        public Point Location;
+        public MirDirection Direction;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            ObjectID = reader.ReadUInt32();
+            Location = new Point(reader.ReadInt32(), reader.ReadInt32());
+            Direction = (MirDirection)reader.ReadByte();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(ObjectID);
+            writer.Write(Location.X);
+            writer.Write(Location.Y);
+            writer.Write((byte)Direction);
+        }
+    }
     public sealed class Death : Packet
     {
         public override short Index
