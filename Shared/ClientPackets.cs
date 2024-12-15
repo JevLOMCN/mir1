@@ -243,6 +243,27 @@ namespace ClientPackets
                 LinkedItems[i].Save(writer);
         }
     }
+    public sealed class AttributeDeltas : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.AttributeDeltas; } }
+
+        public Dictionary<Attribute, int> Deltas = new Dictionary<Attribute, int>();
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            int count = reader.ReadInt32();
+            for (int _ = 0; _ < count; _++)
+                Deltas.Add((Attribute)reader.ReadByte(), reader.ReadInt32());
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Deltas.Count);
+            foreach (var attr in Deltas)
+            {
+                writer.Write((byte)attr.Key);
+                writer.Write(attr.Value);
+            }    
+        }
+    }
     public sealed class MoveItem : Packet
     {
         public override short Index { get { return (short)ClientPacketIds.MoveItem; } }

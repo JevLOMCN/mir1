@@ -1,7 +1,6 @@
 ﻿using Client.MirControls;
 using Client.MirGraphics;
 using Client.MirNetwork;
-using Client.MirObjects;
 using Client.MirSounds;
 using C = ClientPackets;
 
@@ -14,7 +13,13 @@ namespace Client.MirScenes.Dialogs
         SecondaryAttributeRow[] SecondaryAttributes;
         MirLabel AvailablePointsLabel;
 
-        int AvailablePoints => 0;
+        public static uint BasePoints;
+        public static uint LevelGain;
+        uint MaximumPoints => BasePoints + (GameScene.User?.Level ?? 0) * LevelGain;
+
+        public long AvailablePoints => MaximumPoints - SpentPoints;
+        long SpentPoints => (GameScene.User?.AttributeValues.Values.Sum(attribute => attribute.Points) ?? 0) + DeltaPoints;
+        long DeltaPoints => Attributes.Sum(a => a.Delta) + SecondaryAttributes.Sum(b => b.Delta);
 
         public AttributeDialog()
         {
@@ -33,21 +38,22 @@ namespace Client.MirScenes.Dialogs
             };
             title.Location = new Point(Size.Width / 2 - title.Size.Width / 2, 10);
 
-            Attributes = new MainAttributeRow[Enum.GetNames(typeof(PrimaryAttribute)).Length];
-            foreach (PrimaryAttribute attribute in Enum.GetValues(typeof(PrimaryAttribute)))
+            Attributes = new MainAttributeRow[(int)Attribute.Yang + 1];
+            for (int i = 0; i <= (int)Attribute.Yang; i++)
             {
-                int index = (int)attribute;
-                Attributes[index] = new MainAttributeRow(attribute)
+                Attribute attribute = (Attribute)i;
+                Attributes[i] = new MainAttributeRow(attribute)
                 {
-                    Location = new Point(8, 40 + 24 * index),
+                    Location = new Point(8, 40 + 24 * i),
                     Parent = this
                 };
             }
 
-            SecondaryAttributes = new SecondaryAttributeRow[Enum.GetNames(typeof(SecondaryAttribute)).Length];
-            foreach (SecondaryAttribute attribute in Enum.GetValues(typeof(SecondaryAttribute)))
+            SecondaryAttributes = new SecondaryAttributeRow[(int)Attribute.Defence + 1 - (int)Attribute.Health];
+            for (int i = (int)Attribute.Health; i <= (int)Attribute.Defence; i++)
             {
-                int index = (int)attribute;
+                Attribute attribute = (Attribute)i;
+                int index = i - (int)Attribute.Health;
                 SecondaryAttributes[index] = new SecondaryAttributeRow(attribute)
                 {
                     Location = new Point(8 + 170 * (index / 3), 240 + 24 * (index % 3)),
@@ -66,7 +72,7 @@ namespace Client.MirScenes.Dialogs
                 Text = "Confirm",
                 CenterText = true
             };
-            ConfirmButton.Click += (o, e) => Hide();
+            ConfirmButton.Click += (o, e) => Confirm();
 
             CancelButton = new MirButton
             {
@@ -90,26 +96,95 @@ namespace Client.MirScenes.Dialogs
             };
         }
 
-        public void Update()
+        public void Update(bool reset)
         {
+            foreach (var a in Attributes)
+                a.Update(reset);
+            foreach (var b in SecondaryAttributes)
+                b.Update(reset);
+
             AvailablePointsLabel.Text = $"Available Points: {AvailablePoints}";
+            Enabled = true;
         }
 
         public override void Show()
         {
-            Update();
+            Update(true);
             base.Show();
+        }
+
+        void Confirm()
+        {
+            if (DeltaPoints == 0) return;
+
+            Enabled = false;
+            Dictionary<Attribute, int> allDeltas = new Dictionary<Attribute, int>();
+            foreach (var a in Attributes)
+                allDeltas[a.Type] = a.Delta;
+            foreach (var b in SecondaryAttributes)
+                allDeltas[b.Type] = b.Delta;
+
+            Network.Enqueue(new C.AttributeDeltas { Deltas = allDeltas});
         }
     }
 
-    public sealed class MainAttributeRow : MirImageControl
+    public class AttributeRow : MirImageControl
     {
+        public Attribute Type;
         public MirButton IncreaseButton, DecreaseButton;
-        MirLabel LevelLabel, PointsLabel, DeltaLabel, ExperienceLabel;
-        int level, points, experience, delta;
+        protected MirLabel LevelLabel, PointsLabel, DeltaLabel, ExperienceLabel;
+        protected uint level, points;
+        protected int delta;
+        protected ulong experience;
 
-        public MainAttributeRow(PrimaryAttribute attribute)
+        public int Delta => delta;
+        protected long PointsWithDelta => points + delta;
+
+        public AttributeRow(Attribute attribute) {}
+
+        public virtual void Update(bool reset)
         {
+            if (reset)
+                delta = 0;
+
+            if (GameScene.User != null)
+            {
+                points = GameScene.User.AttributeValues[Type].Points;
+                level = GameScene.User.AttributeValues[Type].Level;
+                experience = GameScene.User.AttributeValues[Type].Experience;
+            }    
+
+            if (LevelLabel != null)
+                LevelLabel.Text = $"Lv {level}";
+            ExperienceLabel.Text = experience.ToString();
+            if (DeltaLabel != null)
+                DeltaLabel.Text = $"{(delta >= 0 ? "+" : "")}{delta}";
+            PointsLabel.Text = $"{(PointsWithDelta > 0 ? "+" : "")}{PointsWithDelta}";
+            PointsLabel.Visible = PointsWithDelta > 0;
+        }
+
+        protected void Increase()
+        {
+            AttributeDialog parent = (AttributeDialog)Parent;
+            if (parent.AvailablePoints > 0)
+                delta++;
+            parent.Update(false);
+        }
+
+        protected void Decrease()
+        {
+            AttributeDialog parent = (AttributeDialog)Parent;
+            if (points + delta > 0)
+                delta--;
+            parent.Update(false);
+        }
+    }
+
+    public sealed class MainAttributeRow : AttributeRow
+    {
+        public MainAttributeRow(Attribute attribute) : base(attribute)
+        {
+            Type = attribute;
             DrawImage = false;
             Size = new Size(353, 24);
 
@@ -176,35 +251,15 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(IncreaseButton.Location.X + 30, 0)
             };
 
-            Update();
-        }
-
-        void Update()
-        {
-            LevelLabel.Text = $"Lv {level}";
-            ExperienceLabel.Text = experience.ToString();
-            DeltaLabel.Text = $"{(delta >= 0 ? "+" : "")}{delta}";
-            PointsLabel.Text = $"{(points > 0 ? "+" : "")}{points}";
-            PointsLabel.Visible = points > 0;
-        }
-
-        void Increase()
-        {
-        }
-
-        void Decrease()
-        {
+            Update(true);
         }
     }
 
-    public sealed class SecondaryAttributeRow : MirImageControl
+    public sealed class SecondaryAttributeRow : AttributeRow
     {
-        public MirButton IncreaseButton, DecreaseButton;
-        MirLabel PointsLabel, ValueLabel;
-        int points, value;
-
-        public SecondaryAttributeRow(SecondaryAttribute attribute)
+        public SecondaryAttributeRow(Attribute attribute) : base(attribute)
         {
+            Type = attribute;
             DrawImage = false;
             Size = new Size(353, 24);
 
@@ -216,7 +271,7 @@ namespace Client.MirScenes.Dialogs
                 Text = attribute.ToString()
             };
 
-            ValueLabel = new MirLabel
+            ExperienceLabel = new MirLabel
             {
                 AutoSize = true,
                 Parent = this,
@@ -229,13 +284,13 @@ namespace Client.MirScenes.Dialogs
                 AutoSize = true,
                 Parent = this,
                 NotControl = true,
-                Location = new Point(ValueLabel.Location.X + 65, 0)
+                Location = new Point(ExperienceLabel.Location.X + 65, 0)
             };
 
             IncreaseButton = new MirButton
             {
                 Index = 1,
-                Location = new Point(PointsLabel.Location.X + 20, 0),
+                Location = new Point(PointsLabel.Location.X + 25, 0),
                 Library = Libraries.Prguse,
                 Parent = this,
                 PressedIndex = 2,
@@ -254,21 +309,14 @@ namespace Client.MirScenes.Dialogs
             };
             DecreaseButton.Click += (o, e) => Decrease();
 
-            Update();
+            Update(true);
         }
 
-        void Update()
+        public override void Update(bool reset)
         {
-            ValueLabel.Text = $"{(value > 0 ? "+" : "")}{value}";
-            PointsLabel.Text = $"{(points > 0 ? "+" : "")}{points}";
-        }
+            base.Update(reset);
 
-        void Increase()
-        {
-        }
-
-        void Decrease()
-        {
+            ExperienceLabel.Text = $"{(experience > 0 ? "+" : "")}{experience}";
         }
     }
 }

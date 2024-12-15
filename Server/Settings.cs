@@ -182,6 +182,9 @@ namespace Server
 
         public static uint MaxDropGold = 2000;
         public static bool DropGold = true;
+        public static uint BaseAttributePoints = 20;
+        public static uint GainAttributePoints = 1;
+        public static ulong AttributePointsMaxExperience = 100;
 
         //Mail Settings
         public static bool MailAutoSendGold = false;
@@ -431,6 +434,10 @@ namespace Server
 
             DropGold = Reader.ReadBoolean("DropGold", "DropGold", DropGold);
             MaxDropGold = Reader.ReadUInt32("DropGold", "MaxDropGold", MaxDropGold);
+
+            BaseAttributePoints = Reader.ReadUInt32("Attributes", "BasePoints", BaseAttributePoints);
+            GainAttributePoints = Reader.ReadUInt32("Attributes", "LevelGain", GainAttributePoints);
+            AttributePointsMaxExperience = Reader.ReadUInt64("Attributes", "MaxExperience", AttributePointsMaxExperience);
 
             MagicResistWeight = Reader.ReadByte("Items","MagicResistWeight",MagicResistWeight);
             PoisonResistWeight = Reader.ReadByte("Items","PoisonResistWeight",PoisonResistWeight);
@@ -695,7 +702,11 @@ namespace Server
 
             Reader.Write("DropGold", "DropGold", DropGold);
             Reader.Write("DropGold", "MaxDropGold", MaxDropGold);
-            
+
+            Reader.Write("Attributes", "BasePoints", BaseAttributePoints);
+            Reader.Write("Attributes", "LevelGain", GainAttributePoints);
+            Reader.Write("Attributes", "MaxExperience", AttributePointsMaxExperience);
+
             Reader.Write("Items", "MagicResistWeight", MagicResistWeight);
             Reader.Write("Items", "PoisonResistWeight", PoisonResistWeight);
             Reader.Write("Items", "CriticalRateWeight", CriticalRateWeight);

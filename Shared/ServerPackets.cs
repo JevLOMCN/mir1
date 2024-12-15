@@ -3875,6 +3875,52 @@ namespace ServerPackets
         }
     }
 
+    public sealed class AttributePointSettings : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.AttributePointSettings; }
+        }
+
+        public uint BasePoints, LevelGain;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            BasePoints = reader.ReadUInt32();
+            LevelGain = reader.ReadUInt32();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(BasePoints);
+            writer.Write(LevelGain);
+        }
+    }
+
+    public sealed class AttributePoints : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.AttributePoints; }
+        }
+
+        public List<UserAttribute> Attributes = new List<UserAttribute>();
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            int count = reader.ReadInt32();
+            for (int _ = 0; _ < count; _++)
+                Attributes.Add(new UserAttribute(reader));
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Attributes.Count);
+            foreach (UserAttribute attribute in Attributes)
+                attribute.Save(writer);
+        }
+    }
+
     public sealed class UserName : Packet
     {
         public override short Index { get { return (short)ServerPacketIds.UserName; } }

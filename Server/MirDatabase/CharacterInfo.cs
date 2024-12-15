@@ -86,6 +86,8 @@ namespace Server.MirDatabase
         public Dictionary<int, int> GSpurchases = new Dictionary<int, int>();
         public int[] Rank = new int[2];//dont save this in db!(and dont send it to clients :p)
 
+        public Dictionary<Attribute, UserAttribute> AttributeValues = new Dictionary<Attribute, UserAttribute>();
+
         public CharacterInfo() { }
 
         public CharacterInfo(ClientPackets.NewCharacter p, MirConnection c)
@@ -301,6 +303,16 @@ namespace Server.MirDatabase
                     GSpurchases.Add(reader.ReadInt32(), reader.ReadInt32());
                 }
             }
+
+            if (version > 108)
+            {
+                count = reader.ReadInt32();
+                for (int _ = 0; _ < count; _++)
+                {
+                    UserAttribute attribute = new UserAttribute(reader, version, customVersion);
+                    AttributeValues[attribute.Type] = attribute;
+                }
+            }
         }
 
         public virtual void Save(BinaryWriter writer)
@@ -459,6 +471,10 @@ namespace Server.MirDatabase
                 writer.Write(item.Key);
                 writer.Write(item.Value);
             }
+
+            writer.Write(AttributeValues.Count);
+            foreach (var attribute in AttributeValues)
+                attribute.Value.Save(writer);
         }
 
         public SelectInfo ToSelectInfo()

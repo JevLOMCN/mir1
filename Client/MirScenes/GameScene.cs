@@ -1313,6 +1313,12 @@ namespace Client.MirScenes
                 case (short)ServerPacketIds.BaseStatsInfo:
                     BaseStatsInfo((S.BaseStatsInfo)p);
                     break;
+                case (short)ServerPacketIds.AttributePointSettings:
+                    AttributePointSettings((S.AttributePointSettings)p);
+                    break;
+                case (short)ServerPacketIds.AttributePoints:
+                    AttributePoints((S.AttributePoints)p);
+                    break;
                 case (short)ServerPacketIds.UserName:
                     UserName((S.UserName)p);
                     break;
@@ -2575,7 +2581,8 @@ namespace Client.MirScenes
             OutputMessage(GameLanguage.LevelUp);
             User.Effects.Add(new Effect(Libraries.Magic2, 1200, 20, 2000, User));
             SoundManager.PlaySound(SoundList.LevelUp);
-            ChatDialog.ReceiveChat(GameLanguage.LevelUp, ChatType.LevelUp); 
+            ChatDialog.ReceiveChat(GameLanguage.LevelUp, ChatType.LevelUp);
+            AttributeDialog.Update(false);
         }
         private void ObjectLeveled(S.ObjectLeveled p)
         {
@@ -3711,6 +3718,19 @@ namespace Client.MirScenes
         {
             User.CoreStats = p.Stats;
             User.RefreshStats();
+        }
+
+        private void AttributePoints(S.AttributePoints p)
+        {
+            foreach (var attribute in p.Attributes)
+                User.AttributeValues[attribute.Type] = attribute;
+            AttributeDialog.Update(true);
+        }
+
+        private void AttributePointSettings(S.AttributePointSettings p)
+        {
+            AttributeDialog.BasePoints = p.BasePoints;
+            AttributeDialog.LevelGain = p.LevelGain;
         }
 
         private void UserName(S.UserName p)
