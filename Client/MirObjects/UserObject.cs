@@ -39,6 +39,8 @@ namespace Client.MirObjects
         public bool HasExpandedStorage = false;
         public DateTime ExpandedStorageExpiryTime;
 
+        public Dictionary<Attribute, UserAttribute> AttributeValues = new Dictionary<Attribute, UserAttribute>();
+
         public List<ClientMagic> Magics = new List<ClientMagic>();
         public List<ItemSets> ItemSets = new List<ItemSets>();
 

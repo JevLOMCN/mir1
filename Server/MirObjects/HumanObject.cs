@@ -161,6 +161,11 @@ namespace Server.MirObjects
         public bool IsGM, GMNeverDie, GMGameMaster;
         public bool HasUpdatedBaseStats = true;
 
+        public uint MaximumAttributePoints => Settings.BaseAttributePoints + Level * Settings.GainAttributePoints;
+        public long SpentAttributePoints => AttributeValues.Values.Sum(attribute => attribute.Points);
+        public long AvailableAttributePoints => MaximumAttributePoints - SpentAttributePoints;
+        public Dictionary<Attribute, UserAttribute> AttributeValues => Info.AttributeValues;
+
         public virtual int PotionBeltMinimum => 0;
         public virtual int PotionBeltMaximum => 4;
         public virtual int AmuletBeltMinimum => 4;
@@ -636,6 +641,23 @@ namespace Server.MirObjects
         }
         public virtual void LevelUp()
         {
+            foreach (Attribute attribute in Enum.GetValues<Attribute>())
+            {
+                var attributeValue = AttributeValues[attribute];
+                if (attributeValue.Points == 0) continue;
+
+                attributeValue.Experience += attributeValue.Points;
+                while (attributeValue.Experience >= Settings.AttributePointsMaxExperience)
+                {
+                    attributeValue.Level++;
+                    attributeValue.Experience -= Settings.AttributePointsMaxExperience;
+
+                    //TODO set class when attribute reaches level 11
+                    //TODO Increase some stats based on attributes in RefreshStats
+                }
+            }
+
+            SendAttributes();
             RefreshStats();
             SetHP(Stats[Stat.HP]);
             SetMP(Stats[Stat.MP]);
@@ -1300,6 +1322,25 @@ namespace Server.MirObjects
         protected virtual void SendBaseStats()
         {
             Enqueue(new S.BaseStatsInfo { Stats = Settings.ClassBaseStats[(byte)Class] });
+        }
+
+        public void SendAttributes()
+        {
+            Enqueue(new S.AttributePoints { Attributes = AttributeValues.Values.ToList() });
+        }
+
+        public void AttributeDeltas(Dictionary<Attribute, int> deltas)
+        {
+            foreach (var delta in deltas)
+            {
+                long value = delta.Value;
+                if (value > AvailableAttributePoints)
+                    value = AvailableAttributePoints;
+
+                AttributeValues[delta.Key].Points = (uint)Math.Max(0, AttributeValues[delta.Key].Points + delta.Value);
+            }
+
+            SendAttributes();
         }
 
         #region Refresh Stats

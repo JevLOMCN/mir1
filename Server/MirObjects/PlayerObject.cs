@@ -1,12 +1,9 @@
-﻿using C = ClientPackets;
-using Server.MirDatabase;
+﻿using Server.MirDatabase;
 using Server.MirEnvir;
 using Server.MirNetwork;
 using S = ServerPackets;
 using System.Text.RegularExpressions;
 using Timer = Server.MirEnvir.Timer;
-using Server.MirObjects.Monsters;
-using System.Threading;
 
 namespace Server.MirObjects
 {
@@ -190,6 +187,12 @@ namespace Server.MirObjects
             if (Info.GuildIndex != -1)
             {
                 MyGuild = Envir.GetGuild(Info.GuildIndex);
+            }
+
+            foreach (Attribute attribute in Enum.GetValues<Attribute>())
+            {
+                if (AttributeValues.ContainsKey(attribute)) continue;
+                AttributeValues.Add(attribute, new UserAttribute(attribute));
             }
 
             RefreshStats();
@@ -990,6 +993,10 @@ namespace Server.MirObjects
             }
 
             SendBaseStats();
+
+            Enqueue(new S.AttributePointSettings { BasePoints = Settings.BaseAttributePoints, LevelGain = Settings.GainAttributePoints });
+            SendAttributes();
+
             GetObjectsPassive();
             Enqueue(new S.TimeOfDay { Lights = Envir.Lights });
             Enqueue(new S.ChangeAMode { Mode = AMode });
@@ -3270,6 +3277,7 @@ namespace Server.MirObjects
 
             return text;
         }
+
         public void Turn(MirDirection dir)
         {
             if (CanMove)

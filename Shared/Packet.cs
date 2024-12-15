@@ -102,6 +102,8 @@ public abstract class Packet
                 return new C.Walk();
             case (short)ClientPacketIds.Chat:
                 return new C.Chat();
+            case (short)ClientPacketIds.AttributeDeltas:
+                return new C.AttributeDeltas();
             case (short)ClientPacketIds.MoveItem:
                 return new C.MoveItem();
             case (short)ClientPacketIds.StoreItem:
@@ -587,6 +589,10 @@ public abstract class Packet
                 return new S.RemoveMagic();
             case (short)ServerPacketIds.BaseStatsInfo:
                 return new S.BaseStatsInfo();
+            case (short)ServerPacketIds.AttributePointSettings:
+                return new S.AttributePointSettings();
+            case (short)ServerPacketIds.AttributePoints:
+                return new S.AttributePoints();
             case (short)ServerPacketIds.UserName:
                 return new S.UserName();
             case (short)ServerPacketIds.ChatItemStats:

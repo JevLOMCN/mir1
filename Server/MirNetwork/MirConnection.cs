@@ -323,6 +323,9 @@ namespace Server.MirNetwork
                 case (short)ClientPacketIds.Chat:
                     Chat((C.Chat) p);
                     break;
+                case (short)ClientPacketIds.AttributeDeltas:
+                    AttributeDeltas((C.AttributeDeltas)p);
+                    return;
                 case (short)ClientPacketIds.MoveItem:
                     MoveItem((C.MoveItem) p);
                     break;
@@ -881,6 +884,13 @@ namespace Server.MirNetwork
             if (Stage != GameStage.Game) return;
 
             Player.Chat(p.Message, p.LinkedItems);
+        }
+
+        private void AttributeDeltas(C.AttributeDeltas p)
+        {
+            if (Stage != GameStage.Game) return;
+
+            Player.AttributeDeltas(p.Deltas);
         }
 
         private void MoveItem(C.MoveItem p)

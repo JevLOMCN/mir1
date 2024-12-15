@@ -59,6 +59,26 @@ public enum DamageType : byte
     Critical = 2
 }
 
+public enum Attribute : byte
+{
+    //Primary
+    Fire,
+    Water,
+    Electric,
+    Ground,
+    Good,
+    Evil,
+    Yin,
+    Yang,
+    //Secondary
+    Health = 100,
+    Mana,
+    Attack,
+    Magic,
+    Agility,
+    Defence
+}
+
 [Flags]
 public enum GMOptions : byte
 {
@@ -760,6 +780,8 @@ public enum ServerPacketIds : short
     MarketFail,
     MarketSuccess,
     BaseStatsInfo,
+    AttributePointSettings,
+    AttributePoints,
     UserName,
     ChatItemStats,
     GuildNoticeChange,
@@ -834,6 +856,7 @@ public enum ClientPacketIds : short
     Turn,
     Walk,
     Chat,
+    AttributeDeltas,
     MoveItem,
     StoreItem,
     TakeBackItem,

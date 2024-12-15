@@ -48,6 +48,7 @@ namespace Client.MirScenes
         public NPCDropDialog NPCDropDialog;
         public HelpDialog HelpDialog;
         public RefineDialog RefineDialog;
+        public AttributeDialog AttributeDialog;
 
         public GroupDialog GroupDialog;
         public GuildDialog GuildDialog;
@@ -165,6 +166,8 @@ namespace Client.MirScenes
             HelpDialog = new HelpDialog { Parent = this, Visible = false };
             KeyboardLayoutDialog = new KeyboardLayoutDialog { Parent = this, Visible = false };
             NoticeDialog = new NoticeDialog { Parent = this, Visible = false };
+
+            AttributeDialog = new AttributeDialog { Parent = this, Visible = false };
 
             GroupDialog = new GroupDialog { Parent = this, Visible = false };
             GuildDialog = new GuildDialog { Parent = this, Visible = false };
@@ -424,6 +427,7 @@ namespace Client.MirScenes
                         FriendDialog.Hide();
                         RelationshipDialog.Hide();
                         GameShopDialog.Hide();
+                        AttributeDialog.Hide();
                         GroupDialog.Hide();
                         GuildDialog.Hide();
                         StorageDialog.Hide();
@@ -446,6 +450,10 @@ namespace Client.MirScenes
                     case KeybindOptions.Options2:
                         if (!OptionDialog.Visible) OptionDialog.Show();
                         else OptionDialog.Hide();
+                        break;
+                    case KeybindOptions.Attribute:
+                        if (!AttributeDialog.Visible) AttributeDialog.Show();
+                        else AttributeDialog.Hide();
                         break;
                     case KeybindOptions.Group:
                         //if (!GroupDialog.Visible) GroupDialog.Show();
@@ -1304,6 +1312,12 @@ namespace Client.MirScenes
                     break;
                 case (short)ServerPacketIds.BaseStatsInfo:
                     BaseStatsInfo((S.BaseStatsInfo)p);
+                    break;
+                case (short)ServerPacketIds.AttributePointSettings:
+                    AttributePointSettings((S.AttributePointSettings)p);
+                    break;
+                case (short)ServerPacketIds.AttributePoints:
+                    AttributePoints((S.AttributePoints)p);
                     break;
                 case (short)ServerPacketIds.UserName:
                     UserName((S.UserName)p);
@@ -2567,7 +2581,8 @@ namespace Client.MirScenes
             OutputMessage(GameLanguage.LevelUp);
             User.Effects.Add(new Effect(Libraries.Magic2, 1200, 20, 2000, User));
             SoundManager.PlaySound(SoundList.LevelUp);
-            ChatDialog.ReceiveChat(GameLanguage.LevelUp, ChatType.LevelUp); 
+            ChatDialog.ReceiveChat(GameLanguage.LevelUp, ChatType.LevelUp);
+            AttributeDialog.Update(false);
         }
         private void ObjectLeveled(S.ObjectLeveled p)
         {
@@ -3703,6 +3718,19 @@ namespace Client.MirScenes
         {
             User.CoreStats = p.Stats;
             User.RefreshStats();
+        }
+
+        private void AttributePoints(S.AttributePoints p)
+        {
+            foreach (var attribute in p.Attributes)
+                User.AttributeValues[attribute.Type] = attribute;
+            AttributeDialog.Update(true);
+        }
+
+        private void AttributePointSettings(S.AttributePointSettings p)
+        {
+            AttributeDialog.BasePoints = p.BasePoints;
+            AttributeDialog.LevelGain = p.LevelGain;
         }
 
         private void UserName(S.UserName p)
