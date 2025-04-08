@@ -4,6 +4,8 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 ### [Website](https://thelegendofmir.uk/mir1/main.html)
 
+![merged_MiniMap](https://github.com/user-attachments/assets/05efef34-a316-4b8e-bd96-ccbd34ec2927)
+
 # Team
 <img src="https://c.tenor.com/7_KRHOBcSnEAAAAC/tenor.gif" alt="Jev" width="96" height="96">
 
