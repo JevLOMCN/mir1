@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>disable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<ApplicationIcon>ico.ICO</ApplicationIcon>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<StartupObject>Map_Editor.Program</StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\100.jpg" />
+		<None Remove="Resources\110.jpg" />
+		<None Remove="Resources\1100.jpg" />
+		<None Remove="Resources\1110.jpg" />
+		<None Remove="Resources\1120.jpg" />
+		<None Remove="Resources\1130.jpg" />
+		<None Remove="Resources\1140.jpg" />
+		<None Remove="Resources\1150.jpg" />
+		<None Remove="Resources\120.jpg" />
+		<None Remove="Resources\130.jpg" />
+		<None Remove="Resources\140.jpg" />
+		<None Remove="Resources\150.jpg" />
+		<None Remove="Resources\160.jpg" />
+		<None Remove="Resources\170.jpg" />
+		<None Remove="Resources\180.jpg" />
+		<None Remove="Resources\190.jpg" />
+		<None Remove="Resources\Camera.png" />
+		<None Remove="Resources\Minus.png" />
+		<None Remove="Resources\Navigator.png" />
+		<None Remove="Resources\Off.png" />
+		<None Remove="Resources\On.png" />
+		<None Remove="Resources\Plus.png" />
+		<None Remove="Resources\Radar.png" />
+		<None Remove="Resources\Square.png" />
+		<None Remove="Resources\System folder.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="ico.ICO" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\100.jpg" />
+		<EmbeddedResource Include="Resources\110.jpg" />
+		<EmbeddedResource Include="Resources\1100.jpg" />
+		<EmbeddedResource Include="Resources\1110.jpg" />
+		<EmbeddedResource Include="Resources\1120.jpg" />
+		<EmbeddedResource Include="Resources\1130.jpg" />
+		<EmbeddedResource Include="Resources\1140.jpg" />
+		<EmbeddedResource Include="Resources\1150.jpg" />
+		<EmbeddedResource Include="Resources\120.jpg" />
+		<EmbeddedResource Include="Resources\130.jpg" />
+		<EmbeddedResource Include="Resources\140.jpg" />
+		<EmbeddedResource Include="Resources\150.jpg" />
+		<EmbeddedResource Include="Resources\160.jpg" />
+		<EmbeddedResource Include="Resources\170.jpg" />
+		<EmbeddedResource Include="Resources\180.jpg" />
+		<EmbeddedResource Include="Resources\190.jpg" />
+		<EmbeddedResource Include="Resources\Camera.png" />
+		<EmbeddedResource Include="Resources\Minus.png" />
+		<EmbeddedResource Include="Resources\Navigator.png" />
+		<EmbeddedResource Include="Resources\Off.png" />
+		<EmbeddedResource Include="Resources\On.png" />
+		<EmbeddedResource Include="Resources\Plus.png" />
+		<EmbeddedResource Include="Resources\Radar.png" />
+		<EmbeddedResource Include="Resources\Square.png" />
+		<EmbeddedResource Include="Resources\System folder.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="SlimDX">
+			<HintPath>..\Components\SlimDX.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FileAssociation Include=".map">
+			<Visible>False</Visible>
+			<Description>Mir2 Map Editor v1.1</Description>
+			<Progid>1</Progid>
+			<DefaultIcon>ico.ico</DefaultIcon>
+		</FileAssociation>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Images.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>

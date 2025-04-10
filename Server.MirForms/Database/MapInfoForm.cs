@@ -1401,7 +1401,7 @@ namespace Server
         private void ImportMapInfoButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "CSV|*.csv";
+            ofd.Filter = "TXT|*.txt";
             ofd.ShowDialog();
 
             if (ofd.FileName == string.Empty) return;
@@ -1420,7 +1420,7 @@ namespace Server
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.InitialDirectory = Path.Combine(Application.StartupPath, "Exports");
             sfd.FileName = "MapInfoExport";
-            sfd.Filter = "CSV|*.csv";
+            sfd.Filter = "TXT|*.txt";
             sfd.ShowDialog();
 
             if (sfd.FileName == string.Empty) return;
