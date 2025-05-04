@@ -27,7 +27,7 @@ namespace Client.MirScenes.Dialogs
             Library = Libraries.Prguse;
             Movable = true;
             Sort = true;
-            Location = Center;
+            Location = new Point(13, 32);
 
             var title = new MirLabel
             {

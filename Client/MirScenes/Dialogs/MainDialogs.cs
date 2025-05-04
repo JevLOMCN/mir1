@@ -203,11 +203,14 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 9,
                 Sound = SoundList.ButtonA,
-                Hint = string.Format(GameLanguage.Options, CMain.InputKeys.GetKey(KeybindOptions.Options))
+                Hint = string.Format(GameLanguage.Attributes, CMain.InputKeys.GetKey(KeybindOptions.Attribute))
             };
             MiniMapButton.Click += (o, e) =>
             {
-                GameScene.Scene.BigMapDialog.Toggle();
+                if (GameScene.Scene.AttributeDialog.Visible)
+                    GameScene.Scene.AttributeDialog.Hide();
+                else
+                    GameScene.Scene.AttributeDialog.Show();
             };
 
             HelpButton = new MirButton

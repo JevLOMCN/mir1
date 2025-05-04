@@ -24,6 +24,7 @@
                          Skills = "Skills ({0})",
                          Quests = "Quests ({0})",
                          Options = "Options ({0})",
+                         Attributes = "Attributes ({0})",
                          Menu = "Menu",
                          GameShop = "Game Shop ({0})",
                          BigMap = "BigMap ({0})",
