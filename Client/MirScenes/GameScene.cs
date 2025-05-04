@@ -90,7 +90,7 @@ namespace Client.MirScenes
         public TimerDialog TimerControl;
         public CompassDialog CompassControl;
         public RollDialog RollControl;
-
+        public SkillDialog SkillDialog;
 
         public static List<ItemInfo> ItemInfoList = new List<ItemInfo>();
         public static List<UserId> UserIdList = new List<UserId>();
@@ -188,7 +188,7 @@ namespace Client.MirScenes
             QuestDetailDialog = new QuestDetailDialog { Parent = this, Visible = false };
             QuestTrackingDialog = new QuestTrackingDialog { Parent = this, Visible = false };
             QuestLogDialog = new QuestDiaryDialog { Parent = this, Visible = false };
-
+            SkillDialog = new SkillDialog { Parent = this, Visible = false };
             RankingDialog = new RankingDialog { Parent = this, Visible = false };
 
             MailListDialog = new MailListDialog { Parent = this, Visible = false };
@@ -374,6 +374,9 @@ namespace Client.MirScenes
                             CharacterDialog.Hide();
                         break;
                     case KeybindOptions.Skills:
+                        if (!SkillDialog.Visible) SkillDialog.Show();
+                        else SkillDialog.Hide();
+                        break;
                     case KeybindOptions.Skills2:
                         break;
                     case KeybindOptions.GameShop:

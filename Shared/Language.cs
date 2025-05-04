@@ -14,6 +14,7 @@
                          AttackMode_RedBrown = "[Mode: Red/Brown]",
                          AttackMode_All = "[Mode: Attack All]",
 
+                         Chat = "Open Chat ({0})",
                          LogOutTip = "Do you want to log out of Legend of Mir 1?",
                          ExitTip = "Do you want to quit Legend of Mir 1?",
                          DiedTip = "You have died, Do you want to revive in town?",

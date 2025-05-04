@@ -78,7 +78,8 @@
         AddGroupMember,
         TargetSpellLockOn,
         PetmodeFocusMasterTarget,
-        Attribute
+        Attribute,
+        OpenChat
     }
 
     public class KeyBind
@@ -166,7 +167,7 @@
             list.Add(InputKey);
             InputKey = new KeyBind { Group = "Dialogs", Description = "Equipment Open/Close Alt", function = KeybindOptions.Equipment2, RequireAlt = 2, RequireShift = 2, RequireTilde = 2, RequireCtrl = 0, Key = Keys.C };
             list.Add(InputKey);
-            InputKey = new KeyBind { Group = "Dialogs", Description = "Skills Open/Close", function = KeybindOptions.Skills, RequireAlt = 2, RequireShift = 2, RequireTilde = 2, RequireCtrl = 2, Key = Keys.F11 };
+            InputKey = new KeyBind { Group = "Dialogs", Description = "Skills Open/Close", function = KeybindOptions.Skills, RequireAlt = 0, RequireShift = 0, RequireTilde = 0, RequireCtrl = 0, Key = Keys.F11 };
             list.Add(InputKey);
             InputKey = new KeyBind { Group = "Dialogs", Description = "Skills Open/Close Alt", function = KeybindOptions.Skills2, RequireAlt = 2, RequireShift = 2, RequireTilde = 2, RequireCtrl = 0, Key = Keys.S };
             list.Add(InputKey);
@@ -275,6 +276,8 @@
             InputKey = new KeyBind { Group = "General", Description = "Request Trade", function = KeybindOptions.Trade, RequireAlt = 2, RequireShift = 2, RequireTilde = 2, RequireCtrl = 2, Key = Keys.T };
             list.Add(InputKey);
             InputKey = new KeyBind { Group = "General", Description = "Recruit Group Member", function = KeybindOptions.AddGroupMember, RequireAlt = 2, RequireShift = 2, RequireTilde = 2, RequireCtrl = 1, Key = Keys.G };
+            list.Add(InputKey);
+            InputKey = new KeyBind { Group = "General", Description = "Open Chat", function = KeybindOptions.OpenChat, RequireAlt = 0, RequireShift = 0, RequireTilde = 0, RequireCtrl = 0, Key = Keys.Enter };
             list.Add(InputKey);
 
             InputKey = new KeyBind { Group = "Toggle", Description = "Toggle Attack Mode", function = KeybindOptions.ChangeAttackmode, RequireAlt = 2, RequireShift = 0, RequireTilde = 2, RequireCtrl = 1, Key = Keys.H };

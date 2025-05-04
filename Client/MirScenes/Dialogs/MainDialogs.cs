@@ -179,6 +179,10 @@ namespace Client.MirScenes.Dialogs
             };
             SkillButton.Click += (o, e) =>
             {
+                if (GameScene.Scene.SkillDialog.Visible)
+                    GameScene.Scene.SkillDialog.Hide();
+                else
+                    GameScene.Scene.SkillDialog.Show();
             };
 
             LipsButton = new MirButton
@@ -189,10 +193,14 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 PressedIndex = 7,
                 Sound = SoundList.ButtonA,
-                Hint = string.Format(GameLanguage.Quests, CMain.InputKeys.GetKey(KeybindOptions.Quests))
+                Hint = string.Format(GameLanguage.Chat, CMain.InputKeys.GetKey(KeybindOptions.OpenChat))
             };
             LipsButton.Click += (o, e) =>
             {
+                var chat = GameScene.Scene.ChatDialog;
+                if (!chat.Visible)
+                    chat.Show();
+                chat.ChatTextBox.SetFocus();
             };
 
             MiniMapButton = new MirButton
@@ -225,6 +233,10 @@ namespace Client.MirScenes.Dialogs
             };
             HelpButton.Click += (o, e) =>
             {
+                if (GameScene.Scene.HelpDialog.Visible)
+                    GameScene.Scene.HelpDialog.Hide();
+                else
+                    GameScene.Scene.HelpDialog.Show();
             };
 
             QuitButton = new MirButton
