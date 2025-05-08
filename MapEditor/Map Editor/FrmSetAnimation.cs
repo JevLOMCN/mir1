@@ -30,33 +30,8 @@ namespace Map_Editor
                     frame = Convert.ToByte(txtAnimationFrame.Text.Trim());
                     tick = Convert.ToByte(txtAnimationTick.Text.Trim());
                     _delSetAnimationProperty(blend, frame, tick);
-                    Dispose();
                 }
             }
-
         }
-
-        private void txtAnimationFrame_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    KeyPressEventArgs arg = new KeyPressEventArgs(Convert.ToChar(Keys.Enter));
-                    btnSetAnimation_Click(sender, arg);
-                    break;
-            }
-        }
-
-        private void txtAnimationTick_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    KeyPressEventArgs arg = new KeyPressEventArgs(Convert.ToChar(Keys.Enter));
-                    btnSetAnimation_Click(sender, arg);
-                    break;
-            }
-        }
-
     }
 }

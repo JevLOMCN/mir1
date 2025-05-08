@@ -67,9 +67,9 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(6, 216);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 19);
+            this.label3.Size = new System.Drawing.Size(146, 19);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Version: 1.4 Suprcode";
+            this.label3.Text = "Version: 1.1 Suprcode";
             // 
             // btnclose
             // 
@@ -81,7 +81,6 @@
             this.btnclose.Text = "Close";
             this.btnclose.UseVisualStyleBackColor = true;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
-            this.btnclose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Escape);
             // 
             // FrmAbout
             // 

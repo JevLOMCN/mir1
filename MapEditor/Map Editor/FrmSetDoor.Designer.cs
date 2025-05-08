@@ -39,61 +39,61 @@
             // chkCoreDoor
             // 
             this.chkCoreDoor.AutoSize = true;
-            this.chkCoreDoor.Location = new System.Drawing.Point(24, 47);
+            this.chkCoreDoor.Location = new System.Drawing.Point(24, 43);
             this.chkCoreDoor.Name = "chkCoreDoor";
-            this.chkCoreDoor.Size = new System.Drawing.Size(78, 17);
+            this.chkCoreDoor.Size = new System.Drawing.Size(132, 16);
             this.chkCoreDoor.TabIndex = 0;
-            this.chkCoreDoor.Text = "Entity Door";
+            this.chkCoreDoor.Text = "实体门 entity door";
             this.chkCoreDoor.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(116, 30);
+            this.label1.Location = new System.Drawing.Point(162, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(107, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Door Index";
+            this.label1.Text = "门索引 door index";
             // 
             // txtDoorIndex
             // 
-            this.txtDoorIndex.Location = new System.Drawing.Point(185, 27);
+            this.txtDoorIndex.Location = new System.Drawing.Point(284, 25);
             this.txtDoorIndex.Name = "txtDoorIndex";
-            this.txtDoorIndex.Size = new System.Drawing.Size(50, 20);
+            this.txtDoorIndex.Size = new System.Drawing.Size(50, 21);
             this.txtDoorIndex.TabIndex = 2;
             // 
             // txtDoorOffSet
             // 
-            this.txtDoorOffSet.Location = new System.Drawing.Point(185, 60);
+            this.txtDoorOffSet.Location = new System.Drawing.Point(284, 52);
             this.txtDoorOffSet.Name = "txtDoorOffSet";
-            this.txtDoorOffSet.Size = new System.Drawing.Size(50, 20);
+            this.txtDoorOffSet.Size = new System.Drawing.Size(50, 21);
             this.txtDoorOffSet.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 63);
+            this.label2.Location = new System.Drawing.Point(162, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(113, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Door OffSet";
+            this.label2.Text = "门偏移 door offSet";
             // 
             // btnSetDoor
             // 
             this.btnSetDoor.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSetDoor.Location = new System.Drawing.Point(92, 99);
+            this.btnSetDoor.Location = new System.Drawing.Point(140, 94);
             this.btnSetDoor.Name = "btnSetDoor";
-            this.btnSetDoor.Size = new System.Drawing.Size(75, 25);
+            this.btnSetDoor.Size = new System.Drawing.Size(75, 23);
             this.btnSetDoor.TabIndex = 5;
-            this.btnSetDoor.Text = "OK";
+            this.btnSetDoor.Text = "确定 ok";
             this.btnSetDoor.UseVisualStyleBackColor = true;
             this.btnSetDoor.Click += new System.EventHandler(this.btnSetDoor_Click);
             // 
             // FrmSetDoor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 129);
+            this.ClientSize = new System.Drawing.Size(400, 145);
             this.Controls.Add(this.btnSetDoor);
             this.Controls.Add(this.txtDoorOffSet);
             this.Controls.Add(this.label2);

@@ -36,36 +36,35 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 29);
+            this.label1.Location = new System.Drawing.Point(12, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Light Brightness";
+            this.label1.Text = "亮度 light";
             // 
             // txtLight
             // 
-            this.txtLight.Location = new System.Drawing.Point(111, 26);
+            this.txtLight.Location = new System.Drawing.Point(79, 24);
             this.txtLight.Name = "txtLight";
-            this.txtLight.Size = new System.Drawing.Size(43, 20);
+            this.txtLight.Size = new System.Drawing.Size(63, 21);
             this.txtLight.TabIndex = 1;
-            this.txtLight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLight_KeyDown);
             // 
             // btnSetLight
             // 
             this.btnSetLight.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSetLight.Location = new System.Drawing.Point(79, 65);
+            this.btnSetLight.Location = new System.Drawing.Point(79, 60);
             this.btnSetLight.Name = "btnSetLight";
-            this.btnSetLight.Size = new System.Drawing.Size(63, 25);
+            this.btnSetLight.Size = new System.Drawing.Size(63, 23);
             this.btnSetLight.TabIndex = 2;
-            this.btnSetLight.Text = "OK";
+            this.btnSetLight.Text = "确定 ok";
             this.btnSetLight.UseVisualStyleBackColor = true;
             this.btnSetLight.Click += new System.EventHandler(this.btnSetLight_Click);
             // 
             // FrmSetLight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 100);
+            this.ClientSize = new System.Drawing.Size(196, 103);
             this.Controls.Add(this.btnSetLight);
             this.Controls.Add(this.txtLight);
             this.Controls.Add(this.label1);
@@ -74,7 +73,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSetLight";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SetLight 0-9, Fishing 100-119";
+            this.Text = "SetLight";
             this.ResumeLayout(false);
             this.PerformLayout();
 

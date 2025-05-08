@@ -39,63 +39,61 @@
             // btnSetAnimation
             // 
             this.btnSetAnimation.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSetAnimation.Location = new System.Drawing.Point(99, 93);
+            this.btnSetAnimation.Location = new System.Drawing.Point(99, 86);
             this.btnSetAnimation.Name = "btnSetAnimation";
-            this.btnSetAnimation.Size = new System.Drawing.Size(75, 25);
+            this.btnSetAnimation.Size = new System.Drawing.Size(75, 23);
             this.btnSetAnimation.TabIndex = 11;
-            this.btnSetAnimation.Text = "OK";
+            this.btnSetAnimation.Text = "确定 ok";
             this.btnSetAnimation.UseVisualStyleBackColor = true;
             this.btnSetAnimation.Click += new System.EventHandler(this.btnSetAnimation_Click);
             // 
             // txtAnimationTick
             // 
-            this.txtAnimationTick.Location = new System.Drawing.Point(200, 53);
+            this.txtAnimationTick.Location = new System.Drawing.Point(264, 49);
             this.txtAnimationTick.Name = "txtAnimationTick";
-            this.txtAnimationTick.Size = new System.Drawing.Size(50, 20);
+            this.txtAnimationTick.Size = new System.Drawing.Size(50, 21);
             this.txtAnimationTick.TabIndex = 10;
-            this.txtAnimationTick.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAnimationTick_KeyDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(97, 56);
+            this.label2.Location = new System.Drawing.Point(97, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(173, 12);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Animation Interval ";
+            this.label2.Text = "动画间隔 Animation interval ";
             // 
             // txtAnimationFrame
             // 
-            this.txtAnimationFrame.Location = new System.Drawing.Point(200, 24);
+            this.txtAnimationFrame.Location = new System.Drawing.Point(264, 22);
             this.txtAnimationFrame.Name = "txtAnimationFrame";
-            this.txtAnimationFrame.Size = new System.Drawing.Size(50, 20);
+            this.txtAnimationFrame.Size = new System.Drawing.Size(50, 21);
             this.txtAnimationFrame.TabIndex = 8;
-            this.txtAnimationFrame.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAnimationFrame_KeyDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 27);
+            this.label1.Location = new System.Drawing.Point(97, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.Size = new System.Drawing.Size(161, 12);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Animation Frames ";
+            this.label1.Text = "动画帧数 Animation frames ";
             // 
             // chkBlend
             // 
             this.chkBlend.AutoSize = true;
-            this.chkBlend.Location = new System.Drawing.Point(28, 40);
+            this.chkBlend.Location = new System.Drawing.Point(12, 37);
             this.chkBlend.Name = "chkBlend";
-            this.chkBlend.Size = new System.Drawing.Size(53, 17);
+            this.chkBlend.Size = new System.Drawing.Size(84, 16);
             this.chkBlend.TabIndex = 6;
-            this.chkBlend.Text = "Blend";
+            this.chkBlend.Text = "混合 blend";
             this.chkBlend.UseVisualStyleBackColor = true;
             // 
             // FrmSetAnimation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 127);
+            this.ClientSize = new System.Drawing.Size(351, 135);
             this.Controls.Add(this.btnSetAnimation);
             this.Controls.Add(this.txtAnimationTick);
             this.Controls.Add(this.label2);
@@ -107,7 +105,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSetAnimation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Set Front/Middle Animation";
+            this.Text = "FrmSetAnimation";
             this.ResumeLayout(false);
             this.PerformLayout();
 

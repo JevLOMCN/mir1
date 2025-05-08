@@ -20,10 +20,5 @@ namespace Map_Editor
         {
             Close();
         }
-
-        private void Escape(object sender, KeyEventArgs e)
-        {
-            Close();
-        }
     }
 }

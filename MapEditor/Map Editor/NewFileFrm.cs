@@ -21,9 +21,9 @@ namespace Map_Editor
         {
             int w = Convert.ToInt32(txtWidth.Text.Trim());
             int h = Convert.ToInt32(txtHeight.Text.Trim());
-            if (w<=0||h<=0||w>=4003||h>=4003)
+            if (w<=0||h<=0||w>=1000||h>=1000)
             {
-                MessageBox.Show("Map Size Max 4000*4000");
+                MessageBox.Show("Map Size Max 1000*1000");
             }
             else
             {

@@ -30,20 +30,7 @@ namespace Map_Editor
             {
                 light = Convert.ToByte(txtLight.Text.Trim());
                 _delSetLightProperty(light);
-                Dispose();
             }
         }
-
-        private void txtLight_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    KeyPressEventArgs arg = new KeyPressEventArgs(Convert.ToChar(Keys.Enter));
-                    btnSetLight_Click(sender, arg);
-                    break;
-            }
-        }
-
     }
 }
