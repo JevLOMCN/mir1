@@ -2,7 +2,7 @@
 
 Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
 
-### [Website](https://thelegendofmir.uk/mir1/main.html)
+### [Website](https://thelegendofmir.uk/mir1)
 
 ![merged_MiniMap](https://github.com/user-attachments/assets/05efef34-a316-4b8e-bd96-ccbd34ec2927)
 
