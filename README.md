@@ -6,7 +6,7 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 ![BigMap](https://github.com/user-attachments/assets/05efef34-a316-4b8e-bd96-ccbd34ec2927)
 <p align="center">
-  <img src="https://media.discordapp.net/attachments/1109157390407966720/1370742521801478274/Mir1Banner.gif?ex=68209af4&is=681f4974&hm=2be225f7ba2c44b9e8c3e7373b69d0caa76029b3433d71027a9f404d9f1f6853&=" alt="Banner" width="800" height="67" />
+  <img src="https://i.ibb.co/vC6HPV0F/Mir1-Banner.gif" alt="Banner" width="800" height="67" />
 </p>
 
 # Team
