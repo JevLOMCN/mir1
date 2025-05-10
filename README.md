@@ -5,7 +5,7 @@ Remake of ActozSoft's 1997 Mir 1
 Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
 
 ![BigMap](https://github.com/user-attachments/assets/05efef34-a316-4b8e-bd96-ccbd34ec2927)
-[https://ibb.co/V0ctSJf1](https://i.ibb.co/vC6HPV0F/Mir1-Banner.gif)
+<img src="https://i.ibb.co/vC6HPV0F/Mir1-Banner.gif" alt="Banner" width="800" height="67">
 
 # Team
 <img src="https://c.tenor.com/7_KRHOBcSnEAAAAC/tenor.gif" alt="Jev" width="96" height="96">
