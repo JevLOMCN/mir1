@@ -1,8 +1,8 @@
 # Legend of Mir 1 - Official Public Carbon Source
 
-Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
+Remake of ActozSoft's 1997 Mir 1
 
-### [Website](https://thelegendofmir.uk/mir1)
+Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discussions, help, and updates.
 
 ![merged_MiniMap](https://github.com/user-attachments/assets/05efef34-a316-4b8e-bd96-ccbd34ec2927)
 
@@ -18,17 +18,26 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 <img src="https://media0.giphy.com/media/aqFRBqGjnznd6/200w.gif?cid=6c09b952wuk8b08io9qjladlzo7ru8dtnbyt82ll1m3pzaxd&ep=v1_gifs_search&rid=200w.gif&ct=g" alt="Meacher" width="96" height="96">
 
 [Meacher](https://www.lomcn.net/forum/members/meacher.3993/)
+
 # Useful Links:
 
-[Build Guide](https://www.lomcn.net/forum/threads/carbon-source-files-downloads-build-guide.111603/) //
-[Wiki](https://www.lomcn.net/wiki/index.php/Carbon) //
-[Help](https://www.lomcn.net/forum/forums/carbon-help.842/) //
-[Tutorials](https://www.lomcn.net/forum/forums/carbon-tutorials.839/) //
-[To do](https://www.lomcn.net/forum/threads/mir-1-to-do-list.112140/)
+[Build Guide](https://www.lomcn.net/forum/threads/carbon-source-files-downloads-build-guide.111603/) - Guide to get you up and running a Mir 1 Server.
+
+[Wiki](https://www.lomcn.net/wiki/index.php/Carbon) - Legend Of Mir 1 WIKI.
+
+[Help](https://www.lomcn.net/forum/forums/carbon-help.842/) - Legend Of Mir 1 Help Section.
+
+[Tutorials](https://www.lomcn.net/forum/forums/carbon-tutorials.839/) - Legend Of Mir 1 Tutorial Section.
+
+[To do](https://www.lomcn.net/forum/threads/mir-1-to-do-list.112140/) - Legend Of Mir 1 To-Do List.
+
+[Website](https://thelegendofmir.uk/mir1/) - Restored Mir 1 Website.
+
+[1999-2000 NetPower Magazine](https://thelegendofmir.uk/mir1/mag) - Recovered Magazines detailing The Legend Of Mir 1.
 
 # Downloads:
 
-[Client](https://github.com/JevLOMCN/mir1/releases) // [Database](https://github.com/Suprcode/Carbon.Database)
+[Client](https://github.com/JevLOMCN/mir1/releases) // [Pre-Made Server Database](https://github.com/Suprcode/Carbon.Database)
 
 # Other Projects:
 
@@ -36,6 +45,6 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 [Mir 3](https://github.com/Suprcode/Zircon)
 
-[Mir 3D](https://github.com/mir-ethernity/mir-eternal)
+[Mir 3D](https://github.com/JevLOMCN/Legend-Eternal-Mir3D)
 
 [Mir 4](https://github.com/JevLOMCN/mir4)
