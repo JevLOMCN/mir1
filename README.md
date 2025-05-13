@@ -9,6 +9,8 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
   <img width="800" height="67" src="https://www.mirfiles.com/resources/mir2/users/Jev/Mir1/Wiki/Mir1Banner.gif">
 </p>
 
+---
+
 # Team
 <img src="https://c.tenor.com/7_KRHOBcSnEAAAAC/tenor.gif" alt="Jev" width="96" height="96">
 
@@ -21,6 +23,8 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 <img src="https://media0.giphy.com/media/aqFRBqGjnznd6/200w.gif?cid=6c09b952wuk8b08io9qjladlzo7ru8dtnbyt82ll1m3pzaxd&ep=v1_gifs_search&rid=200w.gif&ct=g" alt="Meacher" width="96" height="96">
 
 [Meacher](https://www.lomcn.net/forum/members/meacher.3993/)
+
+---
 
 # Useful Links:
 
@@ -38,16 +42,19 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 
 [1999-2000 NetPower Magazine](https://thelegendofmir.uk/mir1/mag) - Recovered Magazines detailing The Legend Of Mir 1.
 
+---
+
 # Downloads:
 
 [Client](https://github.com/JevLOMCN/mir1/releases) // [Pre-Made Server Database](https://github.com/Suprcode/Carbon.Database)
 
+---
+
 # Other Projects:
 
-[Mir 2](https://github.com/Suprcode/Crystal) // [Database](https://github.com/Suprcode/Crystal.Database) // [Map Editor](https://github.com/Suprcode/Crystal.MapEditor)
-
-[Mir 3](https://github.com/Suprcode/Zircon)
-
-[Mir 3D](https://github.com/JevLOMCN/Legend-Eternal-Mir3D)
-
-[Mir 4](https://github.com/JevLOMCN/mir4)
+- <img src="icons/mir1.png" alt="Mir1" width="20"/> [Mir 1](https://github.com/JevLOMCN/mir1/) | [Database](https://github.com/Suprcode/Carbon.Database) - Remake of ActozSoft's 1997 _The Legend Of Mir 1_
+- <img src="icons/mir2.png" alt="Mir2" width="20"/> [Mir 2](https://github.com/Suprcode/Crystal) | [Database](https://github.com/Suprcode/Crystal.Database) | [Map Editor](https://github.com/Suprcode/Crystal.MapEditor) - Remake of Wemade Entertainment's 1999 _The Legend Of Mir 2_
+- <img src="icons/mir3.png" alt="Mir3" width="20"/> [Mir 3](https://github.com/Suprcode/Zircon) - Remake of Wemade Entertainment's 2003 _The Legend Of Mir 3_
+- <img src="icons/woool.png" alt="WoOOL" width="20"/> [WoOOL](https://www.lomcn.net/forum/forums/woool-development-project-onyx.857/) - Remake of Shanda Games' (now Shengqu Games) 2003 _The World Of Legend_
+- <img src="icons/mir3d.png" alt="Mir3D" width="20"/> [Mir 3D (Moon Spirit)](https://github.com/mir-ethernity/mir-eternal) | [Mir 3D (Holy Cow)](https://github.com/JevLOMCN/Legend-Eternal-Mir3D) - Remake of Shanda Games' (now Shengqu Games) 2016 _Legend Eternal_
+- <img src="icons/mir4.png" alt="Mir4" width="20"/> [Mir 4](https://github.com/JevLOMCN/mir4) - Remake of Wemade Entertainment's 2021 _The Legend Of Mir 4_
