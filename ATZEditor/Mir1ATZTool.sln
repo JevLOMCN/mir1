@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mir1ATZTool", "Mir1ATZTool.csproj", "{9A6FFF08-A008-4F64-9597-211DF320C226}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A6FFF08-A008-4F64-9597-211DF320C226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6FFF08-A008-4F64-9597-211DF320C226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6FFF08-A008-4F64-9597-211DF320C226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6FFF08-A008-4F64-9597-211DF320C226}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C14699E-32AD-4FE9-891E-71DB1816FED9}
+	EndGlobalSection
+EndGlobal
