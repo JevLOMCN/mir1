@@ -11,3 +11,5 @@
 /Server/obj
 /Shared/bin
 /Shared/obj
+/MapEditor/.vs
+/MapEditor/Map Editor/obj
