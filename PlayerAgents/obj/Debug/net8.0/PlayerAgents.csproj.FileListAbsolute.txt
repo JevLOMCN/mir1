@@ -1,6 +1,0 @@
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.csproj.AssemblyReference.cache
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.GeneratedMSBuildEditorConfig.editorconfig
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.AssemblyInfoInputs.cache
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.AssemblyInfo.cs
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.csproj.CoreCompileInputs.cache
-G:\Mir1\Git\mir1\PlayerAgents\obj\Debug\net8.0\PlayerAgents.sourcelink.json
