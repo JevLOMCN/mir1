@@ -8,7 +8,7 @@ Visit our forum at [LOMCN](https://www.lomcn.net/forum/forums/mir1/) for discuss
 <p align="center">
   <img width="800" height="67" src="https://www.mirfiles.com/resources/mir2/users/Jev/Mir1/Wiki/Mir1Banner.gif">
 
-The Legend of Mir 1 was an early Korean MMORPG launched in 1998 under ActozSoft, laying the conceptual groundwork for what would become one of the most enduring Asian online gaming franchises. Born during an era when persistent worlds were still experimental, Mir 1 offered players a shared 2D fantasy realm rooted in Eastern mythic motifs.
+The Legend of Mir 1 was an early Korean MMORPG launched in 1997 under ActozSoft, laying the conceptual groundwork for what would become one of the most enduring Asian online gaming franchises. Born during an era when persistent worlds were still experimental, Mir 1 offered players a shared 2D fantasy realm rooted in Eastern mythic motifs.
 
 Players traversed interconnected maps, battled monsters, gathered loot, leveled their characters, and formed the first seeds of a cooperative and competitive social network online. Though austere compared to later online games, the elegance of its design lay in its economy of mechanics—every system needed to justify itself in a constrained environment.
 
