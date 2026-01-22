@@ -104,7 +104,8 @@ namespace Client.MirObjects
 
         public MLibrary BodyLibrary;
         public Color DrawColour = Color.White, NameColour = Color.White, LightColour = Color.White;
-        public MirLabel NameLabel, ChatLabel, GuildLabel;
+        public MirLabel NameLabel, GuildLabel;
+        public MirChatLabel ChatLabel;
         public long ChatTime;
         public int DrawFrame, DrawWingFrame;
         public Point DrawLocation, Movement, FinalDrawLocation, OffSetMove;
@@ -238,7 +239,7 @@ namespace Client.MirObjects
             for (int i = 1; i < chat.Count; i++)
                 text += string.Format("\n{0}", chat[i]);
 
-            ChatLabel = new MirLabel
+            ChatLabel = new MirChatLabel
             {
                 AutoSize = true,
                 BackColour = Color.Transparent,
@@ -262,7 +263,7 @@ namespace Client.MirObjects
             }
 
             ChatLabel.ForeColour = Dead ? Color.Gray : Color.White;
-            ChatLabel.Location = new Point(DisplayRectangle.X + (48 - ChatLabel.Size.Width) / 2, DisplayRectangle.Y - (60 + ChatLabel.Size.Height) - (Dead ? 35 : 0));
+            ChatLabel.Location = new Point(DisplayRectangle.X + (48 - ChatLabel.Size.Width) / 2, DisplayRectangle.Y - (80 + ChatLabel.Size.Height) - (Dead ? 35 : 0));
             ChatLabel.Draw();
         }
 

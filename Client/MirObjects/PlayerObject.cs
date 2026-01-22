@@ -123,7 +123,7 @@ namespace Client.MirObjects
 
         public override bool ShouldDrawHealth()
         {
-            if (GroupDialog.GroupList.Contains(Name) || this == User)
+            if (GroupDialog.GroupList.Contains(Name))
             {
                 return true;
             }
