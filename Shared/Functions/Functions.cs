@@ -14,6 +14,58 @@ public static class Functions
         return true;
     }
 
+    public static bool TryGetRequiredAttribute(RequiredType requiredType, out Attribute attribute)
+    {
+        switch (requiredType)
+        {
+            case RequiredType.Fire:
+                attribute = Attribute.Fire;
+                return true;
+            case RequiredType.Water:
+                attribute = Attribute.Water;
+                return true;
+            case RequiredType.Electric:
+                attribute = Attribute.Electric;
+                return true;
+            case RequiredType.Ground:
+                attribute = Attribute.Ground;
+                return true;
+            case RequiredType.Good:
+                attribute = Attribute.Good;
+                return true;
+            case RequiredType.Evil:
+                attribute = Attribute.Evil;
+                return true;
+            case RequiredType.Yin:
+                attribute = Attribute.Yin;
+                return true;
+            case RequiredType.Yang:
+                attribute = Attribute.Yang;
+                return true;
+            case RequiredType.Health:
+                attribute = Attribute.Health;
+                return true;
+            case RequiredType.Mana:
+                attribute = Attribute.Mana;
+                return true;
+            case RequiredType.Attack:
+                attribute = Attribute.Attack;
+                return true;
+            case RequiredType.Magic:
+                attribute = Attribute.Magic;
+                return true;
+            case RequiredType.Agility:
+                attribute = Attribute.Agility;
+                return true;
+            case RequiredType.Defence:
+                attribute = Attribute.Defence;
+                return true;
+        }
+
+        attribute = default;
+        return false;
+    }
+
     public static string ConvertByteSize(double byteCount)
     {
         string size = "0 Bytes";

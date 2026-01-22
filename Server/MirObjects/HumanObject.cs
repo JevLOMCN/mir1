@@ -918,6 +918,16 @@ namespace Server.MirObjects
                         return false;
                     }
                     break;
+                default:
+                    if (Functions.TryGetRequiredAttribute(item.Info.RequiredType, out Attribute attribute))
+                    {
+                        if (!AttributeValues.TryGetValue(attribute, out UserAttribute attributeValue) || attributeValue.Level < item.Info.RequiredAmount)
+                        {
+                            ReceiveChat($"You do not have enough {attribute}.", ChatType.System);
+                            return false;
+                        }
+                    }
+                    break;
             }
 
             switch (item.Info.Type)
@@ -3990,6 +4000,13 @@ namespace Server.MirObjects
                 case RequiredType.MinSC:
                     if (Stats[Stat.MinSC] < item.Info.RequiredAmount)
                         return false;
+                    break;
+                default:
+                    if (Functions.TryGetRequiredAttribute(item.Info.RequiredType, out Attribute attribute))
+                    {
+                        if (!AttributeValues.TryGetValue(attribute, out UserAttribute attributeValue) || attributeValue.Level < item.Info.RequiredAmount)
+                            return false;
+                    }
                     break;
             }
 

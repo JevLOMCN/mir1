@@ -1292,6 +1292,16 @@ namespace Client.MirControls
                         return false;
                     }
                     break;
+                default:
+                    if (Functions.TryGetRequiredAttribute(Item.Info.RequiredType, out Attribute attribute))
+                    {
+                        if (!actor.AttributeValues.TryGetValue(attribute, out UserAttribute attributeValue) || attributeValue.Level < Item.Info.RequiredAmount)
+                        {
+                            GameScene.Scene.ChatDialog.ReceiveChat($"You do not have enough {attribute}.", ChatType.System);
+                            return false;
+                        }
+                    }
+                    break;
             }
             return true;
         }
@@ -1429,6 +1439,16 @@ namespace Client.MirControls
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough Base SC.", ChatType.System);
                         return false;
+                    }
+                    break;
+                default:
+                    if (Functions.TryGetRequiredAttribute(i.Info.RequiredType, out Attribute attribute))
+                    {
+                        if (!actor.AttributeValues.TryGetValue(attribute, out UserAttribute attributeValue) || attributeValue.Level < i.Info.RequiredAmount)
+                        {
+                            GameScene.Scene.ChatDialog.ReceiveChat($"You do not have enough {attribute}.", ChatType.System);
+                            return false;
+                        }
                     }
                     break;
             }

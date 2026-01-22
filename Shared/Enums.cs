@@ -494,6 +494,20 @@ public enum RequiredType : byte
     MinDC = 9,
     MinMC = 10,
     MinSC = 11,
+    Fire = 12,
+    Water = 13,
+    Electric = 14,
+    Ground = 15,
+    Good = 16,
+    Evil = 17,
+    Yin = 18,
+    Yang = 19,
+    Health = 20,
+    Mana = 21,
+    Attack = 22,
+    Magic = 23,
+    Agility = 24,
+    Defence = 25,
 }
 
 public enum ItemSet : byte
