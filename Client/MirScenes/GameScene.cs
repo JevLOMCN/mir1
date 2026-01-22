@@ -5943,7 +5943,7 @@ namespace Client.MirScenes
                     default:
                         if (Functions.TryGetRequiredAttribute(realItem.RequiredType, out Attribute attribute))
                         {
-                            text = $"Required {attribute} : {realItem.RequiredAmount}";
+                            text = $"Required {attribute} Attribute : {realItem.RequiredAmount}";
                             if (!MapObject.User.AttributeValues.TryGetValue(attribute, out UserAttribute attributeValue) || attributeValue.Level < realItem.RequiredAmount)
                                 colour = Color.Red;
                         }
