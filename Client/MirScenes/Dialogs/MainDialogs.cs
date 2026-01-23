@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Client.MirControls;
 using Client.MirGraphics;
 using Client.MirNetwork;
@@ -1036,6 +1037,7 @@ namespace Client.MirScenes.Dialogs
     public sealed class SkillBarDialog : MirImageControl
     {
         private readonly MirButton _switchBindsButton;
+        private const int MagicIconPadding = 4;
 
         public bool AltBind;
         public bool HasSkill = false;
@@ -1079,13 +1081,36 @@ namespace Client.MirScenes.Dialogs
                     Index = -1,
                     Library = Libraries.MagIcon,
                     Parent = this,
-                    Location = new Point(i * 41 + 15, 3)
+                    Location = new Point(i * 41 + 15, 3),
+                    AutoSize = false,
+                    DrawImage = false,
+                    Size = Libraries.Prguse.GetTrueSize(165)
                 };
                 int j = i + 1;
                 Cells[i].BeforeDraw += (o, e) =>
                 {
                     var cell = (MirImageControl)o;
                     Libraries.Prguse.Draw(165, new Point(cell.DisplayLocation.X, cell.DisplayLocation.Y), Color.White, true, 1F);
+                };
+                Cells[i].AfterDraw += (o, e) =>
+                {
+                    var cell = (MirImageControl)o;
+                    if (cell.Index < 0 || cell.Library == null) return;
+
+                    Size iconSize = cell.Library.GetTrueSize(cell.Index);
+                    if (iconSize.IsEmpty) return;
+
+                    int targetWidth = Math.Max(1, cell.Size.Width - MagicIconPadding * 2);
+                    int targetHeight = Math.Max(1, cell.Size.Height - MagicIconPadding * 2);
+                    float scale = Math.Min((float)targetWidth / iconSize.Width, (float)targetHeight / iconSize.Height);
+
+                    int drawWidth = Math.Max(1, (int)Math.Round(iconSize.Width * scale));
+                    int drawHeight = Math.Max(1, (int)Math.Round(iconSize.Height * scale));
+                    Point drawPoint = new Point(
+                        cell.DisplayLocation.X + (cell.Size.Width - drawWidth) / 2,
+                        cell.DisplayLocation.Y + (cell.Size.Height - drawHeight) / 2);
+
+                    cell.Library.Draw(cell.Index, drawPoint, new Size(drawWidth, drawHeight), cell.ForeColour);
                 };
                 Cells[i].Click += (o, e) =>
                     {
