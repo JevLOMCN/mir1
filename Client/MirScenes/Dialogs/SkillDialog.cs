@@ -12,6 +12,7 @@ namespace Client.MirScenes.Dialogs
         private const int GridColumns = 5;
         private const int GridPadding = 10;
         private const int GridSpacing = 30;
+        private const int GridButtonSize = 40;
         private readonly List<MirButton> _magicButtons = new List<MirButton>();
         private static readonly string[] KeyStrings =
         {
@@ -75,14 +76,29 @@ namespace Client.MirScenes.Dialogs
                     PressedIndex = magic.Icon,
                     Parent = this,
                     Hint = magic.Name,
-                    Sound = SoundList.ButtonA
+                    Sound = SoundList.ButtonA,
+                    AutoSize = false,
+                    DrawImage = false,
+                    Size = new Size(GridButtonSize, GridButtonSize)
                 };
 
                 int column = index % GridColumns;
                 int row = index / GridColumns;
-                int x = GridPadding + column * (button.Size.Width + GridSpacing);
-                int y = GridPadding + row * (button.Size.Height + GridSpacing);
+                int x = 15 + GridPadding + column * (button.Size.Width + GridSpacing);
+                int y = 15 + GridPadding + row * (button.Size.Height + GridSpacing);
                 button.Location = new Point(x, y);
+
+                var iconSize = Libraries.MagIcon.GetTrueSize(magic.Icon);
+                var icon = new MirImageControl
+                {
+                    Library = Libraries.MagIcon,
+                    Index = magic.Icon,
+                    Parent = button,
+                    NotControl = true,
+                    Location = new Point(
+                        (button.Size.Width - iconSize.Width) / 2,
+                        (button.Size.Height - iconSize.Height) / 2)
+                };
 
                 button.Click += (o, e) =>
                 {
