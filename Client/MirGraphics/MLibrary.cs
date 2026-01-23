@@ -24,7 +24,7 @@ namespace Client.MirGraphics
             BuffIcon = new MLibrary(Settings.DataPath + "BuffIcon"),
             Help = new MLibrary(Settings.DataPath + "Help"),
             MiniMap = new MLibrary(Settings.DataPath + "MMap"),
-            MagIcon = new MLibrary(Settings.DataPath + "MagIcon"),
+            MagIcon = new MLibrary(Settings.DataPath + "smagic"),
             Magic = new MLibrary(Settings.DataPath + "Magic"),
             Magic2 = new MLibrary(Settings.DataPath + "Magic2"),
             Effect = new MLibrary(Settings.DataPath + "Effect");

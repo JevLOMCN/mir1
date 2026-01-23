@@ -735,10 +735,10 @@ namespace Client.MirObjects
 
                         switch (Spell)
                         {
-                            #region FireBall
+                            #region FireBall2
 
-                            case Spell.FireBall:
-                                Effects.Add(new Effect(Libraries.Magic, 0, 10, Frame.Count * FrameInterval, this));
+                            case Spell.FireBall2:
+                                Effects.Add(new Effect(Libraries.Magic, 17, 5, 500, this));
                                 SoundManager.PlaySound(20000 + (ushort)Spell * 10);
                                 break;
 
@@ -1194,14 +1194,14 @@ namespace Client.MirObjects
 
                                     case Spell.FireBall:
                                         SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
-                                        missile = CreateProjectile(10, Libraries.Magic, true, 6, 30, 4);
+                                        missile = CreateProjectile(1, Libraries.Magic, true, 3, 30, 0);
 
                                         if (missile.Target != null)
                                         {
                                             missile.Complete += (o, e) =>
                                             {
                                                 if (missile.Target.CurrentAction == MirAction.Dead) return;
-                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 170, 10, 600, missile.Target));
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 4, 7, 600, missile.Target));
                                                 SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 2);
                                             };
                                         }

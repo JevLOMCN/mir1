@@ -85,7 +85,7 @@
             Player.Add(MirAction.Walking, new Frame(56, 4, 0, 100, 64, 6, 0, 100));
             Player.Add(MirAction.Stance, new Frame(9, 1, 2, 1000, 160, 1, 0, 1000));
             Player.Add(MirAction.Attack1, new Frame(8, 3, 0, 100, 168, 6, 0, 100));
-            Player.Add(MirAction.Spell, new Frame(8, 3, 0, 100, 328, 6, 0, 100));
+            Player.Add(MirAction.Spell, new Frame(56, 1, 3, 500, 328, 6, 0, 100));
             Player.Add(MirAction.Harvest, new Frame(0, 1, 0, 300, 376, 2, 0, 300));
             Player.Add(MirAction.Die, new Frame(88, 1, -1, 100, 416, 4, 0, 100));
             Player.Add(MirAction.Dead, new Frame(88, 1, -1, 1000, 419, 1, 3, 1000));
