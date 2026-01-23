@@ -89,6 +89,21 @@ namespace Client.MirObjects
             return active;
         }
 
+        public Spell GetActiveFlamingSwordSpell()
+        {
+            Spell active = Spell.None;
+
+            foreach (Spell flamingSwordSpell in SpellExtensions.FlamingSwordSpells)
+            {
+                if (GetFlamingSwordFlag(flamingSwordSpell))
+                {
+                    active = flamingSwordSpell;
+                }
+            }
+
+            return active;
+        }
+
         public bool GetSlayingFlag(Spell spell)
         {
             switch (spell)
@@ -121,6 +136,43 @@ namespace Client.MirObjects
                     return Slaying13;
                 case Spell.Slaying14:
                     return Slaying14;
+                default:
+                    return false;
+            }
+        }
+
+        public bool GetFlamingSwordFlag(Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.FlamingSword:
+                    return FlamingSword;
+                case Spell.FlamingSword2:
+                    return FlamingSword2;
+                case Spell.FlamingSword3:
+                    return FlamingSword3;
+                case Spell.FlamingSword4:
+                    return FlamingSword4;
+                case Spell.FlamingSword5:
+                    return FlamingSword5;
+                case Spell.FlamingSword6:
+                    return FlamingSword6;
+                case Spell.FlamingSword7:
+                    return FlamingSword7;
+                case Spell.FlamingSword8:
+                    return FlamingSword8;
+                case Spell.FlamingSword9:
+                    return FlamingSword9;
+                case Spell.FlamingSword10:
+                    return FlamingSword10;
+                case Spell.FlamingSword11:
+                    return FlamingSword11;
+                case Spell.FlamingSword12:
+                    return FlamingSword12;
+                case Spell.FlamingSword13:
+                    return FlamingSword13;
+                case Spell.FlamingSword14:
+                    return FlamingSword14;
                 default:
                     return false;
             }
@@ -208,6 +260,64 @@ namespace Client.MirObjects
                     break;
                 case Spell.Slaying14:
                     Slaying14 = value;
+                    break;
+            }
+        }
+
+        public void SetFlamingSwordFlag(Spell spell, bool value)
+        {
+            if (value)
+            {
+                foreach (Spell flamingSwordSpell in SpellExtensions.FlamingSwordSpells)
+                {
+                    if (flamingSwordSpell == spell) continue;
+                    SetFlamingSwordFlag(flamingSwordSpell, false);
+                }
+            }
+
+            switch (spell)
+            {
+                case Spell.FlamingSword:
+                    FlamingSword = value;
+                    break;
+                case Spell.FlamingSword2:
+                    FlamingSword2 = value;
+                    break;
+                case Spell.FlamingSword3:
+                    FlamingSword3 = value;
+                    break;
+                case Spell.FlamingSword4:
+                    FlamingSword4 = value;
+                    break;
+                case Spell.FlamingSword5:
+                    FlamingSword5 = value;
+                    break;
+                case Spell.FlamingSword6:
+                    FlamingSword6 = value;
+                    break;
+                case Spell.FlamingSword7:
+                    FlamingSword7 = value;
+                    break;
+                case Spell.FlamingSword8:
+                    FlamingSword8 = value;
+                    break;
+                case Spell.FlamingSword9:
+                    FlamingSword9 = value;
+                    break;
+                case Spell.FlamingSword10:
+                    FlamingSword10 = value;
+                    break;
+                case Spell.FlamingSword11:
+                    FlamingSword11 = value;
+                    break;
+                case Spell.FlamingSword12:
+                    FlamingSword12 = value;
+                    break;
+                case Spell.FlamingSword13:
+                    FlamingSword13 = value;
+                    break;
+                case Spell.FlamingSword14:
+                    FlamingSword14 = value;
                     break;
             }
         }

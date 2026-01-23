@@ -4,6 +4,7 @@ namespace Shared.Extensions
     {
         public static readonly Spell[] SlayingSpells;
         public static readonly Spell[] HalfMoonSpells;
+        public static readonly Spell[] FlamingSwordSpells;
 
         static SpellExtensions()
         {
@@ -34,6 +35,24 @@ namespace Shared.Extensions
                 Spell.HalfMoon13,
                 Spell.HalfMoon14
             };
+
+            FlamingSwordSpells = new[]
+            {
+                Spell.FlamingSword,
+                Spell.FlamingSword2,
+                Spell.FlamingSword3,
+                Spell.FlamingSword4,
+                Spell.FlamingSword5,
+                Spell.FlamingSword6,
+                Spell.FlamingSword7,
+                Spell.FlamingSword8,
+                Spell.FlamingSword9,
+                Spell.FlamingSword10,
+                Spell.FlamingSword11,
+                Spell.FlamingSword12,
+                Spell.FlamingSword13,
+                Spell.FlamingSword14
+            };
         }
 
         public static bool IsSlaying(this Spell spell)
@@ -59,6 +78,30 @@ namespace Shared.Extensions
                 case Spell.HalfMoon12:
                 case Spell.HalfMoon13:
                 case Spell.HalfMoon14:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public static bool IsFlamingSword(this Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.FlamingSword:
+                case Spell.FlamingSword2:
+                case Spell.FlamingSword3:
+                case Spell.FlamingSword4:
+                case Spell.FlamingSword5:
+                case Spell.FlamingSword6:
+                case Spell.FlamingSword7:
+                case Spell.FlamingSword8:
+                case Spell.FlamingSword9:
+                case Spell.FlamingSword10:
+                case Spell.FlamingSword11:
+                case Spell.FlamingSword12:
+                case Spell.FlamingSword13:
+                case Spell.FlamingSword14:
                     return true;
                 default:
                     return false;

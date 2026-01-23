@@ -674,6 +674,21 @@ namespace Client.MirScenes
                 return;
             }
 
+            if (magic.Spell.IsFlamingSword())
+            {
+                if (CMain.Time < ToggleTime) return;
+                ToggleTime = CMain.Time + 500;
+
+                cost = magic.Level * magic.LevelCost + magic.BaseCost;
+                if (cost > actor.MP)
+                {
+                    Scene.OutputMessage(GameLanguage.LowMana);
+                    return;
+                }
+                SendSpellToggle(actor, magic.Spell, true);
+                return;
+            }
+
             switch (magic.Spell)
             {
                 case Spell.Fencing:
@@ -700,18 +715,6 @@ namespace Client.MirScenes
                     ChatDialog.ReceiveChat(prefix + (nextState ? $"Use {displayName}." : $"Do not use {displayName}."), ChatType.Hint);
                     ToggleTime = CMain.Time + 1000;
                     SendSpellToggle(actor, magic.Spell, nextState);
-                    break;
-                case Spell.FlamingSword:
-                    if (CMain.Time < ToggleTime) return;
-                    ToggleTime = CMain.Time + 500;
-
-                    cost = magic.Level * magic.LevelCost + magic.BaseCost;
-                    if (cost > actor.MP)
-                    {
-                        Scene.OutputMessage(GameLanguage.LowMana);
-                        return;
-                    }
-                    SendSpellToggle(actor, magic.Spell, true);
                     break;
                 default:
                     actor.NextMagic = magic;
@@ -3339,16 +3342,16 @@ namespace Client.MirScenes
                 return;
             }
 
-            switch (p.Spell)
+            if (p.Spell.IsFlamingSword())
             {
-                case Spell.FlamingSword:
-                    actor.FlamingSword = p.CanUse;
-                    if (actor.FlamingSword)
-                        ChatDialog.ReceiveChat(prefix + GameLanguage.WeaponSpiritFire, ChatType.Hint);
-                    else
-                        ChatDialog.ReceiveChat(prefix + GameLanguage.SpiritsFireDisappeared, ChatType.System);
-                    break;
+                actor.SetFlamingSwordFlag(p.Spell, p.CanUse);
+                if (p.CanUse)
+                    ChatDialog.ReceiveChat(prefix + GameLanguage.WeaponSpiritFire, ChatType.Hint);
+                else
+                    ChatDialog.ReceiveChat(prefix + GameLanguage.SpiritsFireDisappeared, ChatType.System);
+                return;
             }
+
         }
 
         private void ObjectHealth(S.ObjectHealth p)

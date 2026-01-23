@@ -216,6 +216,19 @@ namespace Server.MirEnvir
                         MagicInfoList[i].MPowerBase = 4;
                         break;
                     case Spell.FlamingSword:
+                    case Spell.FlamingSword2:
+                    case Spell.FlamingSword3:
+                    case Spell.FlamingSword4:
+                    case Spell.FlamingSword5:
+                    case Spell.FlamingSword6:
+                    case Spell.FlamingSword7:
+                    case Spell.FlamingSword8:
+                    case Spell.FlamingSword9:
+                    case Spell.FlamingSword10:
+                    case Spell.FlamingSword11:
+                    case Spell.FlamingSword12:
+                    case Spell.FlamingSword13:
+                    case Spell.FlamingSword14:
                         MagicInfoList[i].MultiplierBase = 1.4f;
                         MagicInfoList[i].MultiplierBonus = 0.4f;
                         break;
@@ -291,6 +304,20 @@ namespace Server.MirEnvir
             if (!MagicExists(Spell.HalfMoon12)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon12", Spell = Spell.HalfMoon12, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
             if (!MagicExists(Spell.HalfMoon13)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon13", Spell = Spell.HalfMoon13, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
             if (!MagicExists(Spell.HalfMoon14)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon14", Spell = Spell.HalfMoon14, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword", Spell = Spell.FlamingSword, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword2)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword2", Spell = Spell.FlamingSword2, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword3)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword3", Spell = Spell.FlamingSword3, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword4)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword4", Spell = Spell.FlamingSword4, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword5)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword5", Spell = Spell.FlamingSword5, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword6)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword6", Spell = Spell.FlamingSword6, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword7)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword7", Spell = Spell.FlamingSword7, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword8)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword8", Spell = Spell.FlamingSword8, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword9)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword9", Spell = Spell.FlamingSword9, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword10)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword10", Spell = Spell.FlamingSword10, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword11)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword11", Spell = Spell.FlamingSword11, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword12)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword12", Spell = Spell.FlamingSword12, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword13)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword13", Spell = Spell.FlamingSword13, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.FlamingSword14)) MagicInfoList.Add(new MagicInfo { Name = "FlamingSword14", Spell = Spell.FlamingSword14, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
         }
 
         private string CanStartEnvir()

@@ -33,7 +33,7 @@ namespace Client.MirObjects
 
         public int DieSound, FlinchSound, AttackSound;
 
-        private static readonly Dictionary<Spell, int> SlayingEffectFrames = new Dictionary<Spell, int>
+        private static readonly Dictionary<Spell, int> AttackEffectFrames = new Dictionary<Spell, int>
         {
             { Spell.Slaying, 449 },
             { Spell.Slaying2, 465 },
@@ -62,7 +62,21 @@ namespace Client.MirObjects
             { Spell.HalfMoon11, 609 },
             { Spell.HalfMoon12, 625 },
             { Spell.HalfMoon13, 641 },
-            { Spell.HalfMoon14, 673 }
+            { Spell.HalfMoon14, 673 },
+            { Spell.FlamingSword, 449 },
+            { Spell.FlamingSword2, 465 },
+            { Spell.FlamingSword3, 481 },
+            { Spell.FlamingSword4, 497 },
+            { Spell.FlamingSword5, 513 },
+            { Spell.FlamingSword6, 529 },
+            { Spell.FlamingSword7, 545 },
+            { Spell.FlamingSword8, 561 },
+            { Spell.FlamingSword9, 577 },
+            { Spell.FlamingSword10, 593 },
+            { Spell.FlamingSword11, 609 },
+            { Spell.FlamingSword12, 625 },
+            { Spell.FlamingSword13, 641 },
+            { Spell.FlamingSword14, 673 }
         };
 
 
@@ -638,14 +652,15 @@ namespace Client.MirObjects
                                 }
                             }
 
-                            if (GameScene.User.FlamingSword)
+                            Spell flamingSwordSpell = GameScene.User.GetActiveFlamingSwordSpell();
+                            if (flamingSwordSpell != Spell.None)
                             {
                                 if (TargetObject != null)
                                 {
-                                    magic = User.GetMagic(Spell.FlamingSword);
+                                    magic = User.GetMagic(flamingSwordSpell);
                                     if (magic != null)
                                     {
-                                        Spell = Spell.FlamingSword;
+                                        Spell = flamingSwordSpell;
                                         magic.CastTime = CMain.Time;
                                     }
                                 }
@@ -658,8 +673,8 @@ namespace Client.MirObjects
                                 GameScene.User.SetSlayingFlag(Spell, false);
                             }
 
-                            if (Spell == Spell.FlamingSword)
-                                GameScene.User.FlamingSword = false;
+                            if (Spell.IsFlamingSword())
+                                GameScene.User.SetFlamingSwordFlag(Spell, false);
 
                             magic = User.GetMagic(Spell);
 
@@ -735,10 +750,10 @@ namespace Client.MirObjects
                             SpellLevel = (byte)action.Params[1];
                         }
 
-                        if (Spell.IsSlaying() || Spell.IsHalfMoon())
+                        if (Spell.IsSlaying() || Spell.IsHalfMoon() || Spell.IsFlamingSword())
                         {
                             SoundManager.PlaySound(SoundList.SlayingEnd);
-                            AddSlayingAttackEffect();
+                            AddAttackEffect();
                         }
                         else
                         {
@@ -746,9 +761,6 @@ namespace Client.MirObjects
                             {
                                 case Spell.Thrusting:
                                     SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                    break;
-                                case Spell.FlamingSword:
-                                    SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
                                     break;
                             }
                         }
@@ -2330,19 +2342,16 @@ namespace Client.MirObjects
                         case Spell.Thrusting:
                             Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
                             break;
-                        case Spell.FlamingSword:
-                            Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
                     }
                     break;
             }
         }
 
-        private void AddSlayingAttackEffect()
+        private void AddAttackEffect()
         {
-            if (!Spell.IsSlaying() && !Spell.IsHalfMoon()) return;
+            if (!Spell.IsSlaying() && !Spell.IsHalfMoon() && !Spell.IsFlamingSword()) return;
 
-            if (SlayingEffectFrames.TryGetValue(Spell, out int baseFrame))
+            if (AttackEffectFrames.TryGetValue(Spell, out int baseFrame))
             {
                 MapControl.Effects.Add(new Effect(Libraries.Magic, baseFrame, 5, 500, Functions.PointMove(CurrentLocation, Direction, 1)));
             }

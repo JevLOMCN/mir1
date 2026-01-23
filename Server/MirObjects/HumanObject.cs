@@ -194,6 +194,7 @@ namespace Server.MirObjects
         public bool Slaying, Slaying2, Slaying3, Slaying4, Slaying5, Slaying6, Slaying7, Slaying8, Slaying9, Slaying10, Slaying11, Slaying12, Slaying13, Slaying14;
         public bool HalfMoon2, HalfMoon3, HalfMoon4, HalfMoon5, HalfMoon6, HalfMoon7, HalfMoon8, HalfMoon9, HalfMoon10, HalfMoon11, HalfMoon12, HalfMoon13, HalfMoon14;
         public bool FlamingSword;
+        public Spell FlamingSwordSpell = Spell.None;
         public long FlamingSwordTime;
 
         private bool GetSlayingFlag(Spell spell)
@@ -414,7 +415,9 @@ namespace Server.MirObjects
             if (FlamingSword && Envir.Time >= FlamingSwordTime)
             {
                 FlamingSword = false;
-                Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.FlamingSword, CanUse = false });
+                Spell expiredSpell = FlamingSwordSpell == Spell.None ? Spell.FlamingSword : FlamingSwordSpell;
+                FlamingSwordSpell = Spell.None;
+                Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = expiredSpell, CanUse = false });
             }
 
             if (Stacking && Envir.Time > StackingTime)
@@ -2139,9 +2142,8 @@ namespace Server.MirObjects
                 switch (spell)
                 {
                     case Spell.Thrusting:
-                    case Spell.FlamingSword:
                         magic = GetMagic(spell);
-                        if ((magic == null) || (!FlamingSword && (spell == Spell.FlamingSword)))
+                        if (magic == null)
                         {
                             spell = Spell.None;
                             break;
@@ -2149,7 +2151,17 @@ namespace Server.MirObjects
                         level = magic.Level;
                         break;
                     default:
-                        if (spell.IsHalfMoon())
+                        if (spell.IsFlamingSword())
+                        {
+                            magic = GetMagic(spell);
+                            if (magic == null || !FlamingSword || FlamingSwordSpell != spell)
+                            {
+                                spell = Spell.None;
+                                break;
+                            }
+                            level = magic.Level;
+                        }
+                        else if (spell.IsHalfMoon())
                         {
                             magic = GetMagic(spell);
                             if (magic == null || magic.Info.BaseCost + (magic.Level * magic.Info.LevelCost) > MP)
@@ -2262,17 +2274,20 @@ namespace Server.MirObjects
                             magic = GetMagic(Spell.Thrusting);
                             LevelMagic(magic);
                             break;
-                        case Spell.FlamingSword:
-                            magic = GetMagic(Spell.FlamingSword);
-                            damageFinal = magic.GetDamage(damageBase);
-                            FlamingSword = false;
-                            defence = DefenceType.AC;
-                            //action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, ob, damage, DefenceType.Agility, true);
-                            //ActionList.Add(action);
-                            LevelMagic(magic);
-                            break;
                         default:
-                            if (spell.IsHalfMoon())
+                            if (spell.IsFlamingSword())
+                            {
+                                magic = GetMagic(spell);
+                                if (magic == null) break;
+                                damageFinal = magic.GetDamage(damageBase);
+                                FlamingSword = false;
+                                FlamingSwordSpell = Spell.None;
+                                defence = DefenceType.AC;
+                                //action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, ob, damage, DefenceType.Agility, true);
+                                //ActionList.Add(action);
+                                LevelMagic(magic);
+                            }
+                            else if (spell.IsHalfMoon())
                             {
                                 magic = GetMagic(spell);
                                 LevelMagic(magic);
@@ -4943,20 +4958,22 @@ namespace Server.MirObjects
                 case Spell.Thrusting:
                     Info.Thrusting = state == SpellToggleState.None ? !Info.Thrusting : use;
                     break;
-                case Spell.FlamingSword:
-                    if (FlamingSword || Envir.Time < FlamingSwordTime) return;
-                    magic = GetMagic(spell);
-                    if (magic == null) return;
-                    cost = magic.Info.BaseCost + magic.Level * magic.Info.LevelCost;
-                    if (cost >= MP) return;
-
-                    FlamingSword = true;
-                    FlamingSwordTime = Envir.Time + 10000;
-                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.FlamingSword, CanUse = true });
-                    ChangeMP(-cost);
-                    break;
                 default:
-                    if (spell.IsHalfMoon())
+                    if (spell.IsFlamingSword())
+                    {
+                        if (FlamingSword || Envir.Time < FlamingSwordTime) return;
+                        magic = GetMagic(spell);
+                        if (magic == null) return;
+                        cost = magic.Info.BaseCost + magic.Level * magic.Info.LevelCost;
+                        if (cost >= MP) return;
+
+                        FlamingSword = true;
+                        FlamingSwordSpell = spell;
+                        FlamingSwordTime = Envir.Time + 10000;
+                        Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = spell, CanUse = true });
+                        ChangeMP(-cost);
+                    }
+                    else if (spell.IsHalfMoon())
                     {
                         bool nextState = state == SpellToggleState.None ? !GetHalfMoonFlag(spell) : use;
                         SetHalfMoonFlag(spell, nextState);

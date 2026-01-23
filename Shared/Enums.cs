@@ -579,15 +579,30 @@ public enum Spell : byte
     HalfMoon13,
     HalfMoon14,
 
+    //Charge variations of melee effects
+    FlamingSword = 70,
+    FlamingSword2,
+    FlamingSword3,
+    FlamingSword4,
+    FlamingSword5,
+    FlamingSword6,
+    FlamingSword7,
+    FlamingSword8,
+    FlamingSword9,
+    FlamingSword10,
+    FlamingSword11,
+    FlamingSword12,
+    FlamingSword13,
+    FlamingSword14,
+
     //Warrior
     Fencing = 100,
     Thrusting,
     ShoulderDash,
-    FlamingSword,
 
     //Wizard
     
-    Repulsion,
+    Repulsion = 104,
     ElectricShock,
     GreatFireBall,
     HellFire,
