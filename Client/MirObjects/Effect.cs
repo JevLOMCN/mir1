@@ -56,6 +56,7 @@ namespace Client.MirObjects
             Count = count == 0 ? 1 : count;
             Duration = duration;
             Start = starttime == 0 ? CMain.Time : starttime;
+            Blend = false;
 
             NextFrame = Start + (Duration / Count) * (CurrentFrame + 1);
             Source = source;

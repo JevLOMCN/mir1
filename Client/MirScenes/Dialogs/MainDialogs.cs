@@ -1041,7 +1041,6 @@ namespace Client.MirScenes.Dialogs
         public bool HasSkill = false;
         public byte BarIndex;
 
-        //public bool TopBind = !Settings.SkillMode;
         public MirImageControl[] Cells = new MirImageControl[8];
         public MirLabel[] KeyNameLabels = new MirLabel[8];
         public MirLabel BindNumberLabel = new MirLabel();
@@ -1054,7 +1053,7 @@ namespace Client.MirScenes.Dialogs
             Library = Libraries.Prguse;
             Movable = true;
             Sort = true;
-            Location = new Point(0, BarIndex * 20);
+            Location = new Point(80, 40 + BarIndex * 20);
             Visible = true;
 
             BeforeDraw += MagicKeyDialog_BeforeDraw;
@@ -1070,8 +1069,6 @@ namespace Client.MirScenes.Dialogs
             };
             _switchBindsButton.Click += (o, e) =>
             {
-                //Settings.SkillSet = !Settings.SkillSet;
-
                 Update();
             };
 
@@ -1082,9 +1079,14 @@ namespace Client.MirScenes.Dialogs
                     Index = -1,
                     Library = Libraries.MagIcon,
                     Parent = this,
-                    Location = new Point(i * 25 + 15, 3),
+                    Location = new Point(i * 41 + 15, 3)
                 };
                 int j = i + 1;
+                Cells[i].BeforeDraw += (o, e) =>
+                {
+                    var cell = (MirImageControl)o;
+                    Libraries.Prguse.Draw(165, new Point(cell.DisplayLocation.X, cell.DisplayLocation.Y), Color.White, true, 1F);
+                };
                 Cells[i].Click += (o, e) =>
                     {
                         GameScene.Scene.UseSpell(j + (8 * BarIndex));
@@ -1094,7 +1096,7 @@ namespace Client.MirScenes.Dialogs
                 {
                     Library = Libraries.Prguse2,
                     Parent = this,
-                    Location = new Point(i * 25 + 15, 3),
+                    Location = new Point(i * 41 + 15, 3),
                     NotControl = true,
                     UseOffSet = true,
                     Opacity = 0.6F
@@ -1109,7 +1111,8 @@ namespace Client.MirScenes.Dialogs
                 Parent = this,
                 Location = new Point(0, 1),
                 Size = new Size(10, 25),
-                NotControl = true
+                NotControl = true,
+                Visible = false
             };
 
             for (var i = 0; i < KeyNameLabels.Length; i++)
@@ -1120,19 +1123,11 @@ namespace Client.MirScenes.Dialogs
                     Font = new Font(Settings.FontName, 8F),
                     ForeColour = Color.White,
                     Parent = this,
-                    Location = new Point(i * 25 + 13, 0),
+                    Location = new Point(i * 41 + 13, 0),
                     Size = new Size(25, 25),
                     NotControl = true
                 };
             }
-            OnMoving += SkillBar_OnMoving;
-        }
-
-        private void SkillBar_OnMoving(object sender, MouseEventArgs e)
-        {
-            if (BarIndex * 2 >= Settings.SkillbarLocation.Length) return;
-            Settings.SkillbarLocation[BarIndex, 0] = this.Location.X;
-            Settings.SkillbarLocation[BarIndex, 1] = this.Location.Y;
         }
 
         private string GetKey(int barindex, int i)
@@ -1209,13 +1204,9 @@ namespace Client.MirScenes.Dialogs
                     ClientMagic magic = MapObject.User.GetMagic(m.Spell);
                     if (magic == null) continue;
 
-                    //string key = m.Key > 8 ? string.Format("CTRL F{0}", i) : string.Format("F{0}", m.Key);
-
-                    Cells[i - 1].Index = magic.Icon*2;
+                    Cells[i - 1].Index = magic.Icon;
                     Cells[i - 1].Hint = string.Format("{0}\nMP: {1}\nCooldown: {2}\nKey: {3}", magic.Name,
                         (magic.BaseCost + (magic.LevelCost * magic.Level)), Functions.PrintTimeSpanFromMilliSeconds(magic.Delay), key);
-
-                    KeyNameLabels[i - 1].Text = "";
                 }
             }
         }
@@ -1936,408 +1927,5 @@ namespace Client.MirScenes.Dialogs
         }
 
 
-    }
-    public sealed class MagicButton : MirControl
-    {
-        public MirImageControl LevelImage, ExpImage;
-        public MirButton SkillButton;
-        public MirLabel LevelLabel, NameLabel, ExpLabel, KeyLabel;
-        public ClientMagic Magic;
-        public MirImageControl CoolDown;
-
-        string[] Prefixes = new string[] { "", "CTRL", "Shift" };
-
-        public MagicButton()
-        {
-            Size = new Size(231, 33);
-
-            SkillButton = new MirButton
-            {
-                Index = 0,
-                PressedIndex = 1,
-                Library = Libraries.MagIcon,
-                Parent = this,
-                Location = new Point(36, 0),
-                Sound = SoundList.ButtonA,
-            };
-            SkillButton.Click += (o, e) =>
-            {
-                new AssignKeyPanel(Magic, 1, new string[]
-                    {
-                            "F1",
-                            "F2",
-                            "F3",
-                            "F4",
-                            "F5",
-                            "F6",
-                            "F7",
-                            "F8",
-                            "Ctrl" + Environment.NewLine + "F1",
-                            "Ctrl" + Environment.NewLine + "F2",
-                            "Ctrl" + Environment.NewLine + "F3",
-                            "Ctrl" + Environment.NewLine + "F4",
-                            "Ctrl" + Environment.NewLine + "F5",
-                            "Ctrl" + Environment.NewLine + "F6",
-                            "Ctrl" + Environment.NewLine + "F7",
-                            "Ctrl" + Environment.NewLine + "F8"
-                    })
-                { Actor = GameScene.User };
-
-            };
-
-            LevelImage = new MirImageControl
-            {
-                Index = 516,
-                Library = Libraries.Prguse,
-                Location = new Point(73, 7),
-                Parent = this,
-                NotControl = true,
-            };
-
-            ExpImage = new MirImageControl
-            {
-                Index = 517,
-                Library = Libraries.Prguse,
-                Location = new Point(73, 19),
-                Parent = this,
-                NotControl = true,
-            };
-
-            LevelLabel = new MirLabel
-            {
-                AutoSize = true,
-                Parent = this,
-                Location = new Point(88, 2),
-                NotControl = true,
-            };
-
-            NameLabel = new MirLabel
-            {
-                AutoSize = true,
-                Parent = this,
-                Location = new Point(109, 2),
-                NotControl = true,
-            };
-
-            ExpLabel = new MirLabel
-            {
-                AutoSize = true,
-                Parent = this,
-                Location = new Point(109, 15),
-                NotControl = true,
-            };
-
-            KeyLabel = new MirLabel
-            {
-                AutoSize = true,
-                Parent = this,
-                Location = new Point(2, 2),
-                NotControl = true,
-            };
-
-            CoolDown = new MirImageControl
-            {
-                Library = Libraries.Prguse2,
-                Parent = this,
-                Location = new Point(36, 0),
-                Opacity = 0.6F,
-                NotControl = true,
-                UseOffSet = true,
-            };
-        }
-
-        public void Update(ClientMagic magic)
-        {
-            Magic = magic;
-
-            NameLabel.Text = Magic.Name;
-
-            LevelLabel.Text = Magic.Level.ToString();
-            switch (Magic.Level)
-            {
-                case 0:
-                    ExpLabel.Text = string.Format("{0}/{1}", Magic.Experience, Magic.Need1);
-                    break;
-                case 1:
-                    ExpLabel.Text = string.Format("{0}/{1}", Magic.Experience, Magic.Need2);
-                    break;
-                case 2:
-                    ExpLabel.Text = string.Format("{0}/{1}", Magic.Experience, Magic.Need3);
-                    break;
-                case 3:
-                    ExpLabel.Text = "-";
-                    break;
-            }
-
-            KeyLabel.Text = Magic.Key == 0 ? string.Empty : string.Format("{0}{1}F{2}",
-                Prefixes[(Magic.Key - 1) / 8],
-                Magic.Key > 8 ? Environment.NewLine : string.Empty,
-                (Magic.Key - 1) % 8 + 1);
-
-            switch (magic.Spell)
-            {  //Warrior
-                case Spell.Fencing:
-                    SkillButton.Hint = string.Format("Fencing \n\nHitting accuracy will be increased in accordance\nwith practice level.\nPassive Skill\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                case Spell.Slaying:
-                    SkillButton.Hint = string.Format("Slaying \n\nHitting accuracy and destructive power will\nbe increased in accordance with practive level.\nPassive Skill\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                case Spell.Thrusting:
-                    SkillButton.Hint = string.Format("Dark Damage\nThrusting \n\nIncreases the reach of your hits destructive power\nwill increase in accordance with practive level.\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                case Spell.HalfMoon:
-                    SkillButton.Hint = string.Format("Wind Damage\nHalfMoon \n\nCause damage to mobs in a semi circle with\nthe shock waves from your fast moving weapon.\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                case Spell.FlamingSword:
-                    SkillButton.Hint = string.Format("Fire Damage\nFlamingSword \n\nCause additional damage by summoning the spirit\nof fire into weapon\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                case Spell.ShoulderDash:
-                    SkillButton.Hint = string.Format("ShoulderDash \n\nA warrior can push away mobs by charging\nthem with his shoulder, inflicting damage\nif they hit any obstacle.\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0);
-                    break;
-                //Wizard
-                case Spell.FireBall:
-                    SkillButton.Hint = string.Format("Fireball \n\nInstant Casting\nMana Cost {2}\n\nElements of fire are gathered to form\na fireball. Throw at monsters for damage.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.ThunderBolt:
-                    SkillButton.Hint = string.Format("Thundebolt \n\nInstant Casting\nMana Cost {2}\n\nStrikes the foe with a lightning bolt \ninflicting high damage.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.GreatFireBall:
-                    SkillButton.Hint = string.Format("GreatFireBall \n\nInstant Casting\nMana Cost {2}\n\nStronger then fire ball, Great Fire Ball\nwill fire up the mobs.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Repulsion:
-                    SkillButton.Hint = string.Format("Repulsion \n\nInstant Casting\nMana Cost {2}\n\nPush away mobs useing the power of fire.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.HellFire:
-                    SkillButton.Hint = string.Format("Hellfire \n\nInstant Casting\nMana Cost {2}\n\nShoots out a streak of fire attack\nthe monster in front.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Lightning:
-                    SkillButton.Hint = string.Format("Lightning \n\nInstant Casting\nMana Cost {2}\n\nShoots out a steak of lightning to attack\nthe monster in front.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.ElectricShock:
-                    SkillButton.Hint = string.Format("ElectrickShock \n\nInstant Casting\nMana Cost {2}\n\nStrong shock wave hits the mob and the\nmob will not be able to move or the mob\nwill get confused and fight for you.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Teleport:
-                    SkillButton.Hint = string.Format("Teleport \n\nInstant Casting\nMana Cost {2}\n\nTeleport to a random spot.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.FireWall:
-                    SkillButton.Hint = string.Format("FireWall \n\nInstant Casting\nMana Cost {2}\n\nThis skill will build a fire wall at a designated\nspot to attack the monster passing the area.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.FireBang:
-                    SkillButton.Hint = string.Format("FireBang \n\nInstant Casting\nMana Cost {2}\n\nFirebang will burst out fire at a designated spot to\nburn all the monster within the area.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.ThunderStorm:
-                    SkillButton.Hint = string.Format("Thunderstorm \n\nInstant Casting\nMana Cost {2}\n\nThis skill will make a thunder storm with in a designated area \nto attack the monster with in.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.MagicShield:
-                    SkillButton.Hint = string.Format("MagicShield \n\nInstant Casting\nMana Cost {2}\n\nThis skill will use Mp to create protective\nlayer around you\nAttack will be absorbed by the protective layer\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.FrostCrunch:
-                    SkillButton.Hint = string.Format("FrostCrunch \n\nInstant Casting\nMana Cost {2}\n\nFreeze the elements in the air around the \nmonster to slow them down\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                //Taoist
-                case Spell.SpiritSword:
-                    SkillButton.Hint = string.Format("SpiritSword \n\nIncreases the chance of hitting the target in\n melee combat.\nPassive Skill\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Healing:
-                    SkillButton.Hint = string.Format("Healing \n\nInstant Casting\nMana Cost {2}\n\nHeals a single target \nrecovering HP over time.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Poisoning:
-                    SkillButton.Hint = string.Format("Poisoning \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Poison Powder\n\nThrow poison at mobs to weaken them.\nUse green poison to weaken Hp.\nUse red poison to weaken defense.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.SoulFireBall:
-                    SkillButton.Hint = string.Format("SoulFireBall \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nPut power into a scroll and throw it at \na mob. The scroll will burst into fire.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.SoulShield:
-                    SkillButton.Hint = string.Format("SoulShield \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nBless the partymembers to strengthen there magic\ndefence.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.BlessedArmour:
-                    SkillButton.Hint = string.Format("BlessedArmour \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nBless the partymemebers to strenghten there defence.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.TrapHexagon:
-                    SkillButton.Hint = string.Format("TrapHexagon \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nTrap the monster with this magical power\n to stop them from moving. Any damages\nfrom outside source will allow the monsters\nto move again.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.SummonSkeleton:
-                    SkillButton.Hint = string.Format("SummonSkeleton \n\n\nInstant Casting\nMana Cost {2}\n\nSummons a Powerful AOE Skeleton, Which will Fight Side By Side With You\n\nRequired Items: Amulet.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Hiding:
-                    SkillButton.Hint = string.Format("Hiding \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nMobs will not be able to spot you for a short\nmoment.Mobs will notice you if you start\nto move around.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.MassHiding:
-                    SkillButton.Hint = string.Format("MassHiding \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nMobs will not be able to spot you or your \nparty members for a short moment. \nMobs will notice you and your party if \nyou start to move around.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Revelation:
-                    SkillButton.Hint = string.Format("Revelation \n\nInstant Casting\nMana Cost {2}\n\nYou will be able to read Hp of others\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.MassHealing:
-                    SkillButton.Hint = string.Format("MassHealing \n\nInstant Casting\nMana Cost {2}\n\nHeal all injured players in the specified\narea by surrounding them with mana.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.UltimateEnhancer:
-                    SkillButton.Hint = string.Format("UltimateEnhancer \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nAbsorb the energy from the surroundings to increase the stats.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.EnergyRepulsor:
-                    SkillButton.Hint = string.Format("EnergyRepulsor \n\nInstant Casting\nMana Cost {2}\n\nConcentrate your energy for one big blast to push away the monsters around you.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Purification:
-                    SkillButton.Hint = string.Format("Purification \n\nInstant Casting\nMana Cost {2}\n\nHelp others to recover from poisoning and\nparalysis useing this skill.\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-                case Spell.Hallucination:
-                    SkillButton.Hint = string.Format("Hallucination \n\nInstant Casting\nMana Cost {2}\n\nRequired Items: Amulet\n\nThe monster will only see hallucination \nand attack anyone on the way\n\nCurrent Skill Level {0}\nNext Level {1}", Magic.Level, Magic.Level == 0 ? Magic.Level1 : Magic.Level == 1 ? Magic.Level2 : Magic.Level == 2 ? Magic.Level3 : 0, Magic.BaseCost);
-                    break;
-
-                default:
-
-                    break;
-            }
-            
-
-            SkillButton.Index = Magic.Icon * 2;
-            SkillButton.PressedIndex = Magic.Icon * 2 + 1;
-
-            SetDelay();
-        }
-
-        public void SetDelay()
-        {
-            if (Magic == null) return;
-
-            int totalFrames = 34;
-
-            long timeLeft = Magic.CastTime + Magic.Delay - CMain.Time;
-
-            if (timeLeft < 100)
-            {
-                CoolDown.Visible = false;
-                return;
-            }
-
-            int delayPerFrame = (int)(Magic.Delay / totalFrames);
-            int startFrame = totalFrames - (int)(timeLeft / delayPerFrame);
-
-            if ((CMain.Time <= Magic.CastTime + Magic.Delay))
-            {
-                CoolDown.Visible = true;
-                CoolDown.Index = 1290 + startFrame;
-            }
-        }
-    }
-    public sealed class AssignKeyPanel : MirImageControl
-    {
-        public MirButton SaveButton, NoneButton;
-        public UserObject Actor;
-        public MirLabel TitleLabel;
-        public MirImageControl MagicImage;
-        public MirButton[] FKeys;
-
-        public ClientMagic Magic;
-        public byte Key;
-        public byte KeyOffset;
-
-        public AssignKeyPanel(ClientMagic magic, byte keyOffset, string[] keyStrings)
-        {
-            Magic = magic;
-            Key = magic.Key;
-            KeyOffset = keyOffset;
-
-            Modal = true;
-            Index = 710;
-            Library = Libraries.Prguse;
-            Location = Center;
-            Parent = GameScene.Scene;
-            Visible = true;
-
-            MagicImage = new MirImageControl
-            {
-                Location = new Point(16, 16),
-                Index = magic.Icon * 2,
-                Library = Libraries.MagIcon,
-                Parent = this,
-            };
-
-            TitleLabel = new MirLabel
-            {
-                Location = new Point(49, 17),
-                Parent = this,
-                Size = new Size(230, 32),
-                DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.WordBreak,
-                Text = string.Format(GameLanguage.SelectKey, magic.Name)
-            };
-
-            NoneButton = new MirButton
-            {
-                Index = 287, //154
-                HoverIndex = 288,
-                PressedIndex = 289,
-                Library = Libraries.Prguse,
-                Parent = this,
-                Location = new Point(284, 64),
-            };
-            NoneButton.Click += (o, e) => Key = 0;
-
-            SaveButton = new MirButton
-            {
-                Library = Libraries.Prguse,
-                Parent = this,
-                Location = new Point(284, 101),
-                Index = 156,
-                HoverIndex = 157,
-                PressedIndex = 158,
-            };
-            SaveButton.Click += (o, e) =>
-            {
-                for (int i = 0; i < Actor.Magics.Count; i++)
-                {
-                    if (Actor.Magics[i].Key == Key)
-                        Actor.Magics[i].Key = 0;
-                }
-
-                Network.Enqueue(new C.MagicKey { Spell = Magic.Spell, Key = Key, OldKey = Magic.Key });
-                Magic.Key = Key;
-                foreach (SkillBarDialog Bar in GameScene.Scene.SkillBarDialogs)
-                    Bar.Update();
-
-                Dispose();
-            };
-
-            FKeys = new MirButton[keyStrings.Length];
-
-            for (byte i = 0; i < FKeys.Length; i++)
-            {
-                FKeys[i] = new MirButton
-                {
-                    Index = 0,
-                    PressedIndex = 1,
-                    Library = Libraries.Prguse,
-                    Parent = this,
-                    Location = new Point(17 + 32 * (i % 8) + 5 * (i % 8 / 4), 58 + 37 * (i / 8)),
-                    Sound = SoundList.ButtonA,
-                    Text = keyStrings[i]
-                };
-                int num = i + keyOffset;
-                FKeys[i].Click += (o, e) =>
-                {
-                    Key = (byte)num;
-                };
-            }
-
-            BeforeDraw += AssignKeyPanel_BeforeDraw;
-        }
-
-        private void AssignKeyPanel_BeforeDraw(object sender, EventArgs e)
-        {
-            for (int i = 0; i < FKeys.Length; i++)
-            {
-                FKeys[i].Index = 1656;
-                FKeys[i].HoverIndex = 1657;
-                FKeys[i].PressedIndex = 1658;
-                FKeys[i].Visible = true;
-            }
-
-            int key = Key - KeyOffset;
-            if (key < 0 || key > FKeys.Length) return;
-
-            FKeys[key].Index = 1658;
-            FKeys[key].HoverIndex = 1658;
-            FKeys[key].PressedIndex = 1658;
-        }
     }
 }

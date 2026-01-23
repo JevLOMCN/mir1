@@ -95,7 +95,7 @@ namespace Client.MirSounds
             for (int i = 0; i < Sounds.Count; i++)
             {
                 if (Sounds[i].Index != index) continue;
-                
+
                 Sounds[i].Stop();
                 return;
             }
@@ -147,7 +147,7 @@ namespace Client.MirSounds
             for (int i = 0; i < Sounds.Count; i++)
             {
                 Sounds[i].SetVolume(Vol);
-            }        
+            }
         }
 
         static void CheckSoundTimeOut()
@@ -228,6 +228,27 @@ namespace Client.MirSounds
             Bull = 4,
             Doe = 5,
             Hen = 6,
-            Tiger = 7;
+            Tiger = 7,
+
+
+
+            HealingEnd = 200,
+
+            SlayingEnd = 201,
+
+            IceBallExplode = 204,
+
+            ThunderboltEnd = 205,
+
+            Thunderbolt2End = 206,
+
+            ThunderBallExplode = 207,
+
+            FireballFly = 208,
+            FireballExplode = 209,
+
+            IceRockEnd = 220;
+
+            
     }
 }

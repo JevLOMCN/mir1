@@ -673,14 +673,20 @@ namespace Client.MirScenes
                 case Spell.Fencing:
                 case Spell.SpiritSword:
                 case Spell.Slaying:
+                case Spell.Slaying2:
+                case Spell.Slaying3:
+                case Spell.Slaying4:
+                case Spell.Slaying5:
+                case Spell.Slaying6:
+                case Spell.Slaying7:
+                case Spell.Slaying8:
+                case Spell.Slaying9:
+                case Spell.Slaying10:
+                case Spell.Slaying11:
+                case Spell.Slaying12:
+                case Spell.Slaying13:
+                case Spell.Slaying14:
                     return;
-                case Spell.Thrusting:
-                    if (CMain.Time < ToggleTime) return;
-                    actor.Thrusting = !actor.Thrusting;
-                    ChatDialog.ReceiveChat(prefix + (actor.Thrusting ? "Use Thrusting." : "Do not use Thrusting."), ChatType.Hint);
-                    ToggleTime = CMain.Time + 1000;
-                    SendSpellToggle(actor, magic.Spell, actor.Thrusting);                    
-                    break;
                 case Spell.HalfMoon:
                     if (CMain.Time < ToggleTime) return;
                     actor.HalfMoon = !actor.HalfMoon;
@@ -912,13 +918,6 @@ namespace Client.MirScenes
             {
                 foreach (SkillBarDialog Bar in Scene.SkillBarDialogs)
                     Bar.Hide();
-            }
-
-            for (int i = 0; i < Scene.SkillBarDialogs.Count; i++)
-            {
-                if (i * 2 > Settings.SkillbarLocation.Length) break;
-                if ((Settings.SkillbarLocation[i, 0] > Settings.Resolution - 100) || (Settings.SkillbarLocation[i, 1] > 700)) continue;//in theory you'd want the y coord to be validated based on resolution, but since client only allows for wider screens and not higher :(
-                Scene.SkillBarDialogs[i].Location = new Point(Settings.SkillbarLocation[i, 0], Settings.SkillbarLocation[i, 1]);
             }
         }
 
@@ -3045,6 +3044,7 @@ namespace Client.MirScenes
             {
                 Bar.Update();
             }
+            SkillDialog.Refresh();
         }
 
         private void RemoveMagic(S.RemoveMagic p)
@@ -3055,6 +3055,7 @@ namespace Client.MirScenes
             {
                 Bar.Update();
             }
+            SkillDialog.Refresh();
         }
 
         private void MagicLeveled(S.MagicLeveled p)
@@ -3073,6 +3074,7 @@ namespace Client.MirScenes
                 magic.Experience = p.Experience;
                 break;
             }
+            SkillDialog.Refresh();
         }
         private void Magic(S.Magic p)
         {
@@ -3322,10 +3324,46 @@ namespace Client.MirScenes
                 case Spell.Slaying:
                     actor.Slaying = p.CanUse;
                     break;
-                case Spell.Thrusting:
-                    actor.Thrusting = p.CanUse;
-                    ChatDialog.ReceiveChat(prefix + (actor.Thrusting ? "Use Thrusting." : "Do not use Thrusting."), ChatType.Hint);
+                case Spell.Slaying2:
+                    actor.Slaying2 = p.CanUse;
                     break;
+                case Spell.Slaying3:
+                    actor.Slaying3 = p.CanUse;
+                    break;
+                case Spell.Slaying4:
+                    actor.Slaying4 = p.CanUse;
+                    break;
+                case Spell.Slaying5:
+                    actor.Slaying5 = p.CanUse;
+                    break;
+                case Spell.Slaying6:
+                    actor.Slaying6 = p.CanUse;
+                    break;
+                case Spell.Slaying7:
+                    actor.Slaying7 = p.CanUse;
+                    break;
+                case Spell.Slaying8:
+                    actor.Slaying8 = p.CanUse;
+                    break;
+                case Spell.Slaying9:
+                    actor.Slaying9 = p.CanUse;
+                    break;
+                case Spell.Slaying10:
+                    actor.Slaying10 = p.CanUse;
+                    break;
+                case Spell.Slaying11:
+                    actor.Slaying11 = p.CanUse;
+                    break;
+                case Spell.Slaying12:
+                    actor.Slaying12 = p.CanUse;
+                    break;
+                case Spell.Slaying13:
+                    actor.Slaying13 = p.CanUse;
+                    break;
+                case Spell.Slaying14:
+                    actor.Slaying14 = p.CanUse;
+                    break;
+
                 case Spell.HalfMoon:
                     actor.HalfMoon = p.CanUse;
                     ChatDialog.ReceiveChat(prefix + (actor.HalfMoon ? "Use HalfMoon." : "Do not use HalfMoon."), ChatType.Hint);
@@ -8340,14 +8378,26 @@ namespace Client.MirScenes
             switch (magic.Spell)
             {
                 case Spell.FireBall:
-                case Spell.GreatFireBall:
-                case Spell.ElectricShock:
-                case Spell.Poisoning:
+                case Spell.FireBall2:
+                case Spell.WindBall:
                 case Spell.ThunderBolt:
-                case Spell.SoulFireBall:
-                case Spell.FrostCrunch:
-                case Spell.Revelation:
-                case Spell.Hallucination:
+                case Spell.Rock:
+                case Spell.ThunderBall:
+                case Spell.ThunderBall2:
+                case Spell.ThunderBall3:
+                case Spell.ThunderBolt2:
+                case Spell.ThunderBolt3:
+                case Spell.IceBall:
+                case Spell.WaterBall:
+                case Spell.IceFireBall:
+                case Spell.IceRock:
+                case Spell.FireBall3:
+                case Spell.FireBall4:
+                case Spell.FireBall5:
+                case Spell.FireBall6:
+                case Spell.FireBall7:
+                case Spell.FireBall8:
+                case Spell.FireBall9:
                     if (actor.NextMagicObject != null)
                     {
                         if (!actor.NextMagicObject.Dead && actor.NextMagicObject.Race != ObjectType.Item && actor.NextMagicObject.Race != ObjectType.Merchant)
@@ -8360,6 +8410,8 @@ namespace Client.MirScenes
                     break;
                 case Spell.Purification:
                 case Spell.Healing:
+                case Spell.Healing2:
+                case Spell.Healing3:
                 case Spell.UltimateEnhancer:
                     if (actor.NextMagicObject != null)
                     {

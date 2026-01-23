@@ -131,8 +131,6 @@ namespace Client
             DisplayBodyName = false,
             NewMove = false;
 
-        public static int[,] SkillbarLocation = new int[2, 2] { { 0, 0 }, { 216, 0 }  };
-
         //Quests
         public static int[] TrackedQuests = new int[5];
 
@@ -233,12 +231,6 @@ namespace Client
             DisplayBodyName = Reader.ReadBoolean("Game", "DisplayBodyName", DisplayBodyName);
             NewMove = Reader.ReadBoolean("Game", "NewMove", NewMove);
 
-            for (int i = 0; i < SkillbarLocation.Length / 2; i++)
-            {
-                SkillbarLocation[i, 0] = Reader.ReadInt32("Game", "Skillbar" + i.ToString() + "X", SkillbarLocation[i, 0]);
-                SkillbarLocation[i, 1] = Reader.ReadInt32("Game", "Skillbar" + i.ToString() + "Y", SkillbarLocation[i, 1]);
-            }
-
             //Chat
             ShowNormalChat = Reader.ReadBoolean("Chat", "ShowNormalChat", ShowNormalChat);
             ShowYellChat = Reader.ReadBoolean("Chat", "ShowYellChat", ShowYellChat);
@@ -325,13 +317,6 @@ namespace Client
             Reader.Write("Game", "ExpandedHeroBuffWindow", ExpandedBuffWindow);
             Reader.Write("Game", "DisplayBodyName", DisplayBodyName);
             Reader.Write("Game", "NewMove", NewMove);
-
-            for (int i = 0; i < SkillbarLocation.Length / 2; i++)
-            {
-
-                Reader.Write("Game", "Skillbar" + i.ToString() + "X", SkillbarLocation[i, 0]);
-                Reader.Write("Game", "Skillbar" + i.ToString() + "Y", SkillbarLocation[i, 1]);
-            }
 
             //Chat
             Reader.Write("Chat", "ShowNormalChat", ShowNormalChat);

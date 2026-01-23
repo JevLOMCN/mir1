@@ -190,7 +190,8 @@ namespace Server.MirObjects
         public List<ItemSets> ItemSets = new List<ItemSets>();
         public List<EquipmentSlot> MirSet = new List<EquipmentSlot>();
 
-        public bool Slaying, FlamingSword;
+        public bool Slaying, Slaying2, Slaying3, Slaying4, Slaying5, Slaying6, Slaying7, Slaying8, Slaying9, Slaying10, Slaying11, Slaying12, Slaying13, Slaying14;
+        public bool FlamingSword;
         public long FlamingSwordTime;
 
         public long LastRevivalTime;
@@ -1594,8 +1595,20 @@ namespace Server.MirObjects
                         Stats[Stat.Accuracy] += magic.Level * 3;
                         // Stats[Stat.MaxAC] += (magic.Level + 1) * 3;
                         break;
-                    // case Spell.FatalSword:
                     case Spell.Slaying:
+                    case Spell.Slaying2:
+                    case Spell.Slaying3:
+                    case Spell.Slaying4:
+                    case Spell.Slaying5:
+                    case Spell.Slaying6:
+                    case Spell.Slaying7:
+                    case Spell.Slaying8:
+                    case Spell.Slaying9:
+                    case Spell.Slaying10:
+                    case Spell.Slaying11:
+                    case Spell.Slaying12:
+                    case Spell.Slaying13:
+                    case Spell.Slaying14:
                         Stats[Stat.Accuracy] += magic.Level;
                         Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
                         break;
@@ -1935,6 +1948,45 @@ namespace Server.MirObjects
                     case Spell.Slaying:
                         Slaying = false;
                         break;
+                    case Spell.Slaying2:
+                        Slaying2 = false;
+                        break;
+                    case Spell.Slaying3:
+                        Slaying3 = false;
+                        break;
+                    case Spell.Slaying4:
+                        Slaying4 = false;
+                        break;
+                    case Spell.Slaying5:
+                        Slaying5 = false;
+                        break;
+                    case Spell.Slaying6:
+                        Slaying6 = false;
+                        break;
+                    case Spell.Slaying7:
+                        Slaying7 = false;
+                        break;
+                    case Spell.Slaying8:
+                        Slaying8 = false;
+                        break;
+                    case Spell.Slaying9:
+                        Slaying9 = false;
+                        break;
+                    case Spell.Slaying10:
+                        Slaying10 = false;
+                        break;
+                    case Spell.Slaying11:
+                        Slaying11 = false;
+                        break;
+                    case Spell.Slaying12:
+                        Slaying12 = false;
+                        break;
+                    case Spell.Slaying13:
+                        Slaying13 = false;
+                        break;
+                    case Spell.Slaying14:
+                        Slaying14 = false;
+                        break;
                 }
 
                 Enqueue(new S.UserLocation { Direction = Direction, Location = CurrentLocation });
@@ -1956,6 +2008,149 @@ namespace Server.MirObjects
                     }
 
                     Slaying = false;
+                    break;
+                case Spell.Slaying2:
+                    if (!Slaying2)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying2);
+                        level = magic.Level;
+                    }
+
+                    Slaying2 = false;
+                    break;
+                case Spell.Slaying3:
+                    if (!Slaying3)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying3);
+                        level = magic.Level;
+                    }
+
+                    Slaying3 = false;
+                    break;
+                case Spell.Slaying4:
+                    if (!Slaying4)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying4);
+                        level = magic.Level;
+                    }
+
+                    Slaying4 = false;
+                    break;
+                case Spell.Slaying5:
+                    if (!Slaying5)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying5);
+                        level = magic.Level;
+                    }
+
+                    Slaying5 = false;
+                    break;
+                case Spell.Slaying6:
+                    if (!Slaying6)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying6);
+                        level = magic.Level;
+                    }
+
+                    Slaying6 = false;
+                    break;
+                case Spell.Slaying7:
+                    if (!Slaying7)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying7);
+                        level = magic.Level;
+                    }
+
+                    Slaying7 = false;
+                    break;
+                case Spell.Slaying8:
+                    if (!Slaying8)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying8);
+                        level = magic.Level;
+                    }
+
+                    Slaying8 = false;
+                    break;
+                case Spell.Slaying9:
+                    if (!Slaying9)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying9);
+                        level = magic.Level;
+                    }
+
+                    Slaying9 = false;
+                    break;
+                case Spell.Slaying10:
+                    if (!Slaying10)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying10);
+                        level = magic.Level;
+                    }
+
+                    Slaying10 = false;
+                    break;
+                case Spell.Slaying11:
+                    if (!Slaying11)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying11);
+                        level = magic.Level;
+                    }
+
+                    Slaying11 = false;
+                    break;
+                case Spell.Slaying12:
+                    if (!Slaying12)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying12);
+                        level = magic.Level;
+                    }
+
+                    Slaying12 = false;
+                    break;
+                case Spell.Slaying13:
+                    if (!Slaying13)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying13);
+                        level = magic.Level;
+                    }
+
+                    Slaying13 = false;
+                    break;
+                case Spell.Slaying14:
+                    if (!Slaying14)
+                        spell = Spell.None;
+                    else
+                    {
+                        magic = GetMagic(Spell.Slaying14);
+                        level = magic.Level;
+                    }
+
+                    Slaying14 = false;
                     break;
                 case Spell.Thrusting:
                 case Spell.FlamingSword:
@@ -1991,6 +2186,149 @@ namespace Server.MirObjects
                 {
                     Slaying = true;
                     Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying, CanUse = Slaying });
+                }
+            }
+
+            if (!Slaying2)
+            {
+                magic = GetMagic(Spell.Slaying2);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying2 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying2, CanUse = Slaying2 });
+                }
+            }
+
+            if (!Slaying3)
+            {
+                magic = GetMagic(Spell.Slaying3);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying3 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying3, CanUse = Slaying3 });
+                }
+            }
+
+            if (!Slaying4)
+            {
+                magic = GetMagic(Spell.Slaying4);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying4 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying4, CanUse = Slaying4 });
+                }
+            }
+
+            if (!Slaying5)
+            {
+                magic = GetMagic(Spell.Slaying5);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying5 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying5, CanUse = Slaying5 });
+                }
+            }
+
+            if (!Slaying6)
+            {
+                magic = GetMagic(Spell.Slaying6);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying6 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying6, CanUse = Slaying6 });
+                }
+            }
+
+            if (!Slaying7)
+            {
+                magic = GetMagic(Spell.Slaying7);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying7 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying7, CanUse = Slaying7 });
+                }
+            }
+
+            if (!Slaying8)
+            {
+                magic = GetMagic(Spell.Slaying8);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying8 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying8, CanUse = Slaying8 });
+                }
+            }
+
+            if (!Slaying9)
+            {
+                magic = GetMagic(Spell.Slaying9);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying9 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying9, CanUse = Slaying9 });
+                }
+            }
+
+            if (!Slaying10)
+            {
+                magic = GetMagic(Spell.Slaying10);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying10 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying10, CanUse = Slaying10 });
+                }
+            }
+
+            if (!Slaying11)
+            {
+                magic = GetMagic(Spell.Slaying11);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying11 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying11, CanUse = Slaying11 });
+                }
+            }
+
+            if (!Slaying12)
+            {
+                magic = GetMagic(Spell.Slaying12);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying12 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying12, CanUse = Slaying12 });
+                }
+            }
+
+            if (!Slaying13)
+            {
+                magic = GetMagic(Spell.Slaying13);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying13 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying13, CanUse = Slaying13 });
+                }
+            }
+
+            if (!Slaying14)
+            {
+                magic = GetMagic(Spell.Slaying14);
+
+                if (magic != null && Envir.Random.Next(12) <= magic.Level)
+                {
+                    Slaying14 = true;
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying14, CanUse = Slaying14 });
                 }
             }
 
@@ -2067,6 +2405,71 @@ namespace Server.MirObjects
                 {
                     case Spell.Slaying:
                         magic = GetMagic(Spell.Slaying);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying2:
+                        magic = GetMagic(Spell.Slaying2);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying3:
+                        magic = GetMagic(Spell.Slaying3);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying4:
+                        magic = GetMagic(Spell.Slaying4);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying5:
+                        magic = GetMagic(Spell.Slaying5);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying6:
+                        magic = GetMagic(Spell.Slaying6);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying7:
+                        magic = GetMagic(Spell.Slaying7);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying8:
+                        magic = GetMagic(Spell.Slaying8);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying9:
+                        magic = GetMagic(Spell.Slaying9);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying10:
+                        magic = GetMagic(Spell.Slaying10);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying11:
+                        magic = GetMagic(Spell.Slaying11);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying12:
+                        magic = GetMagic(Spell.Slaying12);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying13:
+                        magic = GetMagic(Spell.Slaying13);
+                        damageFinal = magic.GetDamage(damageBase);
+                        LevelMagic(magic);
+                        break;
+                    case Spell.Slaying14:
+                        magic = GetMagic(Spell.Slaying14);
                         damageFinal = magic.GetDamage(damageBase);
                         LevelMagic(magic);
                         break;
@@ -2261,11 +2664,26 @@ namespace Server.MirObjects
             switch (spell)
             {
                 case Spell.FireBall:
-                case Spell.GreatFireBall:
-                case Spell.FrostCrunch:
+                case Spell.FireBall2:
+                case Spell.WindBall:
+                case Spell.ThunderBall:
+                case Spell.ThunderBall2:
+                case Spell.ThunderBall3:
+                case Spell.IceBall:
+                case Spell.WaterBall:
+                case Spell.IceFireBall:
+                case Spell.FireBall3:
+                case Spell.FireBall4:
+                case Spell.FireBall5:
+                case Spell.FireBall6:
+                case Spell.FireBall7:
+                case Spell.FireBall8:
+                case Spell.FireBall9:
                     if (!Fireball(target, magic)) targetID = 0;
                     break;
                 case Spell.Healing:
+                case Spell.Healing2:
+                case Spell.Healing3:
                     if (target == null)
                     {
                         target = DefaultMagicTarget;
@@ -2287,6 +2705,10 @@ namespace Server.MirObjects
                     HellFire(magic);
                     break;
                 case Spell.ThunderBolt:
+                case Spell.Rock:
+                case Spell.ThunderBolt2:
+                case Spell.ThunderBolt3:
+                case Spell.IceRock:
                     ThunderBolt(target, magic);
                     break;
                 case Spell.SoulFireBall:
@@ -2998,9 +3420,26 @@ namespace Server.MirObjects
                 #region FireBall, GreatFireBall, ThunderBolt, SoulFireBall, FlameDisruptor
 
                 case Spell.FireBall:
-                case Spell.GreatFireBall:
+                case Spell.FireBall2:
+                case Spell.WindBall:
+                case Spell.Rock:
+                case Spell.ThunderBall:
+                case Spell.ThunderBall2:
+                case Spell.ThunderBall3:
                 case Spell.ThunderBolt:
-                case Spell.SoulFireBall:
+                case Spell.ThunderBolt2:
+                case Spell.ThunderBolt3:
+                case Spell.IceBall:
+                case Spell.WaterBall:
+                case Spell.IceFireBall:
+                case Spell.IceRock:
+                case Spell.FireBall3:
+                case Spell.FireBall4:
+                case Spell.FireBall5:
+                case Spell.FireBall6:
+                case Spell.FireBall7:
+                case Spell.FireBall8:
+                case Spell.FireBall9:
                     value = (int)data[1];
                     target = (MapObject)data[2];
                     targetLocation = (Point)data[3];
@@ -3054,6 +3493,8 @@ namespace Server.MirObjects
                 #region Healing
 
                 case Spell.Healing:
+                case Spell.Healing2:
+                case Spell.Healing3:
                     value = (int)data[1];
                     target = (MapObject)data[2];
 

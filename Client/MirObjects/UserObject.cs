@@ -49,7 +49,9 @@ namespace Client.MirObjects
         public List<int> CompletedQuests = new List<int>();
         public List<ClientMail> Mail = new List<ClientMail>();
 
-        public bool Slaying, Thrusting, HalfMoon, FlamingSword;
+        public bool Slaying, Slaying2, Slaying3, Slaying4, Slaying5, Slaying6, Slaying7, Slaying8, Slaying9, Slaying10, Slaying11, Slaying12, Slaying13, Slaying14; 
+        public bool HalfMoon, HalfMoon2, HalfMoon3, HalfMoon4, HalfMoon5, HalfMoon6, HalfMoon7, HalfMoon8, HalfMoon9, HalfMoon10, HalfMoon11, HalfMoon12, HalfMoon13, HalfMoon14;
+        public bool FlamingSword, FlamingSword2, FlamingSword3, FlamingSword4, FlamingSword5, FlamingSword6, FlamingSword7, FlamingSword8, FlamingSword9, FlamingSword10, FlamingSword11, FlamingSword12, FlamingSword13, FlamingSword14;
         public ClientMagic NextMagic;
         public Point NextMagicLocation;
         public MapObject NextMagicObject;
@@ -271,7 +273,19 @@ namespace Client.MirObjects
                         //Stats[Stat.MaxAC] += (magic.Level + 1) * 3;
                         break;
                     case Spell.Slaying:
-                    // case Spell.FatalSword:
+                    case Spell.Slaying2:
+                    case Spell.Slaying3:
+                    case Spell.Slaying4:
+                    case Spell.Slaying5:
+                    case Spell.Slaying6:
+                    case Spell.Slaying7:
+                    case Spell.Slaying8:
+                    case Spell.Slaying9:
+                    case Spell.Slaying10:
+                    case Spell.Slaying11:
+                    case Spell.Slaying12:
+                    case Spell.Slaying13:
+                    case Spell.Slaying14:
                         Stats[Stat.Accuracy] += magic.Level;
                         Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
                         break;
