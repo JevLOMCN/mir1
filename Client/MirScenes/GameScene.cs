@@ -680,11 +680,26 @@ namespace Client.MirScenes
                 case Spell.SpiritSword:
                     return;
                 case Spell.HalfMoon:
+                case Spell.HalfMoon2:
+                case Spell.HalfMoon3:
+                case Spell.HalfMoon4:
+                case Spell.HalfMoon5:
+                case Spell.HalfMoon6:
+                case Spell.HalfMoon7:
+                case Spell.HalfMoon8:
+                case Spell.HalfMoon9:
+                case Spell.HalfMoon10:
+                case Spell.HalfMoon11:
+                case Spell.HalfMoon12:
+                case Spell.HalfMoon13:
+                case Spell.HalfMoon14:
                     if (CMain.Time < ToggleTime) return;
-                    actor.HalfMoon = !actor.HalfMoon;
-                    ChatDialog.ReceiveChat(prefix + (actor.HalfMoon ? "Use Half Moon." : "Do not use Half Moon."), ChatType.Hint);
+                    bool nextState = !actor.GetHalfMoonFlag(magic.Spell);
+                    actor.SetHalfMoonFlag(magic.Spell, nextState);
+                    string displayName = magic.Spell == Spell.HalfMoon ? "Half Moon" : magic.Spell.ToString();
+                    ChatDialog.ReceiveChat(prefix + (nextState ? $"Use {displayName}." : $"Do not use {displayName}."), ChatType.Hint);
                     ToggleTime = CMain.Time + 1000;
-                    SendSpellToggle(actor, magic.Spell, actor.HalfMoon);
+                    SendSpellToggle(actor, magic.Spell, nextState);
                     break;
                 case Spell.FlamingSword:
                     if (CMain.Time < ToggleTime) return;
@@ -3316,12 +3331,16 @@ namespace Client.MirScenes
                 return;
             }
 
+            if (p.Spell.IsHalfMoon())
+            {
+                actor.SetHalfMoonFlag(p.Spell, p.CanUse);
+                string displayName = p.Spell == Spell.HalfMoon ? "Half Moon" : p.Spell.ToString();
+                ChatDialog.ReceiveChat(prefix + (p.CanUse ? $"Use {displayName}." : $"Do not use {displayName}."), ChatType.Hint);
+                return;
+            }
+
             switch (p.Spell)
             {
-                case Spell.HalfMoon:
-                    actor.HalfMoon = p.CanUse;
-                    ChatDialog.ReceiveChat(prefix + (actor.HalfMoon ? "Use HalfMoon." : "Do not use HalfMoon."), ChatType.Hint);
-                    break;
                 case Spell.FlamingSword:
                     actor.FlamingSword = p.CanUse;
                     if (actor.FlamingSword)

@@ -563,11 +563,25 @@ public enum Spell : byte
     Slaying13 = 40,
     Slaying14 = 41,
 
+    //Toggle variations of melee effects
+    HalfMoon = 50,
+    HalfMoon2,
+    HalfMoon3,
+    HalfMoon4,
+    HalfMoon5,
+    HalfMoon6,
+    HalfMoon7,
+    HalfMoon8,
+    HalfMoon9,
+    HalfMoon10,
+    HalfMoon11,
+    HalfMoon12,
+    HalfMoon13,
+    HalfMoon14,
 
     //Warrior
     Fencing = 100,
     Thrusting,
-    HalfMoon,
     ShoulderDash,
     FlamingSword,
 
@@ -599,7 +613,9 @@ public enum Spell : byte
     Purification,
     MassHealing,
     Hallucination,
-    UltimateEnhancer
+    UltimateEnhancer,
+
+    
 }
 
 public enum SpellEffect : byte

@@ -60,7 +60,7 @@ namespace Server.MirDatabase
 
         public bool NewDay;
 
-        public bool Thrusting, HalfMoon, CrossHalfMoon;
+        public bool Thrusting, HalfMoon, HalfMoon2, HalfMoon3, HalfMoon4, HalfMoon5, HalfMoon6, HalfMoon7, HalfMoon8, HalfMoon9, HalfMoon10, HalfMoon11, HalfMoon12, HalfMoon13, HalfMoon14, CrossHalfMoon;
         public bool DoubleSlash;
         public byte MentalState;
         public byte MentalStateLvl;
@@ -217,6 +217,22 @@ namespace Server.MirDatabase
 
             Thrusting = reader.ReadBoolean();
             HalfMoon = reader.ReadBoolean();
+            if (version >= 110)
+            {
+                HalfMoon2 = reader.ReadBoolean();
+                HalfMoon3 = reader.ReadBoolean();
+                HalfMoon4 = reader.ReadBoolean();
+                HalfMoon5 = reader.ReadBoolean();
+                HalfMoon6 = reader.ReadBoolean();
+                HalfMoon7 = reader.ReadBoolean();
+                HalfMoon8 = reader.ReadBoolean();
+                HalfMoon9 = reader.ReadBoolean();
+                HalfMoon10 = reader.ReadBoolean();
+                HalfMoon11 = reader.ReadBoolean();
+                HalfMoon12 = reader.ReadBoolean();
+                HalfMoon13 = reader.ReadBoolean();
+                HalfMoon14 = reader.ReadBoolean();
+            }
             CrossHalfMoon = reader.ReadBoolean();
             DoubleSlash = reader.ReadBoolean();
 
@@ -390,6 +406,19 @@ namespace Server.MirDatabase
 
             writer.Write(Thrusting);
             writer.Write(HalfMoon);
+            writer.Write(HalfMoon2);
+            writer.Write(HalfMoon3);
+            writer.Write(HalfMoon4);
+            writer.Write(HalfMoon5);
+            writer.Write(HalfMoon6);
+            writer.Write(HalfMoon7);
+            writer.Write(HalfMoon8);
+            writer.Write(HalfMoon9);
+            writer.Write(HalfMoon10);
+            writer.Write(HalfMoon11);
+            writer.Write(HalfMoon12);
+            writer.Write(HalfMoon13);
+            writer.Write(HalfMoon14);
             writer.Write(CrossHalfMoon);
             writer.Write(DoubleSlash);
             writer.Write(MentalState);

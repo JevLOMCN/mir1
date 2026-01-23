@@ -74,6 +74,21 @@ namespace Client.MirObjects
             return active;
         }
 
+        public Spell GetActiveHalfMoonSpell()
+        {
+            Spell active = Spell.None;
+
+            foreach (Spell halfMoonSpell in SpellExtensions.HalfMoonSpells)
+            {
+                if (GetHalfMoonFlag(halfMoonSpell))
+                {
+                    active = halfMoonSpell;
+                }
+            }
+
+            return active;
+        }
+
         public bool GetSlayingFlag(Spell spell)
         {
             switch (spell)
@@ -106,6 +121,43 @@ namespace Client.MirObjects
                     return Slaying13;
                 case Spell.Slaying14:
                     return Slaying14;
+                default:
+                    return false;
+            }
+        }
+
+        public bool GetHalfMoonFlag(Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.HalfMoon:
+                    return HalfMoon;
+                case Spell.HalfMoon2:
+                    return HalfMoon2;
+                case Spell.HalfMoon3:
+                    return HalfMoon3;
+                case Spell.HalfMoon4:
+                    return HalfMoon4;
+                case Spell.HalfMoon5:
+                    return HalfMoon5;
+                case Spell.HalfMoon6:
+                    return HalfMoon6;
+                case Spell.HalfMoon7:
+                    return HalfMoon7;
+                case Spell.HalfMoon8:
+                    return HalfMoon8;
+                case Spell.HalfMoon9:
+                    return HalfMoon9;
+                case Spell.HalfMoon10:
+                    return HalfMoon10;
+                case Spell.HalfMoon11:
+                    return HalfMoon11;
+                case Spell.HalfMoon12:
+                    return HalfMoon12;
+                case Spell.HalfMoon13:
+                    return HalfMoon13;
+                case Spell.HalfMoon14:
+                    return HalfMoon14;
                 default:
                     return false;
             }
@@ -156,6 +208,55 @@ namespace Client.MirObjects
                     break;
                 case Spell.Slaying14:
                     Slaying14 = value;
+                    break;
+            }
+        }
+
+        public void SetHalfMoonFlag(Spell spell, bool value)
+        {
+            switch (spell)
+            {
+                case Spell.HalfMoon:
+                    HalfMoon = value;
+                    break;
+                case Spell.HalfMoon2:
+                    HalfMoon2 = value;
+                    break;
+                case Spell.HalfMoon3:
+                    HalfMoon3 = value;
+                    break;
+                case Spell.HalfMoon4:
+                    HalfMoon4 = value;
+                    break;
+                case Spell.HalfMoon5:
+                    HalfMoon5 = value;
+                    break;
+                case Spell.HalfMoon6:
+                    HalfMoon6 = value;
+                    break;
+                case Spell.HalfMoon7:
+                    HalfMoon7 = value;
+                    break;
+                case Spell.HalfMoon8:
+                    HalfMoon8 = value;
+                    break;
+                case Spell.HalfMoon9:
+                    HalfMoon9 = value;
+                    break;
+                case Spell.HalfMoon10:
+                    HalfMoon10 = value;
+                    break;
+                case Spell.HalfMoon11:
+                    HalfMoon11 = value;
+                    break;
+                case Spell.HalfMoon12:
+                    HalfMoon12 = value;
+                    break;
+                case Spell.HalfMoon13:
+                    HalfMoon13 = value;
+                    break;
+                case Spell.HalfMoon14:
+                    HalfMoon14 = value;
                     break;
             }
         }

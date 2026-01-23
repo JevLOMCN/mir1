@@ -54,7 +54,7 @@ namespace Server.MirEnvir
         public static object LoadLock = new object();
 
         public const int MinVersion = 60;
-        public const int Version = 109;
+        public const int Version = 110;
         public const int CustomVersion = 0;
         public static readonly string DatabasePath = Path.Combine(".", "Server.MirDB");
         public static readonly string AccountPath = Path.Combine(".", "Server.MirADB");
@@ -196,6 +196,19 @@ namespace Server.MirEnvir
                         MagicInfoList[i].MultiplierBonus = 0.25f;
                         break;
                     case Spell.HalfMoon:
+                    case Spell.HalfMoon2:
+                    case Spell.HalfMoon3:
+                    case Spell.HalfMoon4:
+                    case Spell.HalfMoon5:
+                    case Spell.HalfMoon6:
+                    case Spell.HalfMoon7:
+                    case Spell.HalfMoon8:
+                    case Spell.HalfMoon9:
+                    case Spell.HalfMoon10:
+                    case Spell.HalfMoon11:
+                    case Spell.HalfMoon12:
+                    case Spell.HalfMoon13:
+                    case Spell.HalfMoon14:
                         MagicInfoList[i].MultiplierBase = 0.3f;
                         MagicInfoList[i].MultiplierBonus = 0.1f;
                         break;
@@ -264,6 +277,20 @@ namespace Server.MirEnvir
             if (!MagicExists(Spell.Slaying12)) MagicInfoList.Add(new MagicInfo { Name = "Slaying12", Spell = Spell.Slaying12, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
             if (!MagicExists(Spell.Slaying13)) MagicInfoList.Add(new MagicInfo { Name = "Slaying13", Spell = Spell.Slaying13, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
             if (!MagicExists(Spell.Slaying14)) MagicInfoList.Add(new MagicInfo { Name = "Slaying14", Spell = Spell.Slaying14, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon", Spell = Spell.HalfMoon, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon2)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon2", Spell = Spell.HalfMoon2, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon3)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon3", Spell = Spell.HalfMoon3, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon4)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon4", Spell = Spell.HalfMoon4, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon5)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon5", Spell = Spell.HalfMoon5, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon6)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon6", Spell = Spell.HalfMoon6, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon7)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon7", Spell = Spell.HalfMoon7, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon8)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon8", Spell = Spell.HalfMoon8, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon9)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon9", Spell = Spell.HalfMoon9, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon10)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon10", Spell = Spell.HalfMoon10, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon11)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon11", Spell = Spell.HalfMoon11, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon12)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon12", Spell = Spell.HalfMoon12, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon13)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon13", Spell = Spell.HalfMoon13, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
+            if (!MagicExists(Spell.HalfMoon14)) MagicInfoList.Add(new MagicInfo { Name = "HalfMoon14", Spell = Spell.HalfMoon14, Icon = 4, Level1 = 15, Level2 = 17, Level3 = 20, Need1 = 500, Need2 = 1100, Need3 = 1800, Range = 0 });
         }
 
         private string CanStartEnvir()
