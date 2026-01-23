@@ -7,6 +7,7 @@ using S = ServerPackets;
 using C = ClientPackets;
 using Client.MirScenes.Dialogs;
 using System.Reflection;
+using Shared.Extensions;
 
 namespace Client.MirObjects
 {
@@ -31,6 +32,24 @@ namespace Client.MirObjects
         public int Armour, Weapon, ArmourOffSet, HairOffSet, WeaponOffSet, WingOffset;
 
         public int DieSound, FlinchSound, AttackSound;
+
+        private static readonly Dictionary<Spell, int> SlayingEffectFrames = new Dictionary<Spell, int>
+        {
+            { Spell.Slaying, 449 },
+            { Spell.Slaying2, 465 },
+            { Spell.Slaying3, 481 },
+            { Spell.Slaying4, 497 },
+            { Spell.Slaying5, 513 },
+            { Spell.Slaying6, 529 },
+            { Spell.Slaying7, 545 },
+            { Spell.Slaying8, 561 },
+            { Spell.Slaying9, 577 },
+            { Spell.Slaying10, 593 },
+            { Spell.Slaying11, 609 },
+            { Spell.Slaying12, 625 },
+            { Spell.Slaying13, 641 },
+            { Spell.Slaying14, 673 }
+        };
 
 
         public FrameSet Frames;
@@ -587,34 +606,11 @@ namespace Client.MirObjects
                         case MirAction.Attack1:
                             if (TargetObject != null)
                             {
-                                if (GameScene.User.Slaying)
-                                    Spell = Spell.Slaying;
-                                if (GameScene.User.Slaying2)
-                                    Spell = Spell.Slaying2;
-                                if (GameScene.User.Slaying3)
-                                    Spell = Spell.Slaying3;
-                                if (GameScene.User.Slaying4)
-                                    Spell = Spell.Slaying4;
-                                if (GameScene.User.Slaying5)
-                                    Spell = Spell.Slaying5;
-                                if (GameScene.User.Slaying6)
-                                    Spell = Spell.Slaying6;
-                                if (GameScene.User.Slaying7)
-                                    Spell = Spell.Slaying7;
-                                if (GameScene.User.Slaying8)
-                                    Spell = Spell.Slaying8;
-                                if (GameScene.User.Slaying9)
-                                    Spell = Spell.Slaying9;
-                                if (GameScene.User.Slaying10)
-                                    Spell = Spell.Slaying10;
-                                if (GameScene.User.Slaying11)
-                                    Spell = Spell.Slaying11;
-                                if (GameScene.User.Slaying12)
-                                    Spell = Spell.Slaying12;
-                                if (GameScene.User.Slaying13)
-                                    Spell = Spell.Slaying13;
-                                if (GameScene.User.Slaying14)
-                                    Spell = Spell.Slaying14;
+                                Spell slayingSpell = GameScene.User.GetActiveSlayingSpell();
+                                if (slayingSpell != Spell.None)
+                                {
+                                    Spell = slayingSpell;
+                                }
                             }
                                 
 
@@ -644,34 +640,10 @@ namespace Client.MirObjects
 
                             Network.Enqueue(new C.Attack { Direction = Direction, Spell = Spell });
 
-                            if (Spell == Spell.Slaying)
-                                GameScene.User.Slaying = false;
-                            if (Spell == Spell.Slaying2)
-                                GameScene.User.Slaying2 = false;
-                            if (Spell == Spell.Slaying3)
-                                GameScene.User.Slaying3 = false;
-                            if (Spell == Spell.Slaying4)
-                                GameScene.User.Slaying4 = false;
-                            if (Spell == Spell.Slaying5)
-                                GameScene.User.Slaying5 = false;
-                            if (Spell == Spell.Slaying6)
-                                GameScene.User.Slaying6 = false;
-                            if (Spell == Spell.Slaying7)
-                                GameScene.User.Slaying7 = false;
-                            if (Spell == Spell.Slaying8)
-                                GameScene.User.Slaying8 = false;
-                            if (Spell == Spell.Slaying9)
-                                GameScene.User.Slaying9 = false;
-                            if (Spell == Spell.Slaying10)
-                                GameScene.User.Slaying10 = false;
-                            if (Spell == Spell.Slaying11)
-                                GameScene.User.Slaying11 = false;
-                            if (Spell == Spell.Slaying12)
-                                GameScene.User.Slaying12 = false;
-                            if (Spell == Spell.Slaying13)
-                                GameScene.User.Slaying13 = false;
-                            if (Spell == Spell.Slaying14)
-                                GameScene.User.Slaying14 = false;
+                            if (Spell.IsSlaying())
+                            {
+                                GameScene.User.SetSlayingFlag(Spell, false);
+                            }
 
                             if (Spell == Spell.FlamingSword)
                                 GameScene.User.FlamingSword = false;
@@ -750,35 +722,24 @@ namespace Client.MirObjects
                             SpellLevel = (byte)action.Params[1];
                         }
 
-                        switch (Spell)
+                        if (Spell.IsSlaying())
                         {
-                            case Spell.Slaying:
-                            case Spell.Slaying2:
-                            case Spell.Slaying3:
-                            case Spell.Slaying4:
-                            case Spell.Slaying5:
-                            case Spell.Slaying6:
-                            case Spell.Slaying7:
-                            case Spell.Slaying8:
-                            case Spell.Slaying9:
-                            case Spell.Slaying10:
-                            case Spell.Slaying11:
-                            case Spell.Slaying12:
-                            case Spell.Slaying13:
-                            case Spell.Slaying14:
-                                SoundManager.PlaySound(SoundList.SlayingEnd);
-                                break;
-                            case Spell.Thrusting:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                break;
-                            case Spell.HalfMoon:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                break;
-                            case Spell.FlamingSword:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
-                                break;
-
-                            
+                            SoundManager.PlaySound(SoundList.SlayingEnd);
+                        }
+                        else
+                        {
+                            switch (Spell)
+                            {
+                                case Spell.Thrusting:
+                                    SoundManager.PlaySound(20000 + (ushort)Spell * 10);
+                                    break;
+                                case Spell.HalfMoon:
+                                    SoundManager.PlaySound(20000 + (ushort)Spell * 10);
+                                    break;
+                                case Spell.FlamingSword:
+                                    SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
+                                    break;
+                            }
                         }
                         break;
                     case MirAction.AttackRange1: //ArcherTest - Assign Target for other users
@@ -2353,59 +2314,27 @@ namespace Client.MirObjects
             switch (CurrentAction)
             {
                 case MirAction.Attack1:
-                    switch (Spell)
+                    if (Spell.IsSlaying())
                     {
-                        case Spell.Slaying:
-                            Libraries.Magic.DrawBlend(449 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying2:
-                            Libraries.Magic.DrawBlend(465 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying3:
-                            Libraries.Magic.DrawBlend(481 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying4:
-                            Libraries.Magic.DrawBlend(497 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying5:
-                            Libraries.Magic.DrawBlend(513 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying6:
-                            Libraries.Magic.DrawBlend(529 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying7:
-                            Libraries.Magic.DrawBlend(545 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying8:
-                            Libraries.Magic.DrawBlend(561 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying9:
-                            Libraries.Magic.DrawBlend(577 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying10:
-                            Libraries.Magic.DrawBlend(593 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying11:
-                            Libraries.Magic.DrawBlend(609 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying12:
-                            Libraries.Magic.DrawBlend(625 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying13:
-                            Libraries.Magic.DrawBlend(641 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Slaying14:
-                            Libraries.Magic.DrawBlend(673 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.Thrusting:
-                            Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.HalfMoon:
-                            Libraries.Magic.DrawBlend(2560 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.FlamingSword:
-                            Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
+                        if (SlayingEffectFrames.TryGetValue(Spell, out int baseFrame))
+                        {
+                            Libraries.Magic.DrawBlend(baseFrame + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                        }
+                    }
+                    else
+                    {
+                        switch (Spell)
+                        {
+                            case Spell.Thrusting:
+                                Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                                break;
+                            case Spell.HalfMoon:
+                                Libraries.Magic.DrawBlend(2560 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                                break;
+                            case Spell.FlamingSword:
+                                Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                                break;
+                        }
                     }
                     break;
             }

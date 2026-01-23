@@ -1,6 +1,7 @@
 ﻿using Client.MirScenes;
 using Client.MirScenes.Dialogs;
 using S = ServerPackets;
+using Shared.Extensions;
 
 namespace Client.MirObjects
 {
@@ -57,6 +58,107 @@ namespace Client.MirObjects
         public MapObject NextMagicObject;
         public MirDirection NextMagicDirection;
         public QueuedAction QueuedAction;
+
+        public Spell GetActiveSlayingSpell()
+        {
+            Spell active = Spell.None;
+
+            foreach (Spell slayingSpell in Shared.Extensions.SpellExtensions.SlayingSpells)
+            {
+                if (GetSlayingFlag(slayingSpell))
+                {
+                    active = slayingSpell;
+                }
+            }
+
+            return active;
+        }
+
+        public bool GetSlayingFlag(Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.Slaying:
+                    return Slaying;
+                case Spell.Slaying2:
+                    return Slaying2;
+                case Spell.Slaying3:
+                    return Slaying3;
+                case Spell.Slaying4:
+                    return Slaying4;
+                case Spell.Slaying5:
+                    return Slaying5;
+                case Spell.Slaying6:
+                    return Slaying6;
+                case Spell.Slaying7:
+                    return Slaying7;
+                case Spell.Slaying8:
+                    return Slaying8;
+                case Spell.Slaying9:
+                    return Slaying9;
+                case Spell.Slaying10:
+                    return Slaying10;
+                case Spell.Slaying11:
+                    return Slaying11;
+                case Spell.Slaying12:
+                    return Slaying12;
+                case Spell.Slaying13:
+                    return Slaying13;
+                case Spell.Slaying14:
+                    return Slaying14;
+                default:
+                    return false;
+            }
+        }
+
+        public void SetSlayingFlag(Spell spell, bool value)
+        {
+            switch (spell)
+            {
+                case Spell.Slaying:
+                    Slaying = value;
+                    break;
+                case Spell.Slaying2:
+                    Slaying2 = value;
+                    break;
+                case Spell.Slaying3:
+                    Slaying3 = value;
+                    break;
+                case Spell.Slaying4:
+                    Slaying4 = value;
+                    break;
+                case Spell.Slaying5:
+                    Slaying5 = value;
+                    break;
+                case Spell.Slaying6:
+                    Slaying6 = value;
+                    break;
+                case Spell.Slaying7:
+                    Slaying7 = value;
+                    break;
+                case Spell.Slaying8:
+                    Slaying8 = value;
+                    break;
+                case Spell.Slaying9:
+                    Slaying9 = value;
+                    break;
+                case Spell.Slaying10:
+                    Slaying10 = value;
+                    break;
+                case Spell.Slaying11:
+                    Slaying11 = value;
+                    break;
+                case Spell.Slaying12:
+                    Slaying12 = value;
+                    break;
+                case Spell.Slaying13:
+                    Slaying13 = value;
+                    break;
+                case Spell.Slaying14:
+                    Slaying14 = value;
+                    break;
+            }
+        }
 
         public UserObject() { }
         public UserObject(uint objectID) : base(objectID)
@@ -266,28 +368,18 @@ namespace Client.MirObjects
             for (int i = 0; i < Magics.Count; i++)
             {
                 ClientMagic magic = Magics[i];
+                if (magic.Spell.IsSlaying())
+                {
+                    Stats[Stat.Accuracy] += magic.Level;
+                    Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
+                    continue;
+                }
+
                 switch (magic.Spell)
                 {
                     case Spell.Fencing:
                         Stats[Stat.Accuracy] += magic.Level * 3;
                         //Stats[Stat.MaxAC] += (magic.Level + 1) * 3;
-                        break;
-                    case Spell.Slaying:
-                    case Spell.Slaying2:
-                    case Spell.Slaying3:
-                    case Spell.Slaying4:
-                    case Spell.Slaying5:
-                    case Spell.Slaying6:
-                    case Spell.Slaying7:
-                    case Spell.Slaying8:
-                    case Spell.Slaying9:
-                    case Spell.Slaying10:
-                    case Spell.Slaying11:
-                    case Spell.Slaying12:
-                    case Spell.Slaying13:
-                    case Spell.Slaying14:
-                        Stats[Stat.Accuracy] += magic.Level;
-                        Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
                         break;
                     case Spell.SpiritSword:
                         Stats[Stat.Accuracy] += spiritSwordLvPlus[magic.Level];
@@ -482,4 +574,3 @@ namespace Client.MirObjects
         } 
     }
 }
-

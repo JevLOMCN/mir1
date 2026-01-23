@@ -13,6 +13,7 @@ using Client.MirScenes.Dialogs;
 using Client.Utils;
 using System;
 using System.Drawing.Imaging;
+using Shared.Extensions;
 
 namespace Client.MirScenes
 {
@@ -668,24 +669,15 @@ namespace Client.MirScenes
 
             int cost;
             string prefix = string.Empty;
+            if (magic.Spell.IsSlaying())
+            {
+                return;
+            }
+
             switch (magic.Spell)
             {
                 case Spell.Fencing:
                 case Spell.SpiritSword:
-                case Spell.Slaying:
-                case Spell.Slaying2:
-                case Spell.Slaying3:
-                case Spell.Slaying4:
-                case Spell.Slaying5:
-                case Spell.Slaying6:
-                case Spell.Slaying7:
-                case Spell.Slaying8:
-                case Spell.Slaying9:
-                case Spell.Slaying10:
-                case Spell.Slaying11:
-                case Spell.Slaying12:
-                case Spell.Slaying13:
-                case Spell.Slaying14:
                     return;
                 case Spell.HalfMoon:
                     if (CMain.Time < ToggleTime) return;
@@ -3318,52 +3310,14 @@ namespace Client.MirScenes
             UserObject actor = User;
             string prefix = string.Empty;
 
+            if (p.Spell.IsSlaying())
+            {
+                actor.SetSlayingFlag(p.Spell, p.CanUse);
+                return;
+            }
+
             switch (p.Spell)
             {
-                //Warrior
-                case Spell.Slaying:
-                    actor.Slaying = p.CanUse;
-                    break;
-                case Spell.Slaying2:
-                    actor.Slaying2 = p.CanUse;
-                    break;
-                case Spell.Slaying3:
-                    actor.Slaying3 = p.CanUse;
-                    break;
-                case Spell.Slaying4:
-                    actor.Slaying4 = p.CanUse;
-                    break;
-                case Spell.Slaying5:
-                    actor.Slaying5 = p.CanUse;
-                    break;
-                case Spell.Slaying6:
-                    actor.Slaying6 = p.CanUse;
-                    break;
-                case Spell.Slaying7:
-                    actor.Slaying7 = p.CanUse;
-                    break;
-                case Spell.Slaying8:
-                    actor.Slaying8 = p.CanUse;
-                    break;
-                case Spell.Slaying9:
-                    actor.Slaying9 = p.CanUse;
-                    break;
-                case Spell.Slaying10:
-                    actor.Slaying10 = p.CanUse;
-                    break;
-                case Spell.Slaying11:
-                    actor.Slaying11 = p.CanUse;
-                    break;
-                case Spell.Slaying12:
-                    actor.Slaying12 = p.CanUse;
-                    break;
-                case Spell.Slaying13:
-                    actor.Slaying13 = p.CanUse;
-                    break;
-                case Spell.Slaying14:
-                    actor.Slaying14 = p.CanUse;
-                    break;
-
                 case Spell.HalfMoon:
                     actor.HalfMoon = p.CanUse;
                     ChatDialog.ReceiveChat(prefix + (actor.HalfMoon ? "Use HalfMoon." : "Do not use HalfMoon."), ChatType.Hint);
