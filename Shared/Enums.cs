@@ -546,6 +546,8 @@ public enum Spell : byte
     FireBall9 = 25,
     Healing3 = 26,
     FireWall = 27,
+
+    //Slaying variations of melee effects
     Slaying = 28,
     Slaying2 = 29,
     Slaying3 = 30,

@@ -725,6 +725,7 @@ namespace Client.MirObjects
                         if (Spell.IsSlaying())
                         {
                             SoundManager.PlaySound(SoundList.SlayingEnd);
+                            AddSlayingAttackEffect();
                         }
                         else
                         {
@@ -2314,32 +2315,30 @@ namespace Client.MirObjects
             switch (CurrentAction)
             {
                 case MirAction.Attack1:
-                    if (Spell.IsSlaying())
+                    switch (Spell)
                     {
-                        if (SlayingEffectFrames.TryGetValue(Spell, out int baseFrame))
-                        {
-                            Libraries.Magic.DrawBlend(baseFrame + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                        }
-                    }
-                    else
-                    {
-                        switch (Spell)
-                        {
-                            case Spell.Thrusting:
-                                Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                                break;
-                            case Spell.HalfMoon:
-                                Libraries.Magic.DrawBlend(2560 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                                break;
-                            case Spell.FlamingSword:
-                                Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                                break;
-                        }
+                        case Spell.Thrusting:
+                            Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                            break;
+                        case Spell.HalfMoon:
+                            Libraries.Magic.DrawBlend(2560 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                            break;
+                        case Spell.FlamingSword:
+                            Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
+                            break;
                     }
                     break;
             }
+        }
 
+        private void AddSlayingAttackEffect()
+        {
+            if (!Spell.IsSlaying()) return;
 
+            if (SlayingEffectFrames.TryGetValue(Spell, out int baseFrame))
+            {
+                MapControl.Effects.Add(new Effect(Libraries.Magic, baseFrame, 5, 500, Functions.PointMove(CurrentLocation, Direction, 1)));
+            }
         }
 
         public void DrawCurrentEffects()
