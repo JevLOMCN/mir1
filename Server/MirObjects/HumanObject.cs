@@ -2103,6 +2103,7 @@ namespace Server.MirObjects
         }
         public void Attack(MirDirection dir, Spell spell)
         {
+            bool halfMoonWideHit = false;
             LogTime = Envir.Time + Globals.LogDelay;
 
             if (!CanAttack)
@@ -2312,7 +2313,7 @@ namespace Server.MirObjects
 
             }
         HalfMoon:
-            if (spell.IsHalfMoon())
+            if (spell.IsHalfMoon() && halfMoonWideHit)
             {
                 dir = Functions.PreviousDir(dir);
 
