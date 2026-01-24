@@ -100,8 +100,6 @@ namespace Client.MirObjects
 
         public SpellEffect CurrentEffect;
 
-        public long StanceTime;
-
         public string GuildName;
         public string GuildRankName;
 
@@ -479,12 +477,6 @@ namespace Client.MirObjects
             if (ActionFeed.Count == 0)
             {
                 CurrentAction = MirAction.Standing;
-
-                if (CurrentAction == MirAction.Standing)
-                {
-                    CurrentAction = CMain.Time > StanceTime ? MirAction.Standing : MirAction.Stance;
-                }
-
                 Frames.TryGetValue(CurrentAction, out Frame);
                 FrameIndex = 0;
                 EffectFrameIndex = 0;
@@ -1278,7 +1270,6 @@ namespace Client.MirObjects
                 case MirAction.Standing:
                 case MirAction.DashFail:
                 case MirAction.Harvest:
-                case MirAction.Stance:
                     if (CMain.Time >= NextMotion)
                     {
                         GameScene.Scene.MapControl.TextureValid = false;
@@ -1320,7 +1311,6 @@ namespace Client.MirObjects
                             //if (ActionFeed.Count == 0)
                             //    ActionFeed.Add(new QueuedAction { Action = MirAction.Stance, Direction = Direction, Location = CurrentLocation });
 
-                            StanceTime = CMain.Time + StanceDelay;
                             FrameIndex = Frame.Count - 1;
                             SetAction();
                         }
@@ -1364,7 +1354,6 @@ namespace Client.MirObjects
                             {
                                 case 5:
                                     missile = CreateProjectile(1030, Libraries.Magic2, true, 5, 30, 5);
-                                    StanceTime = CMain.Time + StanceDelay;
                                     SoundManager.PlaySound(20000 + 121 * 10);
                                     if (missile.Target != null)
                                     {
@@ -2174,7 +2163,7 @@ namespace Client.MirObjects
 
             if (this == User) return;
 
-            if ((CurrentAction == MirAction.Standing || CurrentAction == MirAction.Stance || CurrentAction == MirAction.DashFail) && NextAction != null)
+            if ((CurrentAction == MirAction.Standing || CurrentAction == MirAction.DashFail) && NextAction != null)
                 SetAction();
             //if Revive and dead set action
 

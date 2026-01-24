@@ -755,7 +755,7 @@ namespace Client.MirObjects
         {
             if (QueuedAction != null && !GameScene.Observing)
             {
-                if ((ActionFeed.Count == 0) || (ActionFeed.Count == 1 && NextAction.Action == MirAction.Stance))
+                if (ActionFeed.Count == 0)
                 {
                     ActionFeed.Clear();
                     ActionFeed.Add(QueuedAction);
@@ -772,7 +772,7 @@ namespace Client.MirObjects
             base.ProcessFrames();
 
             if (clear) QueuedAction = null;
-            if ((CurrentAction == MirAction.Standing || CurrentAction == MirAction.Stance || CurrentAction == MirAction.DashFail) && (QueuedAction != null || NextAction != null))
+            if ((CurrentAction == MirAction.Standing || CurrentAction == MirAction.DashFail) && (QueuedAction != null || NextAction != null))
                 SetAction();
         }
 
