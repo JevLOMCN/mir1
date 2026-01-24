@@ -244,11 +244,6 @@ namespace Server.MirEnvir
             }
         }
 
-        private void ClearMagicInfoList()
-        {
-            MagicInfoList.Clear();
-        }
-
         private void FillMagicInfoList()
         {
             if (!MagicExists(Spell.FireBall)) MagicInfoList.Add(new MagicInfo { Name = "FireBall", Spell = Spell.FireBall, Icon = 0, Level1 = 7, Level2 = 9, Level3 = 11, Need1 = 200, Need2 = 350, Need3 = 700, BaseCost = 3, LevelCost = 2, MPowerBase = 8, PowerBase = 2, Range = 9 });
@@ -1197,7 +1192,6 @@ namespace Server.MirEnvir
                             MagicInfoList.Add(m);
                     }
 
-                    ClearMagicInfoList();
                     FillMagicInfoList();
                     if (LoadVersion <= 70)
                         UpdateMagicInfo();
