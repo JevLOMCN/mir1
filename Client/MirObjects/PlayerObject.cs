@@ -7,6 +7,7 @@ using S = ServerPackets;
 using C = ClientPackets;
 using Client.MirScenes.Dialogs;
 using System.Reflection;
+using Shared.Extensions;
 
 namespace Client.MirObjects
 {
@@ -31,6 +32,52 @@ namespace Client.MirObjects
         public int Armour, Weapon, ArmourOffSet, HairOffSet, WeaponOffSet, WingOffset;
 
         public int DieSound, FlinchSound, AttackSound;
+
+        private static readonly Dictionary<Spell, int> AttackEffectFrames = new Dictionary<Spell, int>
+        {
+            { Spell.Slaying, 449 },
+            { Spell.Slaying2, 465 },
+            { Spell.Slaying3, 481 },
+            { Spell.Slaying4, 497 },
+            { Spell.Slaying5, 513 },
+            { Spell.Slaying6, 529 },
+            { Spell.Slaying7, 545 },
+            { Spell.Slaying8, 561 },
+            { Spell.Slaying9, 577 },
+            { Spell.Slaying10, 593 },
+            { Spell.Slaying11, 609 },
+            { Spell.Slaying12, 625 },
+            { Spell.Slaying13, 641 },
+            { Spell.Slaying14, 673 },
+            { Spell.HalfMoon, 449 },
+            { Spell.HalfMoon2, 465 },
+            { Spell.HalfMoon3, 481 },
+            { Spell.HalfMoon4, 497 },
+            { Spell.HalfMoon5, 513 },
+            { Spell.HalfMoon6, 529 },
+            { Spell.HalfMoon7, 545 },
+            { Spell.HalfMoon8, 561 },
+            { Spell.HalfMoon9, 577 },
+            { Spell.HalfMoon10, 593 },
+            { Spell.HalfMoon11, 609 },
+            { Spell.HalfMoon12, 625 },
+            { Spell.HalfMoon13, 641 },
+            { Spell.HalfMoon14, 673 },
+            { Spell.FlamingSword, 449 },
+            { Spell.FlamingSword2, 465 },
+            { Spell.FlamingSword3, 481 },
+            { Spell.FlamingSword4, 497 },
+            { Spell.FlamingSword5, 513 },
+            { Spell.FlamingSword6, 529 },
+            { Spell.FlamingSword7, 545 },
+            { Spell.FlamingSword8, 561 },
+            { Spell.FlamingSword9, 577 },
+            { Spell.FlamingSword10, 593 },
+            { Spell.FlamingSword11, 609 },
+            { Spell.FlamingSword12, 625 },
+            { Spell.FlamingSword13, 641 },
+            { Spell.FlamingSword14, 673 }
+        };
 
 
         public FrameSet Frames;
@@ -585,42 +632,49 @@ namespace Client.MirObjects
                             //CanSetAction = false;
                             break;
                         case MirAction.Attack1:
-                                if (GameScene.User.Slaying && TargetObject != null)
-                                    Spell = Spell.Slaying;
-
-                                if (GameScene.User.Thrusting && GameScene.Scene.MapControl.HasTarget(Functions.PointMove(CurrentLocation, Direction, 2)))
-                                    Spell = Spell.Thrusting;
-
-                                if (GameScene.User.HalfMoon)
+                            if (TargetObject != null)
+                            {
+                                Spell slayingSpell = GameScene.User.GetActiveSlayingSpell();
+                                if (slayingSpell != Spell.None)
                                 {
-                                    if (TargetObject != null || GameScene.Scene.MapControl.CanHalfMoon(CurrentLocation, Direction))
+                                    Spell = slayingSpell;
+                                }
+                            }
+
+                            Spell halfMoonSpell = GameScene.User.GetActiveHalfMoonSpell();
+                            if (halfMoonSpell != Spell.None)
+                            {
+                                if (TargetObject != null || GameScene.Scene.MapControl.CanHalfMoon(CurrentLocation, Direction))
+                                {
+                                    magic = User.GetMagic(halfMoonSpell);
+                                    if (magic != null && magic.BaseCost + magic.LevelCost * magic.Level <= User.MP)
+                                        Spell = halfMoonSpell;
+                                }
+                            }
+
+                            Spell flamingSwordSpell = GameScene.User.GetActiveFlamingSwordSpell();
+                            if (flamingSwordSpell != Spell.None)
+                            {
+                                if (TargetObject != null)
+                                {
+                                    magic = User.GetMagic(flamingSwordSpell);
+                                    if (magic != null)
                                     {
-                                        magic = User.GetMagic(Spell.HalfMoon);
-                                        if (magic != null && magic.BaseCost + magic.LevelCost * magic.Level <= User.MP)
-                                            Spell = Spell.HalfMoon;
+                                        Spell = flamingSwordSpell;
+                                        magic.CastTime = CMain.Time;
                                     }
                                 }
-
-                                if (GameScene.User.FlamingSword)
-                                {
-                                    if (TargetObject != null)
-                                    {
-                                        magic = User.GetMagic(Spell.FlamingSword);
-                                        if (magic != null)
-                                        {
-                                            Spell = Spell.FlamingSword;
-                                            magic.CastTime = CMain.Time;
-                                        }
-                                    }
-                                }
-                            
+                            }
 
                             Network.Enqueue(new C.Attack { Direction = Direction, Spell = Spell });
 
-                            if (Spell == Spell.Slaying)
-                                GameScene.User.Slaying = false;
-                            if (Spell == Spell.FlamingSword)
-                                GameScene.User.FlamingSword = false;
+                            if (Spell.IsSlaying())
+                            {
+                                GameScene.User.SetSlayingFlag(Spell, false);
+                            }
+
+                            if (Spell.IsFlamingSword())
+                                GameScene.User.SetFlamingSwordFlag(Spell, false);
 
                             magic = User.GetMagic(Spell);
 
@@ -696,22 +750,19 @@ namespace Client.MirObjects
                             SpellLevel = (byte)action.Params[1];
                         }
 
-                        switch (Spell)
+                        if (Spell.IsSlaying() || Spell.IsHalfMoon() || Spell.IsFlamingSword())
                         {
-                            case Spell.Slaying:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10 + (Gender == MirGender.Male ? 0 : 1));
-                                break;
-                            case Spell.Thrusting:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                break;
-                            case Spell.HalfMoon:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                break;
-                            case Spell.FlamingSword:
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
-                                break;
-
-                            
+                            SoundManager.PlaySound(SoundList.SlayingEnd);
+                            AddAttackEffect();
+                        }
+                        else
+                        {
+                            switch (Spell)
+                            {
+                                case Spell.Thrusting:
+                                    SoundManager.PlaySound(20000 + (ushort)Spell * 10);
+                                    break;
+                            }
                         }
                         break;
                     case MirAction.AttackRange1: //ArcherTest - Assign Target for other users
@@ -738,8 +789,34 @@ namespace Client.MirObjects
                             #region FireBall
 
                             case Spell.FireBall:
-                                Effects.Add(new Effect(Libraries.Magic, 0, 10, Frame.Count * FrameInterval, this));
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
+                                Effects.Add(new Effect(Libraries.Magic, 17, 5, 500, this));
+                                SoundManager.PlaySound(SoundList.FireballFly);
+                                break;
+
+                            #endregion
+
+                            #region FireBall2
+
+                            case Spell.FireBall2:
+                                Effects.Add(new Effect(Libraries.Magic, 33, 5, 500, this));
+                                SoundManager.PlaySound(SoundList.FireballFly);
+                                break;
+
+                            #endregion
+
+                            #region WindBall
+
+                            case Spell.WindBall:
+                                Effects.Add(new Effect(Libraries.Magic, 49, 5, 500, this));
+                                SoundManager.PlaySound(SoundList.FireballFly);
+                                break;
+
+                            #endregion
+
+                            #region Rock
+
+                            case Spell.Rock:
+                                Effects.Add(new Effect(Libraries.Magic, 81, 5, 500, this));
                                 break;
 
                             #endregion
@@ -747,8 +824,168 @@ namespace Client.MirObjects
                             #region Healing
 
                             case Spell.Healing:
-                                Effects.Add(new Effect(Libraries.Magic, 200, 10, Frame.Count * FrameInterval, this));
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
+                                Effects.Add(new Effect(Libraries.Magic, 65, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBolt
+
+                            case Spell.ThunderBolt:
+                                Effects.Add(new Effect(Libraries.Magic, 129, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBall
+
+                            case Spell.ThunderBall:
+                                Effects.Add(new Effect(Libraries.Magic, 145, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBall2
+
+                            case Spell.ThunderBall2:
+                                Effects.Add(new Effect(Libraries.Magic, 161, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBall3
+
+                            case Spell.ThunderBall3:
+                                Effects.Add(new Effect(Libraries.Magic, 177, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBolt2
+
+                            case Spell.ThunderBolt2:
+                                Effects.Add(new Effect(Libraries.Magic, 193, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region ThunderBolt3
+
+                            case Spell.ThunderBolt3:
+                                Effects.Add(new Effect(Libraries.Magic, 209, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region IceBall
+
+                            case Spell.IceBall:
+                                Effects.Add(new Effect(Libraries.Magic, 225, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Healing2
+
+                            case Spell.Healing2:
+                                Effects.Add(new Effect(Libraries.Magic, 241, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region WaterBall
+
+                            case Spell.WaterBall:
+                                Effects.Add(new Effect(Libraries.Magic, 257, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region IceFireBall
+
+                            case Spell.IceFireBall:
+                                Effects.Add(new Effect(Libraries.Magic, 273, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region IceRock
+
+                            case Spell.IceRock:
+                                Effects.Add(new Effect(Libraries.Magic, 289, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball3
+
+                            case Spell.FireBall3:
+                                Effects.Add(new Effect(Libraries.Magic, 305, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball4
+
+                            case Spell.FireBall4:
+                                Effects.Add(new Effect(Libraries.Magic, 321, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball5
+
+                            case Spell.FireBall5:
+                                Effects.Add(new Effect(Libraries.Magic, 337, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball6
+
+                            case Spell.FireBall6:
+                                Effects.Add(new Effect(Libraries.Magic, 353, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball7
+
+                            case Spell.FireBall7:
+                                Effects.Add(new Effect(Libraries.Magic, 369, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball8
+
+                            case Spell.FireBall8:
+                                Effects.Add(new Effect(Libraries.Magic, 385, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Fireball9
+
+                            case Spell.FireBall9:
+                                Effects.Add(new Effect(Libraries.Magic, 401, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region Healing3
+
+                            case Spell.Healing3:
+                                Effects.Add(new Effect(Libraries.Magic, 417, 5, 500, this));
+                                break;
+
+                            #endregion
+
+                            #region FireWall
+
+                            case Spell.FireWall:
+                                Effects.Add(new Effect(Libraries.Magic, 433, 5, 500, this));
+                                SoundManager.PlaySound(SoundList.FireballFly);
                                 break;
 
                             #endregion
@@ -798,14 +1035,6 @@ namespace Client.MirObjects
 
                             #endregion
 
-                            #region ThunderBolt
-
-                            case Spell.ThunderBolt:
-                                Effects.Add(new Effect(Libraries.Magic2, 20, 3, 300, this));
-                                break;
-
-                            #endregion
-
                             #region SoulFireBall
 
                             case Spell.SoulFireBall:
@@ -845,15 +1074,6 @@ namespace Client.MirObjects
 
                             case Spell.FireBang:
                                 Effects.Add(new Effect(Libraries.Magic, 1650, 10, Frame.Count * FrameInterval, this));
-                                SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-                                break;
-
-                            #endregion
-
-                            #region FireWall
-
-                            case Spell.FireWall:
-                                Effects.Add(new Effect(Libraries.Magic, 1620, 10, Frame.Count * FrameInterval, this));
                                 SoundManager.PlaySound(20000 + (ushort)Spell * 10);
                                 break;
 
@@ -1193,18 +1413,406 @@ namespace Client.MirObjects
                                     #region FireBall
 
                                     case Spell.FireBall:
-                                        SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
-                                        missile = CreateProjectile(10, Libraries.Magic, true, 6, 30, 4);
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(22, Libraries.Magic, false, 5, 30, -5);
 
                                         if (missile.Target != null)
                                         {
                                             missile.Complete += (o, e) =>
                                             {
                                                 if (missile.Target.CurrentAction == MirAction.Dead) return;
-                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 170, 10, 600, missile.Target));
-                                                SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 2);
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 27, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
                                             };
                                         }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall2
+
+                                    case Spell.FireBall2:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(38, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 43, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region WindBall
+
+                                    case Spell.WindBall:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(54, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 59, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region Healing
+
+                                    case Spell.Healing:
+                                        SoundManager.PlaySound(SoundList.HealingEnd);
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 75, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 75, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region Rock
+
+                                    case Spell.Rock:
+
+                                        SoundManager.PlaySound(SoundList.FireballExplode);
+
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 91, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 91, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBolt
+
+                                    case Spell.ThunderBolt:
+
+                                        SoundManager.PlaySound(SoundList.ThunderboltEnd);
+
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 139, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 139, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBall
+
+                                    case Spell.ThunderBall:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(150, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 155, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.ThunderBallExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBall2
+
+                                    case Spell.ThunderBall2:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(166, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 171, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.ThunderBallExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBall3
+
+                                    case Spell.ThunderBall3:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(182, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 187, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.ThunderBallExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBolt2
+
+                                    case Spell.ThunderBolt2:
+
+                                        SoundManager.PlaySound(SoundList.Thunderbolt2End);
+
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 198, 10, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 198, 10, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region ThunderBolt3
+
+                                    case Spell.ThunderBolt3:
+
+                                        SoundManager.PlaySound(SoundList.ThunderBallExplode);
+
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 219, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 219, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region IceBall
+
+                                    case Spell.IceBall:
+                                        missile = CreateProjectile(230, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 235, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.IceBallExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region Healing2
+
+                                    case Spell.Healing2:
+                                        SoundManager.PlaySound(SoundList.HealingEnd);
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 251, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 251, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region WaterBall
+
+                                    case Spell.WaterBall:
+                                        missile = CreateProjectile(262, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 267, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.IceBallExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region IceFireBall
+
+                                    case Spell.IceFireBall:
+                                        missile = CreateProjectile(278, Libraries.Magic, false, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 283, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region IceRock
+
+                                    case Spell.IceRock:
+
+                                        SoundManager.PlaySound(SoundList.IceRockEnd);
+
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 299, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 299, 5, 600, ob));
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall3
+
+                                    case Spell.FireBall3:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(310, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 315, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall4
+
+                                    case Spell.FireBall4:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(326, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 331, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall5
+
+                                    case Spell.FireBall5:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(342, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 347, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall6
+
+                                    case Spell.FireBall6:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(358, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 363, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall7
+
+                                    case Spell.FireBall7:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(374, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 379, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall8
+
+                                    case Spell.FireBall8:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(390, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 395, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region FireBall9
+
+                                    case Spell.FireBall9:
+                                        SoundManager.PlaySound(SoundList.FireballFly);
+                                        missile = CreateProjectile(406, Libraries.Magic, true, 5, 30, -5);
+
+                                        if (missile.Target != null)
+                                        {
+                                            missile.Complete += (o, e) =>
+                                            {
+                                                if (missile.Target.CurrentAction == MirAction.Dead) return;
+                                                missile.Target.Effects.Add(new Effect(Libraries.Magic, 411, 5, 600, missile.Target));
+                                                SoundManager.PlaySound(SoundList.FireballExplode);
+                                            };
+                                        }
+                                        break;
+
+                                    #endregion
+
+                                    #region Healing3
+
+                                    case Spell.Healing3:
+                                        SoundManager.PlaySound(SoundList.HealingEnd);
+                                        if (ob == null)
+                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 427, 5, 600, TargetPoint));
+                                        else
+                                            ob.Effects.Add(new Effect(Libraries.Magic, 427, 5, 600, ob));
                                         break;
 
                                     #endregion
@@ -1224,18 +1832,6 @@ namespace Client.MirObjects
                                                 SoundManager.PlaySound(20000 + (ushort)Spell.GreatFireBall * 10 + 2);
                                             };
                                         }
-                                        break;
-
-                                    #endregion
-
-                                    #region Healing
-
-                                    case Spell.Healing:
-                                        SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
-                                        if (ob == null)
-                                            MapControl.Effects.Add(new Effect(Libraries.Magic, 370, 10, 800, TargetPoint));
-                                        else
-                                            ob.Effects.Add(new Effect(Libraries.Magic, 370, 10, 800, ob));
                                         break;
 
                                     #endregion
@@ -1303,20 +1899,6 @@ namespace Client.MirObjects
                                                 MapControl.Effects.Add(effect);
                                             }
                                         }
-                                        break;
-
-                                    #endregion
-
-                                    #region ThunderBolt
-
-                                    case Spell.ThunderBolt:
-
-                                        SoundManager.PlaySound(20000 + (ushort)Spell * 10);
-
-                                        if (ob == null)
-                                            MapControl.Effects.Add(new Effect(Libraries.Magic2, 10, 5, 400, TargetPoint));
-                                        else
-                                            ob.Effects.Add(new Effect(Libraries.Magic2, 10, 5, 400, ob));
                                         break;
 
                                     #endregion
@@ -1401,7 +1983,7 @@ namespace Client.MirObjects
                                     #region FireWall
 
                                     case Spell.FireWall:
-                                        SoundManager.PlaySound(20000 + (ushort)Spell * 10 + 1);
+                                        SoundManager.PlaySound(SoundList.FireballFly);
                                         break;
 
                                     #endregion
@@ -1509,7 +2091,6 @@ namespace Client.MirObjects
                             //if (ActionFeed.Count == 0)
                             //    ActionFeed.Add(new QueuedAction { Action = MirAction.Stance, Direction = Direction, Location = CurrentLocation });
 
-                            StanceTime = CMain.Time + StanceDelay;
                             FrameIndex = Frame.Count - 1;
                             SetAction();
 
@@ -1758,23 +2339,22 @@ namespace Client.MirObjects
                 case MirAction.Attack1:
                     switch (Spell)
                     {
-                        case Spell.Slaying:
-                            Libraries.Magic.DrawBlend(1820 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
                         case Spell.Thrusting:
                             Libraries.Magic.DrawBlend(2190 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.HalfMoon:
-                            Libraries.Magic.DrawBlend(2560 + ((int)Direction * 10) + SpellLevel * 90 + FrameIndex, DrawLocation, Color.White, true, 0.7F);
-                            break;
-                        case Spell.FlamingSword:
-                            Libraries.Magic.DrawBlend(3480 + ((int)Direction * 10) + FrameIndex, DrawLocation, Color.White, true, 0.7F);
                             break;
                     }
                     break;
             }
+        }
 
+        private void AddAttackEffect()
+        {
+            if (!Spell.IsSlaying() && !Spell.IsHalfMoon() && !Spell.IsFlamingSword()) return;
 
+            if (AttackEffectFrames.TryGetValue(Spell, out int baseFrame))
+            {
+                MapControl.Effects.Add(new Effect(Libraries.Magic, baseFrame, 5, 500, Functions.PointMove(CurrentLocation, Direction, 1)));
+            }
         }
 
         public void DrawCurrentEffects()

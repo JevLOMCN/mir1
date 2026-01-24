@@ -4,6 +4,7 @@ using Server.MirNetwork;
 using S = ServerPackets;
 using System.Text.RegularExpressions;
 using Timer = Server.MirEnvir.Timer;
+using Shared.Extensions;
 
 namespace Server.MirObjects
 {
@@ -1009,7 +1010,9 @@ namespace Server.MirObjects
             RequestedGuildBuffInfo = true;
 
             if (Info.Thrusting) Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Thrusting, CanUse = true });
-            if (Info.HalfMoon) Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.HalfMoon, CanUse = true });
+
+            foreach (var halfmoonSpell in SpellExtensions.HalfMoonSpells)
+                if (GetHalfMoonFlag(halfmoonSpell)) Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = halfmoonSpell, CanUse = true });
 
             for (int i = 0; i < Info.Pets.Count; i++)
             {

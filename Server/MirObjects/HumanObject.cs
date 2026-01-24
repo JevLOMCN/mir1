@@ -4,6 +4,7 @@ using Server.MirNetwork;
 using Server.MirObjects.Monsters;
 using System.Numerics;
 using S = ServerPackets;
+using Shared.Extensions;
 
 namespace Server.MirObjects
 {
@@ -190,8 +191,183 @@ namespace Server.MirObjects
         public List<ItemSets> ItemSets = new List<ItemSets>();
         public List<EquipmentSlot> MirSet = new List<EquipmentSlot>();
 
-        public bool Slaying, FlamingSword;
+        public bool Slaying, Slaying2, Slaying3, Slaying4, Slaying5, Slaying6, Slaying7, Slaying8, Slaying9, Slaying10, Slaying11, Slaying12, Slaying13, Slaying14;
+        public bool HalfMoon2, HalfMoon3, HalfMoon4, HalfMoon5, HalfMoon6, HalfMoon7, HalfMoon8, HalfMoon9, HalfMoon10, HalfMoon11, HalfMoon12, HalfMoon13, HalfMoon14;
+        public bool FlamingSword;
+        public Spell FlamingSwordSpell = Spell.None;
         public long FlamingSwordTime;
+
+        private bool GetSlayingFlag(Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.Slaying:
+                    return Slaying;
+                case Spell.Slaying2:
+                    return Slaying2;
+                case Spell.Slaying3:
+                    return Slaying3;
+                case Spell.Slaying4:
+                    return Slaying4;
+                case Spell.Slaying5:
+                    return Slaying5;
+                case Spell.Slaying6:
+                    return Slaying6;
+                case Spell.Slaying7:
+                    return Slaying7;
+                case Spell.Slaying8:
+                    return Slaying8;
+                case Spell.Slaying9:
+                    return Slaying9;
+                case Spell.Slaying10:
+                    return Slaying10;
+                case Spell.Slaying11:
+                    return Slaying11;
+                case Spell.Slaying12:
+                    return Slaying12;
+                case Spell.Slaying13:
+                    return Slaying13;
+                case Spell.Slaying14:
+                    return Slaying14;
+                default:
+                    return false;
+            }
+        }
+
+        protected bool GetHalfMoonFlag(Spell spell)
+        {
+            switch (spell)
+            {
+                case Spell.HalfMoon:
+                    return Info.HalfMoon;
+                case Spell.HalfMoon2:
+                    return Info.HalfMoon2;
+                case Spell.HalfMoon3:
+                    return Info.HalfMoon3;
+                case Spell.HalfMoon4:
+                    return Info.HalfMoon4;
+                case Spell.HalfMoon5:
+                    return Info.HalfMoon5;
+                case Spell.HalfMoon6:
+                    return Info.HalfMoon6;
+                case Spell.HalfMoon7:
+                    return Info.HalfMoon7;
+                case Spell.HalfMoon8:
+                    return Info.HalfMoon8;
+                case Spell.HalfMoon9:
+                    return Info.HalfMoon9;
+                case Spell.HalfMoon10:
+                    return Info.HalfMoon10;
+                case Spell.HalfMoon11:
+                    return Info.HalfMoon11;
+                case Spell.HalfMoon12:
+                    return Info.HalfMoon12;
+                case Spell.HalfMoon13:
+                    return Info.HalfMoon13;
+                case Spell.HalfMoon14:
+                    return Info.HalfMoon14;
+                default:
+                    return false;
+            }
+        }
+
+        private void SetSlayingFlag(Spell spell, bool value)
+        {
+            switch (spell)
+            {
+                case Spell.Slaying:
+                    Slaying = value;
+                    break;
+                case Spell.Slaying2:
+                    Slaying2 = value;
+                    break;
+                case Spell.Slaying3:
+                    Slaying3 = value;
+                    break;
+                case Spell.Slaying4:
+                    Slaying4 = value;
+                    break;
+                case Spell.Slaying5:
+                    Slaying5 = value;
+                    break;
+                case Spell.Slaying6:
+                    Slaying6 = value;
+                    break;
+                case Spell.Slaying7:
+                    Slaying7 = value;
+                    break;
+                case Spell.Slaying8:
+                    Slaying8 = value;
+                    break;
+                case Spell.Slaying9:
+                    Slaying9 = value;
+                    break;
+                case Spell.Slaying10:
+                    Slaying10 = value;
+                    break;
+                case Spell.Slaying11:
+                    Slaying11 = value;
+                    break;
+                case Spell.Slaying12:
+                    Slaying12 = value;
+                    break;
+                case Spell.Slaying13:
+                    Slaying13 = value;
+                    break;
+                case Spell.Slaying14:
+                    Slaying14 = value;
+                    break;
+            }
+        }
+
+        private void SetHalfMoonFlag(Spell spell, bool value)
+        {
+            switch (spell)
+            {
+                case Spell.HalfMoon:
+                    Info.HalfMoon = value;
+                    break;
+                case Spell.HalfMoon2:
+                    Info.HalfMoon2 = value;
+                    break;
+                case Spell.HalfMoon3:
+                    Info.HalfMoon3 = value;
+                    break;
+                case Spell.HalfMoon4:
+                    Info.HalfMoon4 = value;
+                    break;
+                case Spell.HalfMoon5:
+                    Info.HalfMoon5 = value;
+                    break;
+                case Spell.HalfMoon6:
+                    Info.HalfMoon6 = value;
+                    break;
+                case Spell.HalfMoon7:
+                    Info.HalfMoon7 = value;
+                    break;
+                case Spell.HalfMoon8:
+                    Info.HalfMoon8 = value;
+                    break;
+                case Spell.HalfMoon9:
+                    Info.HalfMoon9 = value;
+                    break;
+                case Spell.HalfMoon10:
+                    Info.HalfMoon10 = value;
+                    break;
+                case Spell.HalfMoon11:
+                    Info.HalfMoon11 = value;
+                    break;
+                case Spell.HalfMoon12:
+                    Info.HalfMoon12 = value;
+                    break;
+                case Spell.HalfMoon13:
+                    Info.HalfMoon13 = value;
+                    break;
+                case Spell.HalfMoon14:
+                    Info.HalfMoon14 = value;
+                    break;
+            }
+        }
 
         public long LastRevivalTime;
         public float HpDrain = 0;
@@ -239,7 +415,9 @@ namespace Server.MirObjects
             if (FlamingSword && Envir.Time >= FlamingSwordTime)
             {
                 FlamingSword = false;
-                Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.FlamingSword, CanUse = false });
+                Spell expiredSpell = FlamingSwordSpell == Spell.None ? Spell.FlamingSword : FlamingSwordSpell;
+                FlamingSwordSpell = Spell.None;
+                Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = expiredSpell, CanUse = false });
             }
 
             if (Stacking && Envir.Time > StackingTime)
@@ -1588,16 +1766,18 @@ namespace Server.MirObjects
             for (int i = 0; i < Info.Magics.Count; i++)
             {
                 UserMagic magic = Info.Magics[i];
+                if (magic.Spell.IsSlaying())
+                {
+                    Stats[Stat.Accuracy] += magic.Level;
+                    Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
+                    continue;
+                }
+
                 switch (magic.Spell)
                 {
                     case Spell.Fencing:
                         Stats[Stat.Accuracy] += magic.Level * 3;
                         // Stats[Stat.MaxAC] += (magic.Level + 1) * 3;
-                        break;
-                    // case Spell.FatalSword:
-                    case Spell.Slaying:
-                        Stats[Stat.Accuracy] += magic.Level;
-                        Stats[Stat.MaxDC] += slayingLvPlus[magic.Level];
                         break;
                     case Spell.SpiritSword:
                         Stats[Stat.Accuracy] += spiritSwordLvPlus[magic.Level];
@@ -1926,15 +2106,14 @@ namespace Server.MirObjects
         }
         public void Attack(MirDirection dir, Spell spell)
         {
+            bool halfMoonWideHit = false;
             LogTime = Envir.Time + Globals.LogDelay;
 
             if (!CanAttack)
             {
-                switch (spell)
+                if (spell.IsSlaying())
                 {
-                    case Spell.Slaying:
-                        Slaying = false;
-                        break;
+                    SetSlayingFlag(spell, false);
                 }
 
                 Enqueue(new S.UserLocation { Direction = Direction, Location = CurrentLocation });
@@ -1943,54 +2122,78 @@ namespace Server.MirObjects
 
             byte level = 0;
             UserMagic magic;
-
-            switch (spell)
+            if (spell.IsSlaying())
             {
-                case Spell.Slaying:
-                    if (!Slaying)
-                        spell = Spell.None;
-                    else
-                    {
-                        magic = GetMagic(Spell.Slaying);
-                        level = magic.Level;
-                    }
-
-                    Slaying = false;
-                    break;
-                case Spell.Thrusting:
-                case Spell.FlamingSword:
-                    magic = GetMagic(spell);
-                    if ((magic == null) || (!FlamingSword && (spell == Spell.FlamingSword)))
-                    {
-                        spell = Spell.None;
-                        break;
-                    }
-                    level = magic.Level;
-                    break;
-                case Spell.HalfMoon:
-                    magic = GetMagic(spell);
-                    if (magic == null || magic.Info.BaseCost + (magic.Level * magic.Info.LevelCost) > MP)
-                    {
-                        spell = Spell.None;
-                        break;
-                    }
-                    level = magic.Level;
-                    ChangeMP(-(magic.Info.BaseCost + magic.Level * magic.Info.LevelCost));
-                    break;
-                default:
+                Spell requestedSpell = spell;
+                if (!GetSlayingFlag(requestedSpell))
+                {
                     spell = Spell.None;
-                    break;
+                }
+                else
+                {
+                    magic = GetMagic(requestedSpell);
+                    level = magic.Level;
+                }
+
+                SetSlayingFlag(requestedSpell, false);
+            }
+            else
+            {
+                switch (spell)
+                {
+                    case Spell.Thrusting:
+                        magic = GetMagic(spell);
+                        if (magic == null)
+                        {
+                            spell = Spell.None;
+                            break;
+                        }
+                        level = magic.Level;
+                        break;
+                    default:
+                        if (spell.IsFlamingSword())
+                        {
+                            magic = GetMagic(spell);
+                            if (magic == null || !FlamingSword || FlamingSwordSpell != spell)
+                            {
+                                spell = Spell.None;
+                                break;
+                            }
+                            level = magic.Level;
+                        }
+                        else if (spell.IsHalfMoon())
+                        {
+                            magic = GetMagic(spell);
+                            if (magic == null || magic.Info.BaseCost + (magic.Level * magic.Info.LevelCost) > MP)
+                            {
+                                spell = Spell.None;
+                                break;
+                            }
+                            level = magic.Level;
+                            ChangeMP(-(magic.Info.BaseCost + magic.Level * magic.Info.LevelCost));
+                        }
+                        else
+                        {
+                            spell = Spell.None;
+                        }
+                        break;
+                }
             }
 
 
-            if (!Slaying)
+            foreach (Spell slayingSpell in SpellExtensions.SlayingSpells)
             {
-                magic = GetMagic(Spell.Slaying);
+                if (GetSlayingFlag(slayingSpell))
+                {
+                    continue;
+                }
+
+                magic = GetMagic(slayingSpell);
 
                 if (magic != null && Envir.Random.Next(12) <= magic.Level)
                 {
-                    Slaying = true;
-                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.Slaying, CanUse = Slaying });
+                    SetSlayingFlag(slayingSpell, true);
+                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = slayingSpell, CanUse = true });
                 }
             }
 
@@ -2012,13 +2215,10 @@ namespace Server.MirObjects
 
             if (!CurrentMap.ValidPoint(target))
             {
-                switch (spell)
-                {
-                    case Spell.Thrusting:
-                        goto Thrusting;
-                    case Spell.HalfMoon:
-                        goto HalfMoon;
-                }
+                if (spell == Spell.Thrusting)
+                    goto Thrusting;
+                if (spell.IsHalfMoon())
+                    goto HalfMoon;
                 return;
             }
 
@@ -2026,13 +2226,10 @@ namespace Server.MirObjects
 
             if (cell.Objects == null)
             {
-                switch (spell)
-                {
-                    case Spell.Thrusting:
-                        goto Thrusting;
-                    case Spell.HalfMoon:
-                        goto HalfMoon;
-                }
+                if (spell == Spell.Thrusting)
+                    goto Thrusting;
+                if (spell.IsHalfMoon())
+                    goto HalfMoon;
                 return;
             }
 
@@ -2063,30 +2260,40 @@ namespace Server.MirObjects
                 var defence = DefenceType.ACAgility;
 
                 DelayedAction action;
-                switch (spell)
+                if (spell.IsSlaying())
                 {
-                    case Spell.Slaying:
-                        magic = GetMagic(Spell.Slaying);
-                        damageFinal = magic.GetDamage(damageBase);
-                        LevelMagic(magic);
-                        break;
-                    case Spell.Thrusting:
-                        magic = GetMagic(Spell.Thrusting);
-                        LevelMagic(magic);
-                        break;
-                    case Spell.HalfMoon:
-                        magic = GetMagic(Spell.HalfMoon);
-                        LevelMagic(magic);
-                        break;
-                    case Spell.FlamingSword:
-                        magic = GetMagic(Spell.FlamingSword);
-                        damageFinal = magic.GetDamage(damageBase);
-                        FlamingSword = false;
-                        defence = DefenceType.AC;
-                        //action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, ob, damage, DefenceType.Agility, true);
-                        //ActionList.Add(action);
-                        LevelMagic(magic);
-                        break;
+                    magic = GetMagic(spell);
+                    damageFinal = magic.GetDamage(damageBase);
+                    LevelMagic(magic);
+                }
+                else
+                {
+                    switch (spell)
+                    {
+                        case Spell.Thrusting:
+                            magic = GetMagic(Spell.Thrusting);
+                            LevelMagic(magic);
+                            break;
+                        default:
+                            if (spell.IsFlamingSword())
+                            {
+                                magic = GetMagic(spell);
+                                if (magic == null) break;
+                                damageFinal = magic.GetDamage(damageBase);
+                                FlamingSword = false;
+                                FlamingSwordSpell = Spell.None;
+                                defence = DefenceType.AC;
+                                //action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, ob, damage, DefenceType.Agility, true);
+                                //ActionList.Add(action);
+                                LevelMagic(magic);
+                            }
+                            else if (spell.IsHalfMoon())
+                            {
+                                magic = GetMagic(spell);
+                                LevelMagic(magic);
+                            }
+                            break;
+                    }
                 }
 
                 //if (ob.Attacked(this, damage, defence) <= 0) break;
@@ -2121,7 +2328,7 @@ namespace Server.MirObjects
 
             }
         HalfMoon:
-            if (spell == Spell.HalfMoon)
+            if (spell.IsHalfMoon() && halfMoonWideHit)
             {
                 dir = Functions.PreviousDir(dir);
 
@@ -2261,11 +2468,26 @@ namespace Server.MirObjects
             switch (spell)
             {
                 case Spell.FireBall:
-                case Spell.GreatFireBall:
-                case Spell.FrostCrunch:
+                case Spell.FireBall2:
+                case Spell.WindBall:
+                case Spell.ThunderBall:
+                case Spell.ThunderBall2:
+                case Spell.ThunderBall3:
+                case Spell.IceBall:
+                case Spell.WaterBall:
+                case Spell.IceFireBall:
+                case Spell.FireBall3:
+                case Spell.FireBall4:
+                case Spell.FireBall5:
+                case Spell.FireBall6:
+                case Spell.FireBall7:
+                case Spell.FireBall8:
+                case Spell.FireBall9:
                     if (!Fireball(target, magic)) targetID = 0;
                     break;
                 case Spell.Healing:
+                case Spell.Healing2:
+                case Spell.Healing3:
                     if (target == null)
                     {
                         target = DefaultMagicTarget;
@@ -2287,6 +2509,10 @@ namespace Server.MirObjects
                     HellFire(magic);
                     break;
                 case Spell.ThunderBolt:
+                case Spell.Rock:
+                case Spell.ThunderBolt2:
+                case Spell.ThunderBolt3:
+                case Spell.IceRock:
                     ThunderBolt(target, magic);
                     break;
                 case Spell.SoulFireBall:
@@ -2998,9 +3224,26 @@ namespace Server.MirObjects
                 #region FireBall, GreatFireBall, ThunderBolt, SoulFireBall, FlameDisruptor
 
                 case Spell.FireBall:
-                case Spell.GreatFireBall:
+                case Spell.FireBall2:
+                case Spell.WindBall:
+                case Spell.Rock:
+                case Spell.ThunderBall:
+                case Spell.ThunderBall2:
+                case Spell.ThunderBall3:
                 case Spell.ThunderBolt:
-                case Spell.SoulFireBall:
+                case Spell.ThunderBolt2:
+                case Spell.ThunderBolt3:
+                case Spell.IceBall:
+                case Spell.WaterBall:
+                case Spell.IceFireBall:
+                case Spell.IceRock:
+                case Spell.FireBall3:
+                case Spell.FireBall4:
+                case Spell.FireBall5:
+                case Spell.FireBall6:
+                case Spell.FireBall7:
+                case Spell.FireBall8:
+                case Spell.FireBall9:
                     value = (int)data[1];
                     target = (MapObject)data[2];
                     targetLocation = (Point)data[3];
@@ -3054,6 +3297,8 @@ namespace Server.MirObjects
                 #region Healing
 
                 case Spell.Healing:
+                case Spell.Healing2:
+                case Spell.Healing3:
                     value = (int)data[1];
                     target = (MapObject)data[2];
 
@@ -4713,20 +4958,26 @@ namespace Server.MirObjects
                 case Spell.Thrusting:
                     Info.Thrusting = state == SpellToggleState.None ? !Info.Thrusting : use;
                     break;
-                case Spell.HalfMoon:
-                    Info.HalfMoon = state == SpellToggleState.None ? !Info.HalfMoon : use;
-                    break;
-                case Spell.FlamingSword:
-                    if (FlamingSword || Envir.Time < FlamingSwordTime) return;
-                    magic = GetMagic(spell);
-                    if (magic == null) return;
-                    cost = magic.Info.BaseCost + magic.Level * magic.Info.LevelCost;
-                    if (cost >= MP) return;
+                default:
+                    if (spell.IsFlamingSword())
+                    {
+                        if (FlamingSword || Envir.Time < FlamingSwordTime) return;
+                        magic = GetMagic(spell);
+                        if (magic == null) return;
+                        cost = magic.Info.BaseCost + magic.Level * magic.Info.LevelCost;
+                        if (cost >= MP) return;
 
-                    FlamingSword = true;
-                    FlamingSwordTime = Envir.Time + 10000;
-                    Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = Spell.FlamingSword, CanUse = true });
-                    ChangeMP(-cost);
+                        FlamingSword = true;
+                        FlamingSwordSpell = spell;
+                        FlamingSwordTime = Envir.Time + 10000;
+                        Enqueue(new S.SpellToggle { ObjectID = ObjectID, Spell = spell, CanUse = true });
+                        ChangeMP(-cost);
+                    }
+                    else if (spell.IsHalfMoon())
+                    {
+                        bool nextState = state == SpellToggleState.None ? !GetHalfMoonFlag(spell) : use;
+                        SetHalfMoonFlag(spell, nextState);
+                    }
                     break;
             }
         }

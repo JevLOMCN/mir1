@@ -48,11 +48,10 @@ namespace Client.MirObjects
                     break;
                 case Spell.FireWall:
                     BodyLibrary = Libraries.Magic;
-                    DrawFrame = 1630;
+                    DrawFrame = 438;
                     FrameInterval = 120;
-                    FrameCount = 6;
+                    FrameCount = 10;
                     Light = 3;
-                    Blend = true;
                     break;
             }
 
