@@ -58,11 +58,112 @@ Today, the restoration of Mir 1 via open source is more than a technical revival
 
 ---
 
-## <img src="https://mirfiles.co.uk/resources/mir2/users/Jev/favicon.png" width="20"> Other Projects
+<h2 align="center">
+  <img src="https://www.lomcn.net/forum/styles/uix/images/logo2024_100.png" width="32">
+  Other Projects
+</h2>
 
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/mir1.png" alt="Mir1" width="20"/> [Mir 1](https://github.com/JevLOMCN/mir1/) | [Database](https://github.com/Suprcode/Carbon.Database) - Remake of ActozSoft's 1997 _The Legend Of Mir 1_
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/mir2.png" alt="Mir2" width="20"/> [Mir 2](https://github.com/Suprcode/Crystal) | [Database](https://github.com/Suprcode/Crystal.Database) | [Map Editor](https://github.com/Suprcode/Crystal.MapEditor) - Remake of ActozSoft/Wemade Entertainment's 1999 _The Legend Of Mir 2_
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/mir3.png" alt="Mir3" width="20"/> [Mir 3](https://github.com/Suprcode/Zircon) | [Database](https://mirfiles.com/resources/mir3/zircon/Database.7z) | [Map Editor](https://www.lomcn.net/forum/threads/map-editor.109317/)- Remake of Wemade Entertainment's 2003 _The Legend Of Mir 3_
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/woool.png" alt="WoOOL" width="20"/> [WoOOL](https://www.lomcn.net/forum/forums/woool-development-project-onyx.857/) - Remake of Shanda Games' (now Shengqu Games) 2003 _The World Of Legend_
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/mir3d.png" alt="Mir3D" width="20"/> [Mir 3D (Moon Spirit)](https://github.com/mir-ethernity/mir-eternal) | [Mir 3D (Holy Cow)](https://github.com/JevLOMCN/Legend-Eternal-Mir3D) - Remake of Shanda Games' (now Shengqu Games) 2016 _Legend Eternal_
-- <img src="https://github.com/JevLOMCN/mir4/blob/main/Tools/icons/mir4.png" alt="Mir4" width="20"/> [Mir 4](https://github.com/JevLOMCN/mir4) - Remake of Wemade Entertainment's 2021 _The Legend Of Mir 4_
+<table align="center" width="100%">
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://github.com/JevLOMCN/mir1/">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir1.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 1</b> •
+      <a href="https://github.com/JevLOMCN/mir1/">Project</a> •
+      <a href="https://github.com/Suprcode/Carbon.Database">Database</a><br>
+      Remake of ActozSoft's 1997 <i>The Legend Of Mir 1</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://github.com/Suprcode/Crystal">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir2.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 2</b> •
+      <a href="https://github.com/Suprcode/Crystal">Project</a> •
+      <a href="https://github.com/Suprcode/Crystal.Database">Database</a> •
+      <a href="https://github.com/Suprcode/Crystal.MapEditor">Map Editor</a><br>
+      Remake of ActozSoft / Wemade Entertainment's 1999 <i>The Legend Of Mir 2</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://github.com/Suprcode/Zircon">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir3.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 3</b> •
+      <a href="https://github.com/Suprcode/Zircon">Project</a> •
+      <a href="https://mirfiles.com/resources/mir3/zircon/Database.7z">Database</a> •
+      <a href="https://www.lomcn.net/forum/threads/map-editor.109317/">Map Editor</a><br>
+      Remake of Wemade Entertainment's 2003 <i>The Legend Of Mir 3</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://www.lomcn.net/forum/forums/woool-development-project-onyx.857/">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/woool.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>WoOOL</b> •
+      <a href="https://www.lomcn.net/forum/forums/woool-development-project-onyx.857/">Project</a> •
+      <a href="https://www.lomcn.net/forum/threads/nmp-viewer-editor.114580">Map Editor</a><br>
+      Remake of Shanda Games' (Shengqu Games) 2003 <i>The World Of Legend</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://github.com/mir-ethernity/mir-eternal">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir3d.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 3D</b> •
+      <a href="https://github.com/mir-ethernity/mir-eternal">Moon Spirit</a> •
+      <a href="https://github.com/JevLOMCN/Eternal-Legend">Holy Cow</a> •
+      <a href="https://github.com/JevLOMCN/CQYH">Official</a><br>
+      Remake of Shanda Games' 2016 <i>Legend Eternal</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://github.com/JevLOMCN/mir4">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir4.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 4</b> •
+      <a href="https://github.com/JevLOMCN/mir4">Project</a><br>
+      Remake of Wemade Entertainment's 2021 <i>Mir 4</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="48" align="center" valign="top">
+      <a href="https://mirfiles.co.uk/resources/mir2/users/Jev/Mir%205/Leaks/">
+        <img src="https://raw.githubusercontent.com/JevLOMCN/mir4/main/Tools/icons/mir5.png" width="32" height="32">
+      </a>
+    </td>
+    <td>
+      <b>Mir 5</b> •
+      <a href="https://github.com/JevLOMCN/mir5-private">Project</a> •
+      <a href="https://mirfiles.co.uk/resources/mir2/users/Jev/Mir%205/Leaks/">Leaked Files</a> •
+      <a href="https://mirfiles.co.uk/resources/mir2/users/Jev/Mir%205/Leaks/Mir5%20Alpha%202.mkv">Gameplay Video (24m)</a><br>
+      A massive 2TB development leak from the currently unreleased Mir 5. Includes server/client builds, internal documentation, and a 24-minute video showing <a href="https://github.com/JevLOMCN">Jev</a> connecting a leaked client to Wemade's official development server—since removed from YouTube with two copyright strikes. Preserved for historical and research purposes.
+    </td>
+  </tr>
+
+</table>
